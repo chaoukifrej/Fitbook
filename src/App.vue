@@ -5,7 +5,7 @@
       <router-link to="/Perso">Perso</router-link> |
       <router-link to="/Connexion">Connexion</router-link> |
       <router-link to="/Ajoutpost">Ajoutpost</router-link> |
-      <router-link to="/Contact">Contact</router-link> |
+      <router-link to="/Contact">Contact</router-link>
     </div>
     <router-view />
   </div>
