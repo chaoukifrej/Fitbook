@@ -3,9 +3,17 @@ import App from "./App.vue";
 import router from "./router";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faHome);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
+library.add(faPlusSquare);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
+library.add(faUserCircle);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
