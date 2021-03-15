@@ -1,9 +1,19 @@
 <template>
-  <div class="contact"></div>
+  <div class="contact">
+    <Header />
+    <Footer />
+  </div>
 </template>
 
 <script>
-export default {};
+import Footer from "@/components/Footer.vue";
+import Header from "@/components/Header.vue";
+export default {
+  components: {
+    Header,
+    Footer,
+  },
+};
 </script>
 
 <style></style>
