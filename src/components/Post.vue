@@ -1,6 +1,12 @@
 <template>
   <div class="post">
-    <div class="card"></div>
+    <div class="card">
+      <div class="img" :style="{ backgroundImage: 'url(' + card.img + ')' }">
+        <p>
+          <span>{{ card.name }}</span>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,7 +17,7 @@ export default {
       card: {
         name: "Robert",
         date: "15/03/20",
-        img: "./assets/logo.png",
+        img: "../assets/logo.png",
         description: "Fin de séance, 21k de poussé !!!",
       },
     };
@@ -19,4 +25,14 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.card {
+  background-color: wheat;
+  min-height: 220px;
+  width: 100%;
+  .img {
+    height: 180px;
+    background-color: #fff;
+  }
+}
+</style>
