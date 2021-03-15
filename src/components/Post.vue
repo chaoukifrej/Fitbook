@@ -8,8 +8,17 @@
         </p>
       </div>
       <div class="btnCard">
-        <font-awesome-icon class="like" :icon="['far', 'thumbs-up']" />
-        <font-awesome-icon class="like" :icon="['far', 'comment']" />
+        <div class="like">
+          <font-awesome-icon class="icons" :icon="['far', 'thumbs-up']" />
+          <p>{{ card.nbLike }} j'aime</p>
+        </div>
+        <div class="comment">
+          <p>{{ card.nbComment }} commentaires</p>
+          <font-awesome-icon class="icons" :icon="['far', 'comment']" />
+        </div>
+      </div>
+      <div class="description">
+        <p>{{ card.description }}</p>
       </div>
     </div>
   </div>
@@ -20,11 +29,14 @@ export default {
   data() {
     return {
       card: {
-        name: "Robert",
+        name: "Jean Onche la tapette",
         date: "15/03/20",
         img:
           "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-TkKO4S3bFZU%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FdfhYjIlWsO4%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-        description: "Fin de séance, 21k de poussé !!!",
+        description:
+          "Fin de séance, 21k de poussé !!! De la pure folie cette seance de merde",
+        nbLike: "12",
+        nbComment: "3",
       },
     };
   },
@@ -38,7 +50,7 @@ export default {
   border-radius: 3px;
   background-color: #232323;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.7);
-  min-height: 300px;
+  min-height: 350px;
   width: 98%;
   .img {
     height: 250px;
@@ -50,20 +62,33 @@ export default {
     justify-content: space-between;
     padding: 5px 10px;
     background: linear-gradient(#000000, #36363600);
-    span {
-      background: transparent;
-    }
+
     .date {
       font-size: 0.8rem;
     }
   }
   .btnCard {
     background: transparent;
-    .like {
+    display: flex;
+    justify-content: space-between;
+    .like,
+    .comment {
       background: transparent;
-      margin: 5px;
+      display: flex;
+      align-items: center;
+      margin: 10px;
+      p {
+        margin: 3px 10px 0;
+      }
+    }
+    .icons {
       font-size: 1.5rem;
     }
+  }
+  .description p {
+    font-size: 1.1rem;
+    text-align: start;
+    margin: 0 10px;
   }
 }
 </style>

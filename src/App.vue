@@ -13,6 +13,8 @@ $redColor: #ff1616;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
   background-color: $bgColorView;
   color: whitesmoke;
 }
@@ -21,7 +23,7 @@ $redColor: #ff1616;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: whitesmoke;
 }
 
 #nav {
