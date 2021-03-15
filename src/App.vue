@@ -1,16 +1,6 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
-    <div id="nav">
-      <router-link to="/">Actus</router-link> |
-      <router-link to="/Perso">Perso</router-link> |
-      <router-link to="/Connexion">Connexion</router-link> |
-      <router-link to="/Ajoutpost">Ajoutpost</router-link> |
-      <router-link to="/Contact">Contact</router-link>
-    </div>
-=======
     <div id="nav"></div>
->>>>>>> e212048fd0712e11d388430677ab17f529206ee6
     <router-view />
   </div>
 </template>
