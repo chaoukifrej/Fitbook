@@ -2,6 +2,11 @@
   <div class="actus">
     <Header />
     <Post />
+    <Post />
+    <Post />
+    <Post />
+    <Post />
+
     <Footer />
   </div>
 </template>
