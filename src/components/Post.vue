@@ -2,8 +2,9 @@
   <div class="post">
     <div class="card">
       <div class="img" :style="{ backgroundImage: 'url(' + card.img + ')' }">
-        <p>
+        <p class="hautCard">
           <span>{{ card.name }}</span>
+          <span>{{ card.date }}</span>
         </p>
       </div>
     </div>
@@ -32,7 +33,16 @@ export default {
   width: 100%;
   .img {
     height: 180px;
-    background-color: #fff;
+    background-color: rgb(207, 207, 207);
+  }
+  .hautCard {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background: linear-gradient(#363636b9, #36363600);
+    span {
+      background: transparent;
+    }
   }
 }
 </style>
