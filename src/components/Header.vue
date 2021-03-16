@@ -1,7 +1,20 @@
 <template>
   <div class="header">
-    <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
-    <button class="inscription displayNone">Incription</button>
+    <router-link to="/">
+      <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
+    </router-link>
+    <button
+      class="inscription displayNone"
+      @click.prevent="$router.push('Connexion')"
+    >
+      Incription
+    </button>
+    <button
+      class="modification displayNone"
+      @click.prevent="$router.push('Modifprofil')"
+    >
+      Modifier profil
+    </button>
     <a class="retour" href="#" @click.prevent="$router.go(-1)">Retour</a>
   </div>
 </template>
@@ -16,7 +29,8 @@ export default {};
   justify-content: space-between;
   align-items: center;
   padding: 8px 15px;
-  .inscription {
+  .inscription,
+  .modification {
     font-size: 1.1rem;
     padding: 3px 15px;
     border: 2px solid #ff1616;
