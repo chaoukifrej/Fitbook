@@ -8,10 +8,12 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faHome);
 library.add(faThumbsUp);
 library.add(faComment);
+library.add(faInfo);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
