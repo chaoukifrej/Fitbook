@@ -15,7 +15,11 @@
     >
       Modifier profil
     </button>
-    <a class="retour" href="#" @click.prevent="$router.go(-1)"
+    <a
+      v-show="$route.name == 'Ajoutpost' || $route.name == 'Connexion'"
+      class="retour"
+      href="#"
+      @click.prevent="$router.go(-1)"
       ><span class="flecheRetour">←</span> Retour</a
     >
   </div>
