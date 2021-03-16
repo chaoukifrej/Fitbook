@@ -4,9 +4,16 @@
       ><font-awesome-icon class="iconHome" :icon="['fas', 'home']"
     /></router-link>
 
-    <router-link to="/Ajoutpost"
-      ><font-awesome-icon class="iconPlus" :icon="['fas', 'plus-square']"
-    /></router-link>
+    <span v-if="isConnected">
+      <router-link to="/Ajoutpost"
+        ><font-awesome-icon class="iconPlus" :icon="['fas', 'plus-square']"
+      /></router-link>
+    </span>
+    <span v-else>
+      <router-link to="/Connexion"
+        ><font-awesome-icon class="iconPlus" :icon="['fas', 'plus-square']"
+      /></router-link>
+    </span>
 
     <router-link to="/PagePerso"
       ><font-awesome-icon class="iconUser" :icon="['fas', 'user-circle']"
