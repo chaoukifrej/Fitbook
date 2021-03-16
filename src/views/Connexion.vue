@@ -20,6 +20,43 @@
         <input type="submit" value="Se connecter" />
       </form>
     </div>
+    <div class="containerInscription">
+      <form action="" method="">
+        <div class="nom">
+          <label for="nom">Nom</label>
+          <input type="text" placeholder="Delatour" required />
+        </div>
+        <div class="prenom">
+          <label for="prenom">Prénom</label>
+          <input type="text" placeholder="Jean" required />
+        </div>
+        <div class="email">
+          <label for="email">Email</label>
+          <input type="email" placeholder="jd@email.fr" required />
+        </div>
+        <div class="mdp">
+          <label for="mdp">Mot de passe</label>
+          <input
+            type="password"
+            name="mdp"
+            id="mdpFirst"
+            placeholder="Entrer un mot de passe"
+            required
+          />
+        </div>
+        <div class="mdp">
+          <label for="mdp">Retaper votre Mot de passe</label>
+          <input
+            type="password"
+            name="mdp"
+            id="mdpSecond"
+            placeholder="Re-entrer votre mot de passe"
+            required
+          />
+        </div>
+        <input type="submit" value="S'incrire" />
+      </form>
+    </div>
   </div>
 </template>
 
@@ -33,13 +70,14 @@ export default {
 </script>
 
 <style lang="scss">
-.containerConnexion {
+.containerConnexion,
+.containerInscription {
   background-color: #232323;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
   border: 1px solid #000000;
   border-radius: 3px;
   width: 90%;
-  margin: 0 5%;
+  margin: 20px 5%;
   padding: 0 10px;
   form {
     display: flex;
@@ -61,6 +99,7 @@ export default {
         color: whitesmoke;
         outline: none;
         font-size: 1rem;
+        transition: 0.4s;
         &::placeholder {
           color: rgb(107, 107, 107);
         }
@@ -73,15 +112,16 @@ export default {
       margin: 20px;
       font-size: 1rem;
       padding: 5px 15px;
-      border: 2px solid #ff1616;
+      border: 2px solid whitesmoke;
       background-color: transparent;
       border-radius: 5px;
-      color: #ff1616;
+      color: whitesmoke;
       outline: none;
       transition: 0.4s;
       &:active {
         transform: scale(0.98);
-        color: whitesmoke;
+        border: 2px solid #ff1616;
+        color: #ff1616;
       }
     }
   }
