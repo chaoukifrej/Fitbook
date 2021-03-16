@@ -9,7 +9,9 @@
             ><div class="imgUtilisateur"></div>
 
             <input
-              v-on="image"
+              accept=".jpeg,.png, .jpg"
+              ref="img"
+              @change="addPhoto"
               id="files"
               style="visibility:hidden;"
               type="file"
@@ -51,6 +53,12 @@ export default {
     description: "",
     lieu: "",
   }),
+
+  methods: {
+    addPhoto() {
+      this.image = this.$refs.img.files[0];
+    },
+  },
 };
 </script>
 
@@ -83,6 +91,7 @@ export default {
     opacity: 0.6;
   }
   /* indication description */
+
   .description {
     display: flex;
     flex-direction: column;
