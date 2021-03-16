@@ -10,15 +10,19 @@
       /></label>
       <input id="files" style="visibility:hidden;" type="file" />
       <div class="description">
-        <textarea name="description" id="" cols="30" rows="10">
-Entré votre description</textarea
-        >
+        <textarea
+          placeholder="Entré votre description"
+          name="description"
+          id=""
+          cols="30"
+          rows="10"
+        ></textarea>
       </div>
       <div class="containerLieu">
         <input type="text" placeholder="lieu" />
       </div>
       <div class="containerBtn">
-        <button class="btnValider">VALIDER</button>
+        <input type="submit" />
       </div>
     </div>
   </div>
@@ -47,24 +51,73 @@ export default {
       width: 50%;
       border-radius: 50%;
       border: 1px solid #000000;
+      opacity: 0.6;
     }
   }
 
-  .description {
-    width: 100%;
+  input {
+    padding: 5px;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    background-color: transparent;
+    color: whitesmoke;
+    outline: none;
+    font-size: 1rem;
+    transition: 0.4s;
+
+    &::placeholder {
+      color: rgb(107, 107, 107);
+    }
+    &:focus {
+      border: 2px solid #ff1616;
+    }
+    &:active {
+      transform: scale(0.98);
+      color: whitesmoke;
+    }
   }
-  textarea {
-    width: 100%;
-    border-radius: 3px;
-  }
-  .containerLieu input {
-    border-radius: 3px;
-    border: 1px solid #000000;
-    margin: 1rem;
+  input[type="submit"] {
+    margin: 20px;
+    font-size: 1rem;
+    padding: 5px 15px;
+    background-color: transparent;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.4s;
+    border: 2px solid whitesmoke;
+
+    &:active {
+      transform: scale(0.98);
+      color: whitesmoke;
+    }
+    &:focus {
+      border: 2px solid #ff1616;
+    }
   }
 
-  .btnValider {
-    margin: 1rem;
+  textarea {
+    border: 2px solid whitesmoke;
+    margin: 20px;
+    font-size: 1rem;
+    padding: 5px 15px;
+
+    background-color: transparent;
+    border-radius: 5px;
+    color: #ff1616;
+    outline: none;
+    transition: 0.4s;
+
+    &::placeholder {
+      color: rgb(107, 107, 107);
+    }
+    &:focus {
+      border: 2px solid #ff1616;
+    }
+
+    &:active {
+      transform: scale(0.98);
+      color: whitesmoke;
+    }
   }
 }
 </style>

@@ -2,6 +2,7 @@
   <div class="connexion">
     <Header />
     <div class="containerConnexion">
+      <h2>Connexion</h2>
       <form action="" method="">
         <div class="email">
           <label for="email">Email</label>
@@ -21,6 +22,7 @@
       </form>
     </div>
     <div class="containerInscription">
+      <h2>Inscription</h2>
       <form action="" method="">
         <div class="nom">
           <label for="nom">Nom</label>
@@ -54,6 +56,7 @@
             required
           />
         </div>
+
         <input type="submit" value="S'incrire" />
       </form>
     </div>
@@ -79,6 +82,10 @@ export default {
   width: 90%;
   margin: 20px 5%;
   padding: 0 10px;
+  h2 {
+    font-size: 1.3rem;
+    margin: 10px 0 0;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -91,7 +98,9 @@ export default {
         margin: 15px 0 5px 5px;
         font-size: 0.9rem;
       }
-      input {
+      input,
+      select {
+        width: 75vw;
         padding: 5px;
         border: 2px solid whitesmoke;
         border-radius: 5px;
