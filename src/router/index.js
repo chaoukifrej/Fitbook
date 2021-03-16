@@ -14,11 +14,13 @@ const routes = [
     path: "/",
     name: "Actus",
     component: Actus,
+    alias: "/FilActus",
   },
   {
     path: "/Perso",
     name: "Perso",
     component: Perso,
+    alias: "/PagePerso",
   },
   {
     path: "/Connexion",

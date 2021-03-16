@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <router-link to="/"
+    <router-link to="/FilActus"
       ><font-awesome-icon class="iconHome" :icon="['fas', 'home']"
     /></router-link>
 
@@ -8,7 +8,7 @@
       ><font-awesome-icon class="iconPlus" :icon="['fas', 'plus-square']"
     /></router-link>
 
-    <router-link to="/Perso"
+    <router-link to="/PagePerso"
       ><font-awesome-icon class="iconUser" :icon="['fas', 'user-circle']"
     /></router-link>
   </div>
