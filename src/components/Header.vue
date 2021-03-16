@@ -1,13 +1,20 @@
 <template>
   <div class="header">
-    <router-link to="/">
+    <router-link to="/FilActus">
       <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
     </router-link>
+
+    <h4 v-show="$route.name == 'Actus' && isConnected">Fil d'actus</h4>
+    <h4 v-show="$route.name == 'Perso' && isConnected">Page perso</h4>
+    <h4 v-show="$route.name == 'Contact' && isConnected">Contact et Infos</h4>
     <button
-      class="inscription displayNone"
+      v-show="
+        !isConnected && $route.name != 'Connexion' && $route.name != 'Ajoutpost'
+      "
+      class="connexion"
       @click.prevent="$router.push('Connexion')"
     >
-      Incription
+      Connexion
     </button>
     <button
       class="modification displayNone"
@@ -26,7 +33,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isConnected: false,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
@@ -35,7 +48,11 @@ export default {};
   justify-content: space-between;
   align-items: center;
   padding: 8px 15px;
-  .inscription,
+  h4 {
+    letter-spacing: 2px;
+    color: rgb(185, 185, 185);
+  }
+  .connexion,
   .modification {
     font-size: 1.1rem;
     padding: 3px 15px;
@@ -62,7 +79,7 @@ export default {};
     }
   }
   #imgLogo {
-    margin-top: 5px;
+    margin-top: 3px;
     height: 35px;
   }
 }
