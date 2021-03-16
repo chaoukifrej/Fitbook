@@ -1,7 +1,7 @@
 <template>
   <div class="ajoutpost">
     <Header />
-    <form action="post">
+    <form action="">
       <div class="mainContainer">
         <div class="ajoutphoto">
           <label for="files">
@@ -15,11 +15,11 @@
         </div>
 
         <div class="description">
-          <label for="textarea">Description</label>
+          <label for="description">Description</label>
           <textarea
-            placeholder="Entré votre description"
+            placeholder="Entrer votre description"
             name="description"
-            id=""
+            id="description"
             cols="30"
             rows="10"
           ></textarea>
@@ -47,17 +47,17 @@ export default {
 </script>
 
 <style lang="scss">
-.ajoutpost {
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   input[type="file"] {
-    color: transparent;
+    z-index: -1;
   }
-
   /* ajout photo */
-
   .ajoutphoto {
     display: flex;
     flex-direction: column;
-
     .imgUtilisateur {
       width: 50%;
       border-radius: 50%;
@@ -65,16 +65,17 @@ export default {
       opacity: 0.6;
     }
   }
-
   /* indication description */
-
   .description {
     display: flex;
     flex-direction: column;
-    align-items: center;
-
+    label {
+      margin: 15px 0 5px 5px;
+      font-size: 0.9rem;
+      text-align: start;
+    }
     textarea {
-      width: 75vw;
+      width: 90vw;
       padding: 5px;
       border: 2px solid whitesmoke;
       border-radius: 5px;
@@ -89,10 +90,6 @@ export default {
       &:focus {
         border: 2px solid #ff1616;
       }
-    }
-    label {
-      margin: 15px 0 5px 5px;
-      font-size: 0.9rem;
     }
   }
 
@@ -101,10 +98,13 @@ export default {
   .lieu {
     display: flex;
     flex-direction: column;
-    align-items: center;
-
+    label {
+      margin: 15px 0 5px 5px;
+      font-size: 0.9rem;
+      text-align: start;
+    }
     input {
-      width: 75vw;
+      width: 90vw;
       padding: 5px;
       border: 2px solid whitesmoke;
       border-radius: 5px;
@@ -119,11 +119,6 @@ export default {
       &:focus {
         border: 2px solid #ff1616;
       }
-    }
-    label {
-      margin: 15px 0 5px 5px;
-      font-size: 0.9rem;
-      text-align: start;
     }
   }
 

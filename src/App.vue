@@ -46,6 +46,7 @@ body {
   border-bottom: 1px solid black;
   background-color: $bgColor;
   top: 0;
+  z-index: 1000;
 }
 
 /* Barre de Navigation (Footer) */
@@ -56,5 +57,6 @@ body {
   border-top: 1px solid black;
   background-color: $bgColor;
   bottom: 0;
+  z-index: 1000;
 }
 </style>
