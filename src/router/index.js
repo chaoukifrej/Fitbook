@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Actus from "../views/Actus.vue";
 import Perso from "../views/Perso.vue";
 import Connexion from "../views/Connexion.vue";
+import Inscription from "../views/Inscription.vue";
 import Ajoutpost from "../views/Ajoutpost.vue";
 import Contact from "../views/Contact.vue";
 import Modifprofil from "../views/Modifprofil.vue";
@@ -26,6 +27,11 @@ const routes = [
     path: "/Connexion",
     name: "Connexion",
     component: Connexion,
+  },
+  {
+    path: "/Inscription",
+    name: "Inscription",
+    component: Inscription,
   },
   {
     path: "/Ajoutpost",

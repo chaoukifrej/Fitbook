@@ -1,27 +1,43 @@
 <template>
   <div class="connexion">
     <Header />
-    <div class="containerConnexion">
-      <h2>Connexion</h2>
+    <div class="containerInscription">
+      <h2>Inscription</h2>
       <form action="" method="">
+        <div class="nom">
+          <label for="nom">Nom</label>
+          <input type="text" placeholder="Delatour" required />
+        </div>
+        <div class="prenom">
+          <label for="prenom">Prénom</label>
+          <input type="text" placeholder="Jean" required />
+        </div>
         <div class="email">
           <label for="email">Email</label>
-          <input type="email" placeholder="Entrer votre email" required />
+          <input type="email" placeholder="jd@email.fr" required />
         </div>
         <div class="mdp">
           <label for="mdp">Mot de passe</label>
           <input
             type="password"
             name="mdp"
-            id="mdp"
-            placeholder="Entrer votre mot de passe"
+            id="mdpFirst"
+            placeholder="Entrer un mot de passe"
             required
           />
         </div>
-        <input type="submit" value="Se connecter" />
-        <router-link class="toInscription" to="/Inscription">
-          <span>Pas de compte ?</span> Je m'inscris</router-link
-        >
+        <div class="mdp">
+          <label for="mdp">Retaper votre Mot de passe</label>
+          <input
+            type="password"
+            name="mdp"
+            id="mdpSecond"
+            placeholder="Re-entrer votre mot de passe"
+            required
+          />
+        </div>
+
+        <input type="submit" value="S'incrire" />
       </form>
     </div>
   </div>
@@ -37,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss">
-.containerConnexion {
+.containerInscription {
   background-color: #232323;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
   border: 1px solid #000000;
@@ -95,14 +111,6 @@ export default {
         border: 2px solid #ff1616;
         color: #ff1616;
       }
-    }
-  }
-  .toInscription {
-    color: #ff1616;
-    margin-bottom: 20px;
-    text-decoration-color: rgb(146, 146, 146);
-    span {
-      color: whitesmoke;
     }
   }
 }
