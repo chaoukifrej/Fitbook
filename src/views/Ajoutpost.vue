@@ -7,13 +7,19 @@
         <div class="ajoutphoto">
           <label for="files" style="  border-radius: 50%;"
             ><div class="imgUtilisateur"></div>
-            <input id="files" style="visibility:hidden;" type="file"
+
+            <input
+              v-on="image"
+              id="files"
+              style="visibility:hidden;"
+              type="file"
           /></label>
         </div>
 
         <div class="description">
-          <label for="description">Description</label>
+          <label for="description"> Description </label>
           <textarea
+            v-model="description"
             placeholder="Entrer votre description"
             name="description"
             id="description"
@@ -23,7 +29,7 @@
         </div>
         <div class="lieu">
           <label for="lieu">Indiquer le Lieu</label>
-          <input type="text" placeholder="lieu" />
+          <input v-model="lieu" type="text" placeholder="lieu" />
         </div>
 
         <div class="containerBtn">
@@ -40,6 +46,11 @@ export default {
   components: {
     Header,
   },
+  data: () => ({
+    image: "",
+    description: "",
+    lieu: "",
+  }),
 };
 </script>
 
