@@ -2,15 +2,17 @@
   <div class="contact">
     <Header />
     <Footer />
-    <h1 class="title">Formulaire de Contact</h1>
-    <p>Nom et prénom:</p>
-    <input class="input" text="Entrez votre nom et prénom" />
-    <p>Email:</p>
-    <input text="Entrez votre mail" />
-    <p>Message:</p>
-    <textarea name="Message" id="message" cols="30" rows="10"></textarea>
+    <div id="input">
+      <h1 class="title">Formulaire de Contact</h1>
+      <p>Nom et prénom:</p>
+      <input text="Entrez votre nom et prénom" />
+      <p>Email:</p>
+      <input text="Entrez votre mail" />
+      <p>Message:</p>
+      <textarea name="Message" id="message" cols="30" rows="10"></textarea>
+    </div>
     <br />
-    <button>Valider</button>
+    <input type="Submit" />
     <div class="fonctionnalite">
       <p>A propos</p>
       <p>Blog</p>
@@ -43,6 +45,8 @@ export default {
     flex-direction: column;
     padding: 5px;
     border-radius: 5px;
+  }
+  #input {
   }
 }
 </style>
