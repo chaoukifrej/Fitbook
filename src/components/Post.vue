@@ -49,7 +49,7 @@ export default {
   border: 1px solid #000000;
   border-radius: 3px;
   background-color: #232323;
-  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
   min-height: 350px;
   width: 98%;
   .img {
@@ -79,6 +79,7 @@ export default {
       margin: 10px;
       p {
         margin: 3px 10px 0;
+        color: rgb(143, 143, 143);
       }
     }
     .icons {
@@ -86,7 +87,6 @@ export default {
     }
   }
   .description p {
-    font-size: 1.1rem;
     text-align: start;
     margin: 0 10px;
   }

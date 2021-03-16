@@ -16,7 +16,7 @@ $redColor: #ff1616;
 }
 body {
   background-color: $bgColorView;
-  color: whitesmoke;
+  color: rgb(235, 235, 235);
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
