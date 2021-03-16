@@ -1,17 +1,18 @@
 <template>
   <div class="header">
-    <router-link to="/">
+    <router-link to="/FilActus">
       <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
     </router-link>
 
-    <h4 v-show="$route.name == 'Actus'">Fil d'actus</h4>
-    <h4 v-show="$route.name == 'Perso'">Page perso</h4>
-    <h4 v-show="$route.name == 'Contact'">Contact et Infos</h4>
+    <h4 v-show="$route.name == 'Actus' && isConnected">Fil d'actus</h4>
+    <h4 v-show="$route.name == 'Perso' && isConnected">Page perso</h4>
+    <h4 v-show="$route.name == 'Contact' && isConnected">Contact et Infos</h4>
     <button
-      class="inscription displayNone"
+      v-show="!isConnected && $route.name != 'Connexion'"
+      class="connexion"
       @click.prevent="$router.push('Connexion')"
     >
-      Incription
+      Connexion
     </button>
     <button
       class="modification displayNone"
@@ -30,7 +31,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isConnected: false,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
@@ -43,7 +50,7 @@ export default {};
     letter-spacing: 2px;
     color: rgb(185, 185, 185);
   }
-  .inscription,
+  .connexion,
   .modification {
     font-size: 1.1rem;
     padding: 3px 15px;

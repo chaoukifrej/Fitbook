@@ -15,7 +15,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isConnected: false,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
