@@ -3,6 +3,7 @@
     <Header />
     <Footer />
     <div class="containerContact">
+      <h2>Contact moi</h2>
       <form action="" method="">
         <div class="email">
           <label for="email">Email</label>
@@ -25,7 +26,6 @@
             placeholder="Dites nous votre problème"
           ></textarea>
         </div>
-
         <input type="submit" value="Valider" />
       </form>
     </div>
@@ -52,6 +52,10 @@ export default {
 
 <style lang="scss">
 .containerContact {
+  h2 {
+    font-size: 1.3rem;
+    margin: 10px 0 0;
+  }
   background-color: #232323;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
   border: 1px solid #000000;
@@ -73,6 +77,7 @@ export default {
       }
       input,
       textarea {
+        font-family: "arial";
         width: 75vw;
         padding: 5px;
         border: 2px solid whitesmoke;
@@ -80,6 +85,7 @@ export default {
         background-color: transparent;
         color: whitesmoke;
         outline: none;
+        font-size: 1rem;
         transition: 0.4s;
         &::placeholder {
           color: rgb(107, 107, 107);
@@ -87,6 +93,22 @@ export default {
         &:focus {
           border: 2px solid #ff1616;
         }
+      }
+    }
+    input[type="submit"] {
+      margin: 20px;
+      font-size: 1rem;
+      padding: 5px 15px;
+      border: 2px solid whitesmoke;
+      background-color: transparent;
+      border-radius: 5px;
+      color: whitesmoke;
+      outline: none;
+      transition: 0.4s;
+      &:active {
+        transform: scale(0.98);
+        border: 2px solid #ff1616;
+        color: #ff1616;
       }
     }
   }
