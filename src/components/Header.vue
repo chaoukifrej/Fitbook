@@ -9,7 +9,10 @@
     <h4 v-show="$route.name == 'Contact' && isConnected">Contact et Infos</h4>
     <button
       v-show="
-        !isConnected && $route.name != 'Connexion' && $route.name != 'Ajoutpost'
+        !isConnected &&
+          $route.name != 'Connexion' &&
+          $route.name != 'Ajoutpost' &&
+          $route.name != 'Inscription'
       "
       class="connexion"
       @click.prevent="$router.push('Connexion')"
@@ -23,7 +26,11 @@
       Modifier profil
     </button>
     <a
-      v-show="$route.name == 'Ajoutpost' || $route.name == 'Connexion'"
+      v-show="
+        $route.name == 'Ajoutpost' ||
+          $route.name == 'Connexion' ||
+          $route.name == 'Inscription'
+      "
       class="retour"
       href="#"
       @click.prevent="$router.go(-1)"
