@@ -4,10 +4,6 @@
     <Footer />
     <div class="containerContact">
       <form action="" method="">
-        <div class="email">
-          <label for="email">Email</label>
-          <input type="email" placeholder="Entrer votre email" required />
-        </div>
         <div class="nomPrenom">
           <label for="nomPrenom">Nom et prénom</label>
           <input
@@ -15,6 +11,10 @@
             placeholder="Entrer votre nom et prénom"
             required
           />
+        </div>
+        <div class="email">
+          <label for="email">Email</label>
+          <input type="email" placeholder="Entrer votre email" required />
         </div>
         <div class="message">
           <label for="message">Message:</label>
@@ -86,6 +86,22 @@ export default {
         }
         &:focus {
           border: 2px solid #ff1616;
+        }
+      }
+      input[type="submit"] {
+        margin: 20px;
+        font-size: 1rem;
+        padding: 5px 15px;
+        border: 2px solid whitesmoke;
+        background-color: transparent;
+        border-radius: 5px;
+        color: whitesmoke;
+        outline: none;
+        transition: 0.4s;
+        &:active {
+          transform: scale(0.98);
+          border: 2px solid #ff1616;
+          color: #ff1616;
         }
       }
     }
