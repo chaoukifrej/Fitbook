@@ -26,14 +26,17 @@ export default {};
 
   .iconHome {
     font-size: 1.5rem;
+    color: whitesmoke;
   }
 
   .iconPlus {
     font-size: 1.5rem;
+    color: whitesmoke;
   }
 
   .iconUser {
     font-size: 1.5rem;
+    color: whitesmoke;
   }
 }
 </style>
