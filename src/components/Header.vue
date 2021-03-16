@@ -15,7 +15,9 @@
     >
       Modifier profil
     </button>
-    <a class="retour" href="#" @click.prevent="$router.go(-1)">Retour</a>
+    <a class="retour" href="#" @click.prevent="$router.go(-1)"
+      ><span class="flecheRetour">←</span> Retour</a
+    >
   </div>
 </template>
 
@@ -48,8 +50,15 @@ export default {};
     color: whitesmoke;
     font-weight: bold;
     text-decoration: none;
+    font-size: 1.2rem;
+    .flecheRetour {
+      position: relative;
+      top: -2px;
+      font-size: 1.4rem;
+    }
   }
   #imgLogo {
+    margin-top: 5px;
     height: 35px;
   }
 }

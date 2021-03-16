@@ -77,7 +77,6 @@ export default {
       }
       input,
       textarea {
-        font-family: "arial";
         width: 75vw;
         padding: 5px;
         border: 2px solid whitesmoke;

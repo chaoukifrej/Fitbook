@@ -92,7 +92,6 @@ export default {
       outline: none;
       font-size: 1rem;
       transition: 0.4s;
-      font-family: "arial";
       &::placeholder {
         color: rgb(107, 107, 107);
       }

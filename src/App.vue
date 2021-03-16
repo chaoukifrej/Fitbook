@@ -6,6 +6,9 @@
 </template>
 
 <style lang="scss">
+/* Google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
+/* Variables */
 $bgColor: #232323;
 $bgColorView: #363636;
 $redColor: #ff1616;
@@ -13,17 +16,25 @@ $redColor: #ff1616;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Ubuntu", Arial, sans-serif;
 }
 body {
   background-color: $bgColorView;
   color: rgb(235, 235, 235);
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Ubuntu", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: whitesmoke;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Chau Philomene One", sans-serif;
+  }
 }
 
 #nav {
