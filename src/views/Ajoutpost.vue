@@ -5,14 +5,9 @@
       <div class="mainContainer">
         <h2>Publier un post</h2>
         <div class="ajoutphoto">
-          <label for="files">
-            <img
-              src="../assets/imgUtilisateur.png"
-              alt="imgUtilisateur"
-              class="imgUtilisateur"/><input
-              id="files"
-              style="visibility:hidden;"
-              type="file"
+          <label for="files" style="  border-radius: 50%;"
+            ><div class="imgUtilisateur"></div>
+            <input id="files" style="visibility:hidden;" type="file"
           /></label>
         </div>
 
@@ -66,12 +61,15 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-    .imgUtilisateur {
-      width: 50%;
-      border-radius: 50%;
-      border: 1px solid #000000;
-      opacity: 0.6;
-    }
+  }
+
+  .imgUtilisateur {
+    background-image: url("../assets/imgUtilisateur.png");
+    background-size: cover;
+    height: 15rem;
+    border-radius: 50%;
+    border: 1px solid #000000;
+    opacity: 0.6;
   }
   /* indication description */
   .description {
