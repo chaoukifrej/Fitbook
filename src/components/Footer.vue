@@ -25,15 +25,15 @@ export default {};
   align-items: center;
 
   .iconHome {
-    font-size: 20px;
+    font-size: 1.5rem;
   }
 
   .iconPlus {
-    font-size: 20px;
+    font-size: 1.5rem;
   }
 
   .iconUser {
-    font-size: 20px;
+    font-size: 1.5rem;
   }
 }
 </style>
