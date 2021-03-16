@@ -1,7 +1,8 @@
 <template>
   <div class="header">
     <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
-    <button class="inscription">Incription</button>
+    <button class="inscription displayNone">Incription</button>
+    <a class="retour" href="">Retour</a>
   </div>
 </template>
 
@@ -29,8 +30,18 @@ export default {};
       color: whitesmoke;
     }
   }
+  .retour {
+    color: whitesmoke;
+    font-weight: bold;
+    text-decoration: none;
+  }
   #imgLogo {
     height: 35px;
   }
+}
+
+/* A modif  */
+.displayNone {
+  display: none;
 }
 </style>
