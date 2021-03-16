@@ -9,7 +9,20 @@
       </div>
       <div class="btnCard">
         <div class="like">
-          <font-awesome-icon class="icons" :icon="['far', 'thumbs-up']" />
+          <span v-if="isConnected">
+            <font-awesome-icon
+              @click="addLike"
+              class="icons"
+              :icon="['far', 'thumbs-up']"
+            />
+          </span>
+          <span v-else>
+            <font-awesome-icon
+              @click="$router.push('Connexion')"
+              class="icons"
+              :icon="['far', 'thumbs-up']"
+            />
+          </span>
           <p>{{ card.nbLike }} j'aime</p>
         </div>
         <div class="comment">
@@ -38,7 +51,13 @@ export default {
         nbLike: "12",
         nbComment: "3",
       },
+      isConnected: false,
     };
+  },
+  methods: {
+    addLike: function() {
+      this.card.nbLike++;
+    },
   },
 };
 </script>
