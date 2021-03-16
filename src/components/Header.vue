@@ -2,7 +2,7 @@
   <div class="header">
     <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
     <button class="inscription displayNone">Incription</button>
-    <a class="retour" href="">Retour</a>
+    <a class="retour" href="#" @click.prevent="$router.go(-1)">Retour</a>
   </div>
 </template>
 
