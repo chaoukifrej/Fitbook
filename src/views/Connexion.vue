@@ -7,13 +7,16 @@
           <label for="email">Email</label>
           <input type="email" placeholder="Entrer votre email" required />
         </div>
-        <label for="mdp">Mot de passe</label>
-        <input
-          type="password"
-          name="mdp"
-          id="mdp"
-          placeholder="Entrer votre mot de passe"
-        />
+        <div class="mdp">
+          <label for="mdp">Mot de passe</label>
+          <input
+            type="password"
+            name="mdp"
+            id="mdp"
+            placeholder="Entrer votre mot de passe"
+            required
+          />
+        </div>
         <input type="submit" value="Se connecter" />
       </form>
     </div>
@@ -37,11 +40,50 @@ export default {
   border-radius: 3px;
   width: 90%;
   margin: 0 5%;
-  padding: 10px;
+  padding: 0 10px;
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    div {
+      display: flex;
+      flex-direction: column;
+      label {
+        text-align: start;
+        margin: 15px 0 5px 5px;
+        font-size: 0.9rem;
+      }
+      input {
+        padding: 5px;
+        border: 2px solid whitesmoke;
+        border-radius: 5px;
+        background-color: transparent;
+        color: whitesmoke;
+        outline: none;
+        font-size: 1rem;
+        &::placeholder {
+          color: rgb(107, 107, 107);
+        }
+        &:focus {
+          border: 2px solid #ff1616;
+        }
+      }
+    }
+    input[type="submit"] {
+      margin: 20px;
+      font-size: 1rem;
+      padding: 5px 15px;
+      border: 2px solid #ff1616;
+      background-color: transparent;
+      border-radius: 5px;
+      color: #ff1616;
+      outline: none;
+      transition: 0.4s;
+      &:active {
+        transform: scale(0.98);
+        color: whitesmoke;
+      }
+    }
   }
 }
 </style>
