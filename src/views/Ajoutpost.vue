@@ -3,15 +3,17 @@
     <Header />
     <form action="">
       <div class="mainContainer">
+        <h2>Publier un post</h2>
         <div class="ajoutphoto">
           <label for="files">
             <img
               src="../assets/imgUtilisateur.png"
               alt="imgUtilisateur"
-              class="imgUtilisateur"
+              class="imgUtilisateur"/><input
+              id="files"
+              style="visibility:hidden;"
+              type="file"
           /></label>
-
-          <input id="files" style="visibility:hidden;" type="file" />
         </div>
 
         <div class="description">
@@ -48,6 +50,10 @@ export default {
 
 <style lang="scss">
 .mainContainer {
+  h2 {
+    font-size: 1.3rem;
+    margin: 10px 0 10px;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,7 +63,9 @@ export default {
   /* ajout photo */
   .ajoutphoto {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
     .imgUtilisateur {
       width: 50%;
       border-radius: 50%;
