@@ -5,6 +5,7 @@ import Perso from "../views/Perso.vue";
 import Connexion from "../views/Connexion.vue";
 import Ajoutpost from "../views/Ajoutpost.vue";
 import Contact from "../views/Contact.vue";
+import Modifprofil from "../views/Modifprofil.vue";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
     path: "/Contact",
     name: "Contact",
     component: Contact,
+  },
+  {
+    path: "/Modifprofil",
+    name: "Modifprofil",
+    component: Modifprofil,
   },
 ];
 
