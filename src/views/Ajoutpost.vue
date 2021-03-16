@@ -14,10 +14,12 @@
 Entré votre description</textarea
         >
       </div>
-
-      <input type="text" placeholder="lieu" />
-
-      <button class="btnValider">VALIDER</button>
+      <div class="containerLieu">
+        <input type="text" placeholder="lieu" />
+      </div>
+      <div class="containerBtn">
+        <button class="btnValider">VALIDER</button>
+      </div>
     </div>
   </div>
 </template>
@@ -38,21 +40,31 @@ export default {
   }
 
   .ajoutphoto {
-    flex-direction: column;
-    justify-content: space-between;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 
     .imgUtilisateur {
-      width: 100%;
+      width: 50%;
+      border-radius: 50%;
+      border: 1px solid #000000;
     }
+  }
 
-    .description {
-      width: 100%;
-    }
-    textarea {
-      width: 100%;
-    }
+  .description {
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+    border-radius: 3px;
+  }
+  .containerLieu input {
+    border-radius: 3px;
+    border: 1px solid #000000;
+    margin: 1rem;
+  }
+
+  .btnValider {
+    margin: 1rem;
   }
 }
 </style>
