@@ -38,10 +38,5 @@ export default {};
     font-size: 1.5rem;
     color: whitesmoke;
   }
-
-  .iconTest {
-    font-size: 1.5rem;
-    color: whitesmoke;
-  }
 }
 </style>
