@@ -1,5 +1,7 @@
 <template>
-  <div class="connexion"></div>
+  <div class="connexion">
+    <Header />
+  </div>
 </template>
 
 <script>
