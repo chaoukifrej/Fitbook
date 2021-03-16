@@ -4,7 +4,7 @@
     <Footer />
     <h1 class="title">Formulaire de Contact</h1>
     <p>Nom et prénom:</p>
-    <input text="Entrez votre nom et prénom" />
+    <input class="input" text="Entrez votre nom et prénom" />
     <p>Email:</p>
     <input text="Entrez votre mail" />
     <p>Message:</p>
@@ -41,6 +41,8 @@ export default {
   .fonctionnalite {
     display: flex;
     flex-direction: column;
+    padding: 5px;
+    border-radius: 5px;
   }
 }
 </style>
