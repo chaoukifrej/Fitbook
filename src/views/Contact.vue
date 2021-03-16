@@ -1,7 +1,6 @@
 <template>
   <div class="contact">
     <Header />
-    <Footer />
     <div class="containerContact">
       <h2>Contact moi</h2>
       <form action="" method="">
@@ -36,6 +35,7 @@
       <p>Confidentialité</p>
       <p>Langue</p>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -86,6 +86,7 @@ export default {
         outline: none;
         font-size: 1rem;
         transition: 0.4s;
+        resize: none;
         &::placeholder {
           color: rgb(107, 107, 107);
         }
@@ -127,5 +128,9 @@ export default {
       }
     }
   }
+}
+
+.fonctionnalite {
+  margin: 50px 0 100px;
 }
 </style>

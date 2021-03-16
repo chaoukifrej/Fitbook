@@ -92,6 +92,7 @@ export default {
       outline: none;
       font-size: 1rem;
       transition: 0.4s;
+      resize: none;
       &::placeholder {
         color: rgb(107, 107, 107);
       }
