@@ -52,7 +52,7 @@ body {
 .footer {
   position: fixed;
   width: 100%;
-  height: 40px;
+  height: 50px;
   border-top: 1px solid black;
   background-color: $bgColor;
   bottom: 0;
