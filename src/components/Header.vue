@@ -8,7 +8,9 @@
     <h4 v-show="$route.name == 'Perso' && isConnected">Page perso</h4>
     <h4 v-show="$route.name == 'Contact' && isConnected">Contact et Infos</h4>
     <button
-      v-show="!isConnected && $route.name != 'Connexion'"
+      v-show="
+        !isConnected && $route.name != 'Connexion' && $route.name != 'Ajoutpost'
+      "
       class="connexion"
       @click.prevent="$router.push('Connexion')"
     >
