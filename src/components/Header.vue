@@ -12,6 +12,7 @@
         !isConnected &&
           $route.name != 'Connexion' &&
           $route.name != 'Ajoutpost' &&
+          $route.name != 'Comment' &&
           $route.name != 'Inscription'
       "
       class="connexion"
@@ -29,6 +30,7 @@
       v-show="
         $route.name == 'Ajoutpost' ||
           $route.name == 'Connexion' ||
+          $route.name == 'Comment' ||
           $route.name == 'Inscription'
       "
       class="retour"

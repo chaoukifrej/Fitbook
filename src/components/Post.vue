@@ -27,7 +27,20 @@
         </div>
         <div class="comment">
           <p>{{ card.nbComment }} commentaires</p>
-          <font-awesome-icon class="icons" :icon="['far', 'comment']" />
+          <span v-if="isConnected">
+            <font-awesome-icon
+              @click="$router.push('Comment')"
+              class="icons"
+              :icon="['far', 'comment']"
+            />
+          </span>
+          <span v-else>
+            <font-awesome-icon
+              @click="$router.push('Connexion')"
+              class="icons"
+              :icon="['far', 'comment']"
+            />
+          </span>
         </div>
       </div>
       <div class="description">

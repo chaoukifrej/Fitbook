@@ -5,6 +5,7 @@ import Perso from "../views/Perso.vue";
 import Connexion from "../views/Connexion.vue";
 import Inscription from "../views/Inscription.vue";
 import Ajoutpost from "../views/Ajoutpost.vue";
+import Comment from "../views/Comment.vue";
 import Contact from "../views/Contact.vue";
 import Modifprofil from "../views/Modifprofil.vue";
 
@@ -37,6 +38,11 @@ const routes = [
     path: "/Ajoutpost",
     name: "Ajoutpost",
     component: Ajoutpost,
+  },
+  {
+    path: "/Comment",
+    name: "Comment",
+    component: Comment,
   },
   {
     path: "/Contact",
