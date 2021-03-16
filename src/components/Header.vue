@@ -3,6 +3,10 @@
     <router-link to="/">
       <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
     </router-link>
+
+    <h4 v-show="$route.name == 'Actus'">Fil d'actus</h4>
+    <h4 v-show="$route.name == 'Perso'">Page perso</h4>
+    <h4 v-show="$route.name == 'Contact'">Contact et Infos</h4>
     <button
       class="inscription displayNone"
       @click.prevent="$router.push('Connexion')"
@@ -35,6 +39,10 @@ export default {};
   justify-content: space-between;
   align-items: center;
   padding: 8px 15px;
+  h4 {
+    letter-spacing: 2px;
+    color: rgb(185, 185, 185);
+  }
   .inscription,
   .modification {
     font-size: 1.1rem;
@@ -62,7 +70,7 @@ export default {};
     }
   }
   #imgLogo {
-    margin-top: 5px;
+    margin-top: 3px;
     height: 35px;
   }
 }
