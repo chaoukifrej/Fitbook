@@ -12,7 +12,9 @@
           <p>Ville:</p>
           <p>Salle de sport:</p>
         </div>
-
+        <div class="description">
+          <p>Description:</p>
+        </div>
         <label for="files">
           <div class="imgs"></div>
           <input
@@ -23,20 +25,6 @@
             style="visibility:hidden;"
             type="file"
           />
-        </label>
-      </div>
-      <div class="cardDescription">
-        <p>Description:</p>
-        <label for="files">
-          <input
-            accept=".jpeg,.png, .jpg"
-            ref="img"
-            @change="addPhoto"
-            id="files"
-            style="visibility:hidden;"
-            type="file"
-          />
-          <div class="imgs"></div>
         </label>
       </div>
     </div>
@@ -51,13 +39,30 @@ export default {
     Header,
     Footer,
   },
+  data: () => ({
+    nom: "Jean",
+    nbrPubli: "2",
+    sport: "AquaPoney",
+    description: "Je fais 1m75 pour 60kg",
+    Ville: "Paris",
+    Salle: "Fitness Park",
+  }),
 };
 </script>
 
 <style lang="scss">
 .containerPerso {
+  .description {
+    display: flex;
+    justify-content: end;
+  }
+  p {
+    font-size: 0.7rem;
+  }
   .contenu {
     margin-right: 0%;
+    position: absolute;
+    right: 70px;
   }
   .cardPerso {
     background-color: #232323;
@@ -65,25 +70,15 @@ export default {
     border: 1px solid #000000;
     border-radius: 3px;
     width: 90%;
-    height: 230px;
-    margin: 20px 5%;
-    padding: 0 10px;
-  }
-  .cardDescription {
-    background-color: #232323;
-    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
-    border: 1px solid #000000;
-    border-radius: 3px;
-    width: 90%;
-    height: 230px;
+    height: 200px;
     margin: 20px 5%;
     padding: 0 10px;
   }
   .imgs {
     background-image: url("../assets/imgUtilisateur.png");
     background-size: cover;
-    height: 5rem;
-    width: 5rem;
+    height: 4rem;
+    width: 4rem;
     border-radius: 50%;
     border: 1px solid #000000;
     opacity: 0.6;
