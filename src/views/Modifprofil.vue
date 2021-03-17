@@ -3,26 +3,25 @@
     <Header />
     <div class="containerAmodifier">
       <h2>Modifier votre Profil</h2>
-
-      <div class="ajoutphoto">
-        <label for="files" style="  border-radius: 50%;"
-          ><div
-            class="imgUtilisateur"
-            :style="{ backgroundImage: 'url(' + valueImg + ')' }"
-            ref="value"
-          ></div>
-
-          <input
-            accept=".jpeg,.png, .jpg"
-            ref="img"
-            @change="addPhoto"
-            id="files"
-            style="visibility:hidden;"
-            type="file"
-        /></label>
-      </div>
-
       <form action="">
+        <div class="ajoutphoto">
+          <label for="files" style="  border-radius: 50%;"
+            ><div
+              class="imgUtilisateur"
+              :style="{ backgroundImage: 'url(' + valueImg + ')' }"
+              ref="value"
+            ></div>
+
+            <input
+              accept=".jpeg,.png, .jpg"
+              ref="img"
+              @change="addPhoto"
+              id="files"
+              style="visibility:hidden;"
+              type="file"
+          /></label>
+        </div>
+
         <div class="nom">
           <label for="nom">Modifiez votre Nom</label>
           <input
@@ -98,6 +97,7 @@
             required
           />
         </div>
+        <input type="submit" @click="Valider" value="Valider" />
       </form>
     </div>
   </div>
@@ -108,6 +108,19 @@ import Header from "@/components/Header.vue";
 export default {
   components: {
     Header,
+  },
+  data: () => ({
+    valueImg: "/assets/imgUtilisateur.png",
+  }),
+
+  methods: {
+    addPhoto(e) {
+      const reader = new FileReader();
+      reader.onload = (readerEvent) => {
+        this.valueImg = readerEvent.target.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    },
   },
   /* creer des datas nom etc.. faire des vmodel et pusher dans la base de donné  */
 };
@@ -141,6 +154,15 @@ export default {
         margin: 15px 0 5px 5px;
         font-size: 0.9rem;
       }
+
+      .imgUtilisateur {
+        background-size: cover;
+        height: 15rem;
+        border-radius: 50%;
+        border: 1px solid #000000;
+        opacity: 0.6;
+      }
+
       input,
       select {
         width: 75vw;
@@ -158,6 +180,22 @@ export default {
         &:focus {
           border: 2px solid #ff1616;
         }
+      }
+    }
+    input[type="submit"] {
+      margin: 20px;
+      font-size: 1rem;
+      padding: 5px 15px;
+      border: 2px solid whitesmoke;
+      background-color: transparent;
+      border-radius: 5px;
+      color: whitesmoke;
+      outline: none;
+      transition: 0.4s;
+      &:active {
+        transform: scale(0.98);
+        border: 2px solid #ff1616;
+        color: #ff1616;
       }
     }
   }

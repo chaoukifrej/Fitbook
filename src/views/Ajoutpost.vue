@@ -68,11 +68,6 @@ export default {
       };
       reader.readAsDataURL(e.target.files[0]);
     },
-    /*   async function() {
-      const imgUpload = await fetch("/api", { method: "POST" });
-      const data = await response.imgUpload.jsons();
-      this.image = data;
-    }, */
   },
 };
 </script>
