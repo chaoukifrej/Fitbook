@@ -38,18 +38,18 @@
           />
         </div>
         <div class="mdp">
-          <label for="mdp">Retaper votre Mot de passe</label>
+          <label for="mdp">Verification Mot de passe</label>
           <input
             v-model="repassword"
             type="password"
             name="mdp"
             id="mdpSecond"
-            placeholder="Re-entrer votre mot de passe"
+            placeholder="Retaper votre mot de passe"
             required
           />
         </div>
 
-        <input type="submit" value="S'incrire" />
+        <input type="submit" @click="inscription" value="S'incrire" />
       </form>
     </div>
   </div>
@@ -58,9 +58,6 @@
 <script>
 import Header from "@/components/Header.vue";
 export default {
-  props: {
-    users: Array,
-  },
   components: {
     Header,
   },
@@ -76,10 +73,10 @@ export default {
       let passwordChecked;
       if (this.password == this.repassword) {
         passwordChecked = this.repassword;
-        console.log("ok");
+        console.log("password ok");
       } else {
         this.repassword = "";
-        console.log("pas bon");
+        console.log("password not ok");
       }
       this.$emit("sendInscription", {
         firstname: this.firstname,
