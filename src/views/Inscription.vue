@@ -6,19 +6,30 @@
       <form action="" method="">
         <div class="nom">
           <label for="nom">Nom</label>
-          <input type="text" placeholder="Delatour" required />
+          <input
+            v-model="lastname"
+            type="text"
+            placeholder="Delatour"
+            required
+          />
         </div>
         <div class="prenom">
           <label for="prenom">Prénom</label>
-          <input type="text" placeholder="Jean" required />
+          <input v-model="firstname" type="text" placeholder="Jean" required />
         </div>
         <div class="email">
           <label for="email">Email</label>
-          <input type="email" placeholder="jd@email.fr" required />
+          <input
+            v-model="email"
+            type="email"
+            placeholder="jd@email.fr"
+            required
+          />
         </div>
         <div class="mdp">
           <label for="mdp">Mot de passe</label>
           <input
+            v-model="password"
             type="password"
             name="mdp"
             id="mdpFirst"
@@ -29,6 +40,7 @@
         <div class="mdp">
           <label for="mdp">Retaper votre Mot de passe</label>
           <input
+            v-model="repassword"
             type="password"
             name="mdp"
             id="mdpSecond"
@@ -52,7 +64,31 @@ export default {
   components: {
     Header,
   },
-  methods: {},
+  data: () => ({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    repassword: "",
+  }),
+  methods: {
+    inscription() {
+      let passwordChecked;
+      if (this.password == this.repassword) {
+        passwordChecked = this.repassword;
+        console.log("ok");
+      } else {
+        this.repassword = "";
+        console.log("pas bon");
+      }
+      this.$emit("sendInscription", {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        email: this.email,
+        password: passwordChecked,
+      });
+    },
+  },
 };
 </script>
 
