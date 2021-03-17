@@ -5,7 +5,9 @@
     </router-link>
 
     <h4 v-show="$route.name == 'Actus' && isConnected">Fil d'actus</h4>
-    <h4 v-show="$route.name == 'Perso' && isConnected">Page perso</h4>
+    <h4 class="displayNone" v-show="$route.name == 'Perso' && isConnected">
+      Page perso
+    </h4>
     <h4 v-show="$route.name == 'Contact' && isConnected">Contact et Infos</h4>
     <button
       v-show="
@@ -23,7 +25,8 @@
 
     <!-- A FAIRE Alex-->
     <button
-      class="modification displayNone"
+      v-show="isConnected && $route.name == 'Perso'"
+      class="modification"
       @click.prevent="$router.push('Modifprofil')"
     >
       Modifier profil
