@@ -9,9 +9,9 @@
             <div class="contenu">
               <p>{{ prenom }} {{ nom }}</p>
               <p><span>Nb de publications:</span> {{ nbrPubli }}</p>
-              <p>Sport pratiqué:</p>
-              <p>Ville:</p>
-              <p>Salle de sport:</p>
+              <p>Sport pratiqué</p>
+              <p>Ville</p>
+              <p>Salle de sport</p>
             </div>
           </div>
           <div class="description">
@@ -49,9 +49,9 @@ export default {
 <style lang="scss">
 .containerPerso {
   p {
-    font-size: 1rem;
+    font-size: 0.8rem;
     span {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-style: italic;
       color: rgb(133, 133, 133);
     }
@@ -80,7 +80,7 @@ export default {
   img {
     background-image: url("../assets/imgUtilisateur.png");
     background-size: cover;
-    height: 4rem;
+    height: 5rem;
     border-radius: 50%;
     border: 1px solid #000000;
     opacity: 0.6;
