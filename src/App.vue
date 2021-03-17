@@ -19,9 +19,13 @@ export default {
     isConnected: false,
   }),
   methods: {
-    connect: function() {},
-    disconnect: function() {},
-
+    connect: function() {
+      this.isConnected = true;
+      console.log("connecté");
+    },
+    disconnect: function() {
+      this.isConnected = false;
+    },
     pushUsers(p) {
       let user = {
         firstname: p.firstname,
@@ -45,6 +49,20 @@ export default {
       }
       console.log(user);
     },
+  },
+  provide() {
+    const isConnected = {};
+    Object.defineProperty(isConnected, "is", {
+      enumerable: true,
+      get: () => this.isConnected,
+    });
+    return {
+      isConnected,
+    };
+
+    //isConnected: this.isConnected,
+    //connect: this.connect,
+    //disconnect: this.disconnect,
   },
 };
 </script>

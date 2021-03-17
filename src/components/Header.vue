@@ -3,15 +3,16 @@
     <router-link to="/FilActus">
       <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
     </router-link>
-
-    <h4 v-show="$route.name == 'Actus' && isConnected">Fil d'actus</h4>
-    <h4 class="displayNone" v-show="$route.name == 'Perso' && isConnected">
+    <h4 v-show="$route.name == 'Actus' && isConnected.is">Fil d'actus</h4>
+    <h4 class="displayNone" v-show="$route.name == 'Perso' && isConnected.is">
       Page perso
     </h4>
-    <h4 v-show="$route.name == 'Contact' && isConnected">Contact et Infos</h4>
+    <h4 v-show="$route.name == 'Contact' && isConnected.is">
+      Contact et Infos
+    </h4>
     <button
       v-show="
-        !isConnected &&
+        !isConnected.is &&
           $route.name != 'Connexion' &&
           $route.name != 'Ajoutpost' &&
           $route.name != 'Comment' &&
@@ -25,7 +26,7 @@
 
     <!-- A FAIRE Alex-->
     <button
-      v-show="isConnected && $route.name == 'Perso'"
+      v-show="isConnected.is && $route.name == 'Perso'"
       class="modification"
       @click.prevent="$router.push('Modifprofil')"
     >
@@ -48,10 +49,9 @@
 
 <script>
 export default {
+  inject: ["isConnected"],
   data() {
-    return {
-      isConnected: false,
-    };
+    return {};
   },
 };
 </script>

@@ -4,7 +4,7 @@
       ><font-awesome-icon class="iconHome" :icon="['fas', 'home']"
     /></router-link>
 
-    <span v-if="isConnected">
+    <span v-if="isConnected.is">
       <router-link to="/Ajoutpost"
         ><font-awesome-icon class="iconPlus" :icon="['fas', 'plus-square']"
       /></router-link>
@@ -23,10 +23,9 @@
 
 <script>
 export default {
+  inject: ["isConnected"],
   data() {
-    return {
-      isConnected: false,
-    };
+    return {};
   },
 };
 </script>
