@@ -1,6 +1,22 @@
 <template>
   <div class="divPerso">
     <Header />
+
+    <button
+      v-show="isConnected.is"
+      class="btnModification"
+      @click.prevent="$router.push('Modifprofil')"
+    >
+      Modifier profil
+    </button>
+
+    <button
+      v-show="isConnected.is"
+      class="btnDisconnect"
+      @click="isConnected.is = false"
+    >
+      Se deconnecter
+    </button>
     <div class="containerPerso">
       <div class="cardPerso">
         <div class="contenu">
@@ -30,6 +46,7 @@
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 export default {
+  inject: ["isConnected"],
   components: {
     Header,
     Footer,
@@ -49,6 +66,21 @@ export default {
 </script>
 
 <style lang="scss">
+.btnDisconnect,
+.btnModification {
+  font-size: 0.9rem;
+  padding: 3px 10px;
+  margin: 0 15px;
+  border: 2px solid whitesmoke;
+  background-color: transparent;
+  border-radius: 5px;
+  color: whitesmoke;
+  outline: none;
+  transition: 0.4s;
+  &:active {
+    transform: scale(0.98);
+  }
+}
 .containerPerso {
   .cardPerso {
     background-color: #232323;

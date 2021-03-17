@@ -55,6 +55,7 @@ export default {
     Object.defineProperty(isConnected, "is", {
       enumerable: true,
       get: () => this.isConnected,
+      set: (n) => (this.isConnected = n),
     });
     return {
       isConnected,

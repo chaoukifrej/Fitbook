@@ -4,7 +4,7 @@
       <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
     </router-link>
     <h4 v-show="$route.name == 'Actus' && isConnected.is">Fil d'actus</h4>
-    <h4 class="displayNone" v-show="$route.name == 'Perso' && isConnected.is">
+    <h4 v-show="$route.name == 'Perso' && isConnected.is">
       Page perso
     </h4>
     <h4 v-show="$route.name == 'Contact' && isConnected.is">
@@ -23,21 +23,13 @@
     >
       Connexion
     </button>
-
-    <!-- A FAIRE Alex-->
-    <button
-      v-show="isConnected.is && $route.name == 'Perso'"
-      class="modification"
-      @click.prevent="$router.push('Modifprofil')"
-    >
-      Modifier profil
-    </button>
     <a
       v-show="
         $route.name == 'Ajoutpost' ||
           $route.name == 'Connexion' ||
           $route.name == 'Comment' ||
-          $route.name == 'Inscription'
+          $route.name == 'Inscription' ||
+          $route.name == 'Modifprofil'
       "
       class="retour"
       href="#"
@@ -66,8 +58,7 @@ export default {
     letter-spacing: 2px;
     color: rgb(185, 185, 185);
   }
-  .connexion,
-  .modification {
+  .connexion {
     font-size: 1.1rem;
     padding: 3px 15px;
     border: 2px solid #ff1616;
