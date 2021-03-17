@@ -1,28 +1,41 @@
 <template>
-  <div class="perso">
+  <div class="divPerso">
     <Header />
     <Footer />
     <div class="containerPerso">
-      <div class="modPhoto">
-        <div class="nometPrenom">
-          <h3>Nom et prénom:</h3>
+      <div class="cardPerso">
+        <div class="contenu">
+          <p>Nom et prénom:</p>
+          <p>Nombres de publications:</p>
+          <p>Sport pratiqué:</p>
+          <p>Description:</p>
+          <p>Ville:</p>
+          <p>Salle de sport:</p>
         </div>
-        <div class="nbrPubli">
-          <h3>Nombres de publications:</h3>
-        </div>
-        <div class="sport">
-          <h3>Sport pratiqué:</h3>
-        </div>
-        <div class="description">
-          <h3>Description:</h3>
-        </div>
-        <div class="ville">
-          <h3>Ville:</h3>
-        </div>
-        <div class="salle">
-          <h3>Salle de sport:</h3>
-        </div>
+
         <label for="files">
+          <div class="imgs"></div>
+          <input
+            accept=".jpeg,.png, .jpg"
+            ref="img"
+            @change="addPhoto"
+            id="files"
+            style="visibility:hidden;"
+            type="file"
+          />
+        </label>
+      </div>
+      <div class="cardDescription">
+        <p>Description:</p>
+        <label for="files">
+          <input
+            accept=".jpeg,.png, .jpg"
+            ref="img"
+            @change="addPhoto"
+            id="files"
+            style="visibility:hidden;"
+            type="file"
+          />
           <div class="imgs"></div>
         </label>
       </div>
@@ -43,16 +56,37 @@ export default {
 
 <style lang="scss">
 .containerPerso {
+  .contenu {
+    margin-right: 0%;
+  }
+  .cardPerso {
+    background-color: #232323;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #000000;
+    border-radius: 3px;
+    width: 90%;
+    height: 230px;
+    margin: 20px 5%;
+    padding: 0 10px;
+  }
+  .cardDescription {
+    background-color: #232323;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #000000;
+    border-radius: 3px;
+    width: 90%;
+    height: 230px;
+    margin: 20px 5%;
+    padding: 0 10px;
+  }
   .imgs {
     background-image: url("../assets/imgUtilisateur.png");
     background-size: cover;
-    height: 15rem;
+    height: 5rem;
+    width: 5rem;
     border-radius: 50%;
     border: 1px solid #000000;
     opacity: 0.6;
-  }
-  .modPhoto {
-    margin-top: 10px;
   }
 }
 </style>
