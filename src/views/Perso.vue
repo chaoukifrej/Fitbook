@@ -1,33 +1,26 @@
 <template>
   <div class="divPerso">
     <Header />
-    <Footer />
     <div class="containerPerso">
       <div class="cardPerso">
         <div class="contenu">
-          <p>Nom et prénom:</p>
-          <p>Nombres de publications:</p>
-          <p>Sport pratiqué:</p>
-          <p>Description:</p>
-          <p>Ville:</p>
-          <p>Salle de sport:</p>
+          <div class="haut">
+            <img :src="img" alt="" />
+            <div class="contenu">
+              <p>{{ prenom }} {{ nom }}</p>
+              <p><span>Nb de publications:</span> {{ nbrPubli }}</p>
+              <p>Sport pratiqué:</p>
+              <p>Ville:</p>
+              <p>Salle de sport:</p>
+            </div>
+          </div>
+          <div class="description">
+            <p>Description: <br />{{ description }}</p>
+          </div>
         </div>
-        <div class="description">
-          <p>Description:</p>
-        </div>
-        <label for="files">
-          <div class="imgs"></div>
-          <input
-            accept=".jpeg,.png, .jpg"
-            ref="img"
-            @change="addPhoto"
-            id="files"
-            style="visibility:hidden;"
-            type="file"
-          />
-        </label>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -40,29 +33,40 @@ export default {
     Footer,
   },
   data: () => ({
-    nom: "Jean",
+    nom: "Onche",
+    prenom: "Jean",
     nbrPubli: "2",
     sport: "AquaPoney",
     description: "Je fais 1m75 pour 60kg",
     Ville: "Paris",
     Salle: "Fitness Park",
+    img:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-TkKO4S3bFZU%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FdfhYjIlWsO4%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
   }),
 };
 </script>
 
 <style lang="scss">
 .containerPerso {
-  .description {
-    display: flex;
-    justify-content: end;
-  }
   p {
-    font-size: 0.7rem;
+    font-size: 1rem;
+    span {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: rgb(133, 133, 133);
+    }
   }
   .contenu {
-    margin-right: 0%;
-    position: absolute;
-    right: 70px;
+    display: flex;
+    flex-direction: column;
+    .haut {
+      display: flex;
+      justify-content: space-around;
+    }
+    .description {
+      display: flex;
+      justify-content: start;
+    }
   }
   .cardPerso {
     background-color: #232323;
@@ -70,15 +74,13 @@ export default {
     border: 1px solid #000000;
     border-radius: 3px;
     width: 90%;
-    height: 200px;
     margin: 20px 5%;
-    padding: 0 10px;
+    padding: 10px;
   }
-  .imgs {
+  img {
     background-image: url("../assets/imgUtilisateur.png");
     background-size: cover;
     height: 4rem;
-    width: 4rem;
     border-radius: 50%;
     border: 1px solid #000000;
     opacity: 0.6;
