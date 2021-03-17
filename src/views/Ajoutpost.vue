@@ -8,7 +8,8 @@
           <label for="files" style="  border-radius: 50%;"
             ><div
               class="imgUtilisateur"
-              :style="{ backgroundImage: 'url(' + valueImage + ')' }"
+              :style="{ backgroundImage: 'url(' + valueImg + ')' }"
+              ref="value"
             ></div>
 
             <input
@@ -47,6 +48,7 @@
 
 <script>
 import Header from "@/components/Header.vue";
+
 export default {
   components: {
     Header,
@@ -55,13 +57,16 @@ export default {
     image: "",
     description: "",
     lieu: "",
-    valueImg: "../assets/imgUtilisateur.png",
+    valueImg: "/assets/imgUtilisateur.png",
   }),
 
   methods: {
-    addPhoto() {
-      this.image = this.$refs.img.files[0];
-      this.valueImg = this.$refs.value;
+    addPhoto(e) {
+      const reader = new FileReader();
+      reader.onload = (readerEvent) => {
+        this.valueImg = readerEvent.target.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
     },
     /*   async function() {
       const imgUpload = await fetch("/api", { method: "POST" });
