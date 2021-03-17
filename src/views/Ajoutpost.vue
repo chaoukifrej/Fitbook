@@ -6,7 +6,10 @@
         <h2>Publier un post</h2>
         <div class="ajoutphoto">
           <label for="files" style="  border-radius: 50%;"
-            ><div class="imgUtilisateur"></div>
+            ><div
+              class="imgUtilisateur"
+              :style="{ backgroundImage: 'url(' + valueImage + ')' }"
+            ></div>
 
             <input
               accept=".jpeg,.png, .jpg"
@@ -52,11 +55,13 @@ export default {
     image: "",
     description: "",
     lieu: "",
+    valueImg: "../assets/imgUtilisateur.png",
   }),
 
   methods: {
     addPhoto() {
       this.image = this.$refs.img.files[0];
+      this.valueImg = this.$refs.value;
     },
     /*   async function() {
       const imgUpload = await fetch("/api", { method: "POST" });
@@ -88,7 +93,6 @@ export default {
   }
 
   .imgUtilisateur {
-    background-image: url("../assets/imgUtilisateur.png");
     background-size: cover;
     height: 15rem;
     border-radius: 50%;
