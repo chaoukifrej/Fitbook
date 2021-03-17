@@ -46,9 +46,13 @@
 <script>
 import Header from "@/components/Header.vue";
 export default {
+  props: {
+    users: Array,
+  },
   components: {
     Header,
   },
+  methods: {},
 };
 </script>
 
