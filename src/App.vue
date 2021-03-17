@@ -5,6 +5,50 @@
   </div>
 </template>
 
+<script>
+export default {
+  data: () => ({
+    users: [
+      {
+        firstname: "Jean Onche la tapette",
+        lastname: "15/03/20",
+        email: "jot@email.fr",
+        age: "26",
+      },
+    ],
+    isConnected: false,
+  }),
+  methods: {
+    connect: function() {},
+    disconnect: function() {},
+
+    pushUsers(p) {
+      let user = {
+        firstname: p.firstname,
+        lastname: p.lastname,
+        email: p.email,
+        password: p.password,
+      };
+      let check = false;
+      for (const elem of this.users) {
+        if (elem.email != user.email) {
+          check = false;
+        } else {
+          check = true;
+          break;
+        }
+      }
+      if (!check) {
+        if (user.lastname != "") {
+          this.users.push(user);
+        }
+      }
+      console.log(user);
+    },
+  },
+};
+</script>
+
 <style lang="scss">
 /* Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
