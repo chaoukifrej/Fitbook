@@ -20,6 +20,8 @@
     >
       Connexion
     </button>
+
+    <!-- A FAIRE Alex-->
     <button
       class="modification displayNone"
       @click.prevent="$router.push('Modifprofil')"
