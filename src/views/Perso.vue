@@ -49,7 +49,7 @@ export default {
 <style lang="scss">
 .containerPerso {
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     span {
       font-size: 0.9rem;
       font-style: italic;
@@ -80,7 +80,7 @@ export default {
   img {
     background-image: url("../assets/imgUtilisateur.png");
     background-size: cover;
-    height: 4rem;
+    height: 5rem;
     border-radius: 50%;
     border: 1px solid #000000;
     opacity: 0.6;
