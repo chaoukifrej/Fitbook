@@ -35,7 +35,7 @@
         </div>
 
         <div class="containerBtn">
-          <input @click="imgUpload" type="submit" />
+          <input type="submit" />
         </div>
       </div>
     </form>
