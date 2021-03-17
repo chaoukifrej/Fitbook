@@ -1,7 +1,7 @@
 <template>
   <div class="ajoutpost">
     <Header />
-    <form action="">
+    <form>
       <div class="mainContainer">
         <h2>Publier un post</h2>
         <div class="ajoutphoto">
@@ -35,7 +35,7 @@
         </div>
 
         <div class="containerBtn">
-          <input type="submit" />
+          <input @click="imgUpload" type="submit" />
         </div>
       </div>
     </form>
@@ -58,6 +58,11 @@ export default {
     addPhoto() {
       this.image = this.$refs.img.files[0];
     },
+    /*   async function() {
+      const imgUpload = await fetch("/api", { method: "POST" });
+      const data = await response.imgUpload.jsons();
+      this.image = data;
+    }, */
   },
 };
 </script>
