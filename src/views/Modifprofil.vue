@@ -49,21 +49,21 @@
 
         <div class="ville">
           <label for="ville">ville <span class="opt">(optionnel)</span> </label>
-          <input type="text" placeholder="Nice" />
+          <input v-model="ville" type="text" placeholder="Nice" />
         </div>
 
         <div class="sport">
           <label for="sport"
             >Sport pratiqué <span class="opt">(optionnel)</span></label
           >
-          <input type="text" placeholder="Body-Building" />
+          <input v-model="sport" type="text" placeholder="Body-Building" />
         </div>
 
         <div class="status">
           <label for="status"
             >Status <span class="opt">(optionnel)</span></label
           >
-          <select name="status" id="status">
+          <select v-model="status" name="status" id="status">
             <option value="amateur">Amateur</option>
             <option value="pro">Professionnelle</option>
           </select>
@@ -73,7 +73,11 @@
           <label for="salleSport"
             >Salle de sport <span class="opt">(optionnel)</span>
           </label>
-          <input type="text" placeholder="Ta salle préferée" />
+          <input
+            v-model="salleSport"
+            type="text"
+            placeholder="Ta salle préferée"
+          />
         </div>
         <div class="mdp">
           <label for="mdp">Modifiez votre Mot de passe</label>
@@ -97,7 +101,7 @@
             required
           />
         </div>
-        <input type="submit" @click="Valider" value="Valider" />
+        <input type="submit" value="Valider" />
       </form>
     </div>
   </div>
@@ -110,6 +114,15 @@ export default {
     Header,
   },
   data: () => ({
+    firstname: "",
+    lastname: "",
+    email: "",
+    ville: "",
+    sport: "",
+    status: "",
+    salleSport: "",
+    password: "",
+    repassword: "",
     valueImg: "/assets/imgUtilisateur.png",
   }),
 
@@ -122,7 +135,6 @@ export default {
       reader.readAsDataURL(e.target.files[0]);
     },
   },
-  /* creer des datas nom etc.. faire des vmodel et pusher dans la base de donné  */
 };
 </script>
 
@@ -179,6 +191,10 @@ export default {
         }
         &:focus {
           border: 2px solid #ff1616;
+        }
+
+        option {
+          background-color: #232323;
         }
       }
     }
