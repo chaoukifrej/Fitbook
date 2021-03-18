@@ -56,11 +56,20 @@ export default {
   data: () => ({
     image: "",
     description: "",
-    lieu: "",
+    /*     position: "",
+    lieu: [{ latitude: "" }, { longitude: "" }], */
     valueImg: "/assets/imgUtilisateur.png",
   }),
 
   methods: {
+    /*     addPosition() {
+      function success(pos) {
+        position = pos;
+        console.log(position);
+      }
+      navigator.geolocation.getCurrentPosition(success);
+    }, */
+
     addPhoto(e) {
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
