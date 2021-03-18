@@ -9,7 +9,7 @@
       </div>
       <div class="btnCard">
         <div class="like">
-          <span v-if="isConnected">
+          <span v-if="isConnected.is">
             <font-awesome-icon
               @click="addLike"
               class="icons"
@@ -27,7 +27,7 @@
         </div>
         <div class="comment">
           <p>{{ card.nbComment }} commentaires</p>
-          <span v-if="isConnected">
+          <span v-if="isConnected.is">
             <font-awesome-icon
               @click="$router.push('Comment')"
               class="icons"
@@ -52,6 +52,7 @@
 
 <script>
 export default {
+  inject: ["isConnected"],
   data() {
     return {
       card: {
@@ -64,7 +65,6 @@ export default {
         nbLike: "12",
         nbComment: "3",
       },
-      isConnected: false,
     };
   },
   methods: {
