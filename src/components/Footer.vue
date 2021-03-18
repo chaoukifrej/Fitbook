@@ -15,9 +15,16 @@
       /></router-link>
     </span>
 
-    <router-link to="/PagePerso"
-      ><font-awesome-icon class="iconUser" :icon="['fas', 'user-circle']"
-    /></router-link>
+    <span v-if="isConnected.is">
+      <router-link to="/PagePerso"
+        ><font-awesome-icon class="iconUser" :icon="['fas', 'user-circle']"
+      /></router-link>
+    </span>
+    <span v-else>
+      <router-link to="/Connexion"
+        ><font-awesome-icon class="iconUser" :icon="['fas', 'user-circle']"
+      /></router-link>
+    </span>
   </div>
 </template>
 
