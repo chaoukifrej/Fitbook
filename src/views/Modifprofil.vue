@@ -10,7 +10,7 @@
           <label for="files" style="  border-radius: 50%;"
             ><div
               class="imgUtilisateur"
-              :style="{ backgroundImage: 'url(' + valueImg + ')' }"
+              :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
               ref="value"
             ></div>
 
@@ -39,6 +39,11 @@
           <input v-model="firstname" type="text" placeholder="Jean" required />
         </div>
 
+        <div class="age">
+          <label for="prenom">Modifiez votre Age</label>
+          <input v-model="age" type="number" placeholder="18" required />
+        </div>
+
         <div class="email">
           <label for="email">Modifiez votre Email</label>
           <input
@@ -51,14 +56,14 @@
 
         <div class="ville">
           <label for="ville">ville <span class="opt">(optionnel)</span> </label>
-          <input v-model="ville" type="text" placeholder="Nice" />
+          <input v-model="city" type="text" placeholder="Nice" />
         </div>
 
         <div class="sport">
           <label for="sport"
             >Sport pratiqué <span class="opt">(optionnel)</span></label
           >
-          <input v-model="sport" type="text" placeholder="Body-Building" />
+          <input v-model="sports" type="text" placeholder="Body-Building" />
         </div>
 
         <div class="status">
@@ -76,11 +81,24 @@
             >Salle de sport <span class="opt">(optionnel)</span>
           </label>
           <input
-            v-model="salleSport"
+            v-model="sportHall"
             type="text"
             placeholder="Ta salle préferée"
           />
         </div>
+
+        <div class="description">
+          <label for="description"> Modifiez votre Description </label>
+          <textarea
+            v-model="description"
+            placeholder="Entrer votre description"
+            name="description"
+            id="description"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+
         <div class="mdp">
           <label for="mdp">Modifiez votre Mot de passe</label>
           <input
@@ -93,7 +111,7 @@
           />
         </div>
         <div class="mdp">
-          <label for="mdp">Verification du nouveau Mot de passe</label>
+          <label for="mdp">Verification nouveau Mot de passe</label>
           <input
             v-model="repassword"
             type="password"
@@ -103,7 +121,7 @@
             required
           />
         </div>
-        <input type="submit" value="Valider" />
+        <input type="submit" value="Valider" @click.prevent="modifeProfile" />
       </form>
     </div>
   </div>
@@ -112,6 +130,8 @@
 <script>
 import Header from "@/components/Header.vue";
 export default {
+  name: "modifProfile",
+  inject: ["token"],
   components: {
     Header,
   },
@@ -119,22 +139,69 @@ export default {
     firstname: "",
     lastname: "",
     email: "",
-    ville: "",
-    sport: "",
+    age: Number,
+    city: "",
+    sports: "",
     status: "",
-    salleSport: "",
+    sportHall: "",
+    description: "",
     password: "",
     repassword: "",
-    valueImg: "/assets/imgUtilisateur.png",
+    profilePicture: "/assets/imgUtilisateur.png",
   }),
 
   methods: {
     addPhoto(e) {
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
-        this.valueImg = readerEvent.target.result;
+        this.profilePicture = readerEvent.target.result;
       };
       reader.readAsDataURL(e.target.files[0]);
+    },
+
+    modifeProfile: async function() {
+      if (this.password != this.repassword) {
+        console.log("retaper votre mp");
+      } else {
+        const body = {
+          firstname: this.firstname,
+          lastname: this.lastname,
+          email: this.email,
+          age: this.age,
+          city: this.city,
+          sports: this.sports,
+          status: this.status,
+          sportHall: this.sportHall,
+          description: this.description,
+          password: this.password,
+          profilePicture: this.profilePicture,
+        };
+
+        const options = {
+          method: "PUT",
+
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + this.token.value,
+          },
+          body: JSON.stringify(body),
+        };
+        console.log(body);
+
+        try {
+          const response = await fetch(
+            "https://fitbook-api.osc-fr1.scalingo.io/user",
+            options
+          );
+
+          console.log(response);
+
+          const data = await response.json();
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
     },
   },
 };
@@ -178,7 +245,8 @@ export default {
       }
 
       input,
-      select {
+      select,
+      textarea {
         width: 75vw;
         padding: 5px;
         border: 2px solid whitesmoke;
