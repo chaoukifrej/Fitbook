@@ -25,7 +25,7 @@
               <img :src="img" alt="" />
             </div>
             <div class="droite">
-              <p class="nom">
+              <p id="nom">
                 <b class="prenom">{{ prenom }}</b> <b>{{ nom }}</b>
               </p>
               <p class="optionelContent"><span>Mon sport</span> {{ sport }}</p>
@@ -125,7 +125,7 @@ export default {
             justify-self: end;
           }
         }
-        .nom {
+        #nom {
           font-size: 1.2rem;
           grid-column: 1/3;
           .prenom {
