@@ -58,21 +58,11 @@ export default {
   data: () => ({
     image: "",
     description: "",
-    /*     position: "",
-    lieu: [{ latitude: "" }, { longitude: "" }], */
     lieu: "",
     valueImg: "/assets/imgUtilisateur.png",
   }),
 
   methods: {
-    /*     addPosition() {
-      function success(pos) {
-        position = pos;
-        console.log(position);
-      }
-      navigator.geolocation.getCurrentPosition(success);
-    }, */
-
     addPhoto(e) {
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
@@ -84,6 +74,8 @@ export default {
     sendPost: async function() {
       const body = {
         Content: this.description,
+        Image: this.valueImg,
+        Location: this.lieu,
       };
       const options = {
         method: "POST",
