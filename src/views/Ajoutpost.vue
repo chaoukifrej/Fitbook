@@ -73,7 +73,7 @@ export default {
 
     sendPost: async function() {
       const body = {
-        Content: this.description,
+        cgitontent: this.description,
         Image: this.valueImg,
         Location: this.lieu,
       };
