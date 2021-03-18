@@ -1,8 +1,10 @@
 <template>
   <div class="modifProfil">
     <Header />
+
     <div class="containerAmodifier">
       <h2>Modifier votre Profil</h2>
+
       <form action="">
         <div class="ajoutphoto">
           <label for="files" style="  border-radius: 50%;"
