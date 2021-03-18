@@ -45,7 +45,7 @@ export default {
     return {
       email: "",
       password: "",
-      sendOK: false,
+      sendOK: false, // a watcher pour renvoyer l'utilisateur vers une autre vue
     };
   },
   methods: {
