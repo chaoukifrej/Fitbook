@@ -41,8 +41,6 @@
       </div>
     </div>
     <Post />
-    <Post />
-    <Post />
 
     <Footer />
   </div>
