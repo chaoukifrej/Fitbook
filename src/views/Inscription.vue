@@ -3,7 +3,7 @@
     <Header />
     <div class="containerInscription">
       <h2>Inscription</h2>
-      <form action="" method="">
+      <form @submit.prevent="inscription">
         <div class="nom">
           <label for="nom">Nom</label>
           <input
@@ -69,21 +69,53 @@ export default {
     repassword: "",
   }),
   methods: {
-    inscription() {
+    inscription: async function() {
       let passwordChecked;
-      if (this.password == this.repassword) {
-        passwordChecked = this.repassword;
-        console.log("password ok");
-      } else {
-        this.repassword = "";
-        console.log("password not ok");
+      let checked = false;
+      if (
+        this.firstname != "" &&
+        this.lastname != "" &&
+        this.email != "" &&
+        this.password != ""
+      ) {
+        if (this.password == this.repassword) {
+          passwordChecked = this.repassword;
+          checked = true;
+        } else {
+          this.repassword = "";
+          checked = false;
+        }
       }
-      this.$emit("sendInscription", {
-        firstname: this.firstname,
-        lastname: this.lastname,
-        email: this.email,
-        password: passwordChecked,
-      });
+      console.log(checked);
+      if (checked) {
+        const body = {
+          firstname: this.firstname,
+          lastname: this.lastname,
+          email: this.email,
+          password: passwordChecked,
+        };
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        };
+        console.log(body);
+        console.log(options);
+
+        try {
+          const response = await fetch(
+            "https://fitbook-api.osc-fr1.scalingo.io/register",
+            options
+          );
+          console.log(response);
+          const data = await response.json();
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
     },
   },
 };
