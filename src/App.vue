@@ -8,6 +8,7 @@
 <script>
 export default {
   data: () => ({
+    name: "AppVue",
     users: [
       {
         firstname: "Jean Onche la tapette",
@@ -26,6 +27,7 @@ export default {
     },
     disconnect: function() {
       this.isConnected = false;
+      this.token = "";
       console.log("deconnecté");
     },
     pushUsers(p) {

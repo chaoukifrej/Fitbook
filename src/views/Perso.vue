@@ -10,11 +10,7 @@
       Modifier profil
     </button>
 
-    <button
-      v-show="isConnected.is"
-      class="btnDisconnect"
-      @click="isConnected.is = false"
-    >
+    <button v-show="isConnected.is" class="btnDisconnect" @click="disconnect">
       Se deconnecter
     </button>
     <div class="containerPerso">
@@ -22,16 +18,22 @@
         <div class="contenu">
           <div class="haut">
             <div class="image">
-              <img :src="img" alt="" />
+              <img :src="profilePicture" alt="" />
             </div>
             <div class="droite">
               <p id="nom">
-                <b class="prenom">{{ prenom }}</b> <b>{{ nom }}</b>
+                <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
               </p>
-              <p class="optionelContent"><span>Mon sport</span> {{ sport }}</p>
-              <p class="optionelContent"><span>Ville</span> {{ ville }}</p>
-              <p class="optionelContent"><span>Ma salle </span> {{ salle }}</p>
-              <p><span> publications</span>{{ nbrPubli }}</p>
+              <p class="optionelContent"><span>Ville</span> {{ city }}</p>
+              <p class="optionelContent"><span>Age</span> {{ age }} ans</p>
+
+              <p class="optionelContent">
+                <span>Mon sport</span> {{ sports[0] }}
+              </p>
+              <p class="optionelContent">
+                <span>Ma salle </span> {{ sportsHall }}
+              </p>
+              <p><span> Status</span>{{ status }}</p>
             </div>
           </div>
           <div class="description">
@@ -51,23 +53,44 @@ import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 import Post from "@/components/Post.vue";
 export default {
-  inject: ["isConnected"],
+  name: "Perso",
+  inject: ["isConnected", "token", "disconnect"],
   components: {
     Header,
     Footer,
     Post,
   },
   data: () => ({
-    nom: "Onche",
-    prenom: "Jean",
-    nbrPubli: "3",
-    sport: "AquaPoney",
-    description: "Je fais 1m75 pour 60kg",
-    ville: "Bruxelles",
-    salle: "FitPoney",
-    img:
+    firstname: "Jean",
+    lastname: "Onche",
+    age: 26,
+    profilePicture:
       "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-TkKO4S3bFZU%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FdfhYjIlWsO4%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
+    city: "Bruxelles",
+    description: "Je fais 1m75 pour 60kg",
+    status: "Pro",
+    sportsHall: "FitPoney",
+    sports: ["AquaPoney"],
   }),
+  mounted: async function() {
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: "bearer " + this.token.value,
+      },
+    };
+    try {
+      const response = await fetch(
+        "https://fitbook-api.osc-fr1.scalingo.io/user?limit=8000",
+        options
+      );
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 </script>
 
