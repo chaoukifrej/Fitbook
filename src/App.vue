@@ -17,6 +17,7 @@ export default {
       },
     ],
     isConnected: false,
+    token: "",
   }),
   methods: {
     connect: function() {
@@ -25,6 +26,7 @@ export default {
     },
     disconnect: function() {
       this.isConnected = false;
+      console.log("deconnecté");
     },
     pushUsers(p) {
       let user = {
@@ -57,13 +59,18 @@ export default {
       get: () => this.isConnected,
       set: (n) => (this.isConnected = n),
     });
+    const token = {};
+    Object.defineProperty(token, "value", {
+      enumerable: true,
+      get: () => this.token,
+      set: (n) => (this.token = n),
+    });
     return {
       isConnected,
+      token,
+      connect: this.connect,
+      disconnect: this.disconnect,
     };
-
-    //isConnected: this.isConnected,
-    //connect: this.connect,
-    //disconnect: this.disconnect,
   },
 };
 </script>

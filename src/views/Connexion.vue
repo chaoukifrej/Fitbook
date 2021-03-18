@@ -37,6 +37,7 @@
 import Header from "@/components/Header.vue";
 export default {
   name: "Connexion",
+  inject: ["isConnected", "token", "connect"],
   components: {
     Header,
   },
@@ -65,7 +66,8 @@ export default {
           options
         );
         const data = await response.json();
-        console.log(data);
+        console.log(data.token);
+        this.token.value = data.token;
       } catch (error) {
         console.log(error);
       }
