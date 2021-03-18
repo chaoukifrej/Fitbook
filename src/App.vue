@@ -52,6 +52,15 @@ export default {
       console.log(user);
     },
   },
+  watch: {
+    token: function() {
+      if (this.token != "") {
+        this.isConnected = true;
+      } else {
+        this.isConnected = false;
+      }
+    },
+  },
   provide() {
     const isConnected = {};
     Object.defineProperty(isConnected, "is", {
