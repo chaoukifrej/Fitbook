@@ -28,6 +28,7 @@ export default {
     disconnect: function() {
       this.isConnected = false;
       this.token = "";
+      this.$router.go(-1);
       console.log("deconnecté");
     },
     pushUsers(p) {
