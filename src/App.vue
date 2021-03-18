@@ -23,6 +23,12 @@ export default {
       this.$router.go(-1);
     },
   },
+  //Mise en place du Local Storage
+  mounted() {
+    localStorage.getItem("token")
+      ? (this.token = JSON.parse(localStorage.getItem("token")))
+      : (this.token = "");
+  },
   watch: {
     token: function() {
       if (this.token != "") {
@@ -30,6 +36,7 @@ export default {
       } else {
         this.isConnected = false;
       }
+      localStorage.setItem("token", JSON.stringify(this.token));
     },
   },
   provide() {
