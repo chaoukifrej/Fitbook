@@ -3,14 +3,20 @@
     <Header />
     <div class="containerConnexion">
       <h2>Connexion</h2>
-      <form action="" method="">
+      <form @submit.prevent="connexion">
         <div class="email">
           <label for="email">Email</label>
-          <input type="email" placeholder="Entrer votre email" required />
+          <input
+            v-model="email"
+            type="email"
+            placeholder="Entrer votre email"
+            required
+          />
         </div>
         <div class="mdp">
           <label for="mdp">Mot de passe</label>
           <input
+            v-model="password"
             type="password"
             name="mdp"
             id="mdp"
@@ -18,7 +24,7 @@
             required
           />
         </div>
-        <input type="submit" value="Se connecter" />
+        <input type="submit" @click="connexion" value="Se connecter" />
         <router-link class="toInscription" to="/Inscription">
           <span>Pas de compte ?</span> Je m'inscris</router-link
         >
@@ -30,8 +36,40 @@
 <script>
 import Header from "@/components/Header.vue";
 export default {
+  name: "Connexion",
   components: {
     Header,
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    connexion: async function() {
+      const body = {
+        email: this.email,
+        password: this.password,
+      };
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      };
+      try {
+        const response = await fetch(
+          "https://fitbook-api.osc-fr1.scalingo.io/login",
+          options
+        );
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>

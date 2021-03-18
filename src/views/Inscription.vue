@@ -4,6 +4,10 @@
     <div class="containerInscription">
       <h2>Inscription</h2>
       <form @submit.prevent="inscription">
+        <div class="prenom">
+          <label for="prenom">Prénom</label>
+          <input v-model="firstname" type="text" placeholder="Jean" required />
+        </div>
         <div class="nom">
           <label for="nom">Nom</label>
           <input
@@ -12,10 +16,6 @@
             placeholder="Delatour"
             required
           />
-        </div>
-        <div class="prenom">
-          <label for="prenom">Prénom</label>
-          <input v-model="firstname" type="text" placeholder="Jean" required />
         </div>
         <div class="email">
           <label for="email">Email</label>
@@ -58,6 +58,7 @@
 <script>
 import Header from "@/components/Header.vue";
 export default {
+  name: "Inscription",
   components: {
     Header,
   },
