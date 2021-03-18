@@ -181,6 +181,11 @@ export default {
         border: 2px solid #ff1616;
         color: #ff1616;
       }
+      &:focus {
+        transform: scale(0.98);
+        border: 2px solid #ff1616;
+        color: #ff1616;
+      }
     }
   }
 }
