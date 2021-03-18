@@ -46,8 +46,9 @@
         </div>
       </div>
     </div>
-    <Post />
-
+    <!--     <div v-for="post in posts" :key="post._id">
+      <Post v-bind:post="post" />
+    </div> -->
     <Footer />
   </div>
 </template>
@@ -55,26 +56,26 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
-import Post from "@/components/Post.vue";
+//import Post from "@/components/Post.vue";
 export default {
   name: "Perso",
   inject: ["isConnected", "token", "disconnect"],
   components: {
     Header,
     Footer,
-    Post,
+    //Post,
   },
   data: () => ({
-    firstname: "Prenom",
-    lastname: "Nom",
-    age: 26,
-    profilePicture:
-      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-TkKO4S3bFZU%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FdfhYjIlWsO4%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-    city: "Ville",
-    description: "ma description",
-    status: "Pro",
-    sportsHall: "ma salle",
-    sports: ["mon sport"],
+    firstname: "",
+    lastname: "",
+    age: "",
+    profilePicture: "",
+    city: "",
+    description: "",
+    status: "",
+    sportsHall: "",
+    sports: [],
+    posts: [],
   }),
   mounted: async function() {
     const options = {
@@ -100,6 +101,8 @@ export default {
       this.status = data.status;
       this.sportsHall = data.sportsHall;
       this.sports = data.sports;
+      this.posts = data.posts;
+      console.log(this.posts);
     } catch (error) {
       console.log(error);
     }

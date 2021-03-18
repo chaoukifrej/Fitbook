@@ -3,8 +3,8 @@
     <div class="card">
       <div class="img" :style="{ backgroundImage: 'url(' + card.img + ')' }">
         <p class="hautCard">
-          <span>{{ card.name }}</span>
-          <span class="date">{{ card.date }}</span>
+          <span>{{ prop.firstname }}</span>
+          <span class="date">{{ date }}</span>
         </p>
       </div>
       <div class="btnCard">
@@ -23,10 +23,10 @@
               :icon="['far', 'thumbs-up']"
             />
           </span>
-          <p>{{ card.nbLike }} j'aime</p>
+          <p>{{ likes.length }} j'aime</p>
         </div>
         <div class="comment">
-          <p>{{ card.nbComment }} commentaires</p>
+          <p>{{ comment.length }} commentaires</p>
           <span v-if="isConnected.is">
             <font-awesome-icon
               @click="$router.push('Comment')"
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="description">
-        <p>{{ card.description }}</p>
+        <p>{{ description }}</p>
       </div>
     </div>
   </div>
@@ -53,6 +53,43 @@
 <script>
 export default {
   inject: ["isConnected"],
+  props: {
+    prop: {
+      content: String,
+      image: String,
+      date: String,
+      likes: [
+        {
+          firstname: String,
+          lastname: String,
+          userId: String,
+        },
+      ],
+      comments: [
+        {
+          firstname: String,
+          lastname: String,
+          userId: String,
+          content: String,
+          likes: [
+            {
+              firstname: String,
+              lastname: String,
+              userId: String,
+            },
+          ],
+        },
+      ],
+      location: {
+        long: Number,
+        lat: Number,
+        name: String,
+      },
+      firstname: String,
+      lastname: String,
+      userId: String,
+    },
+  },
   data() {
     return {
       card: {
