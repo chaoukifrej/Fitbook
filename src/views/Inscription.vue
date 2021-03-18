@@ -68,6 +68,7 @@ export default {
     email: "",
     password: "",
     repassword: "",
+    sendOK: false, // a watcher pour renvoyer l'utilisateur vers une autre vue
   }),
   methods: {
     inscription: async function() {
@@ -113,9 +114,17 @@ export default {
           console.log(response);
           const data = await response.json();
           console.log(data);
+          this.sendOK = true;
         } catch (error) {
           console.log(error);
         }
+      }
+    },
+  },
+  watch: {
+    sendOK: function() {
+      if (this.sendOK) {
+        this.$router.replace("Connexion");
       }
     },
   },
@@ -177,6 +186,11 @@ export default {
       outline: none;
       transition: 0.4s;
       &:active {
+        transform: scale(0.98);
+        border: 2px solid #ff1616;
+        color: #ff1616;
+      }
+      &:focus {
         transform: scale(0.98);
         border: 2px solid #ff1616;
         color: #ff1616;
