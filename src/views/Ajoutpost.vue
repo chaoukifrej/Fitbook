@@ -50,6 +50,8 @@
 import Header from "@/components/Header.vue";
 
 export default {
+  name: "Ajoutpost",
+  inject: ["token"],
   components: {
     Header,
   },
@@ -58,6 +60,7 @@ export default {
     description: "",
     /*     position: "",
     lieu: [{ latitude: "" }, { longitude: "" }], */
+    lieu: "",
     valueImg: "/assets/imgUtilisateur.png",
   }),
 
@@ -88,7 +91,7 @@ export default {
 
         Headers: {
           "content-type": "application/json",
-          Authorization: "bearer abc",
+          Authorization: "bearer " + this.token.value,
         },
 
         body: JSON.stringify(body),
