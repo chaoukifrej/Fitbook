@@ -9,14 +9,6 @@
 export default {
   data: () => ({
     name: "AppVue",
-    users: [
-      {
-        firstname: "Jean Onche la tapette",
-        lastname: "15/03/20",
-        email: "jot@email.fr",
-        age: "26",
-      },
-    ],
     isConnected: false,
     token: "",
   }),
@@ -29,30 +21,6 @@ export default {
       this.isConnected = false;
       this.token = "";
       this.$router.go(-1);
-      console.log("deconnecté");
-    },
-    pushUsers(p) {
-      let user = {
-        firstname: p.firstname,
-        lastname: p.lastname,
-        email: p.email,
-        password: p.password,
-      };
-      let check = false;
-      for (const elem of this.users) {
-        if (elem.email != user.email) {
-          check = false;
-        } else {
-          check = true;
-          break;
-        }
-      }
-      if (!check) {
-        if (user.lastname != "") {
-          this.users.push(user);
-        }
-      }
-      console.log(user);
     },
   },
   watch: {
