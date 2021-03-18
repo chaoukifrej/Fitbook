@@ -2,13 +2,14 @@
   <div class="comment">
     <Header />
     <div class="nom">
-      <label for="message">Message:</label>
+      <label for="commentaire">Commentaires</label>
       <textarea
-        name="commentaire"
-        cols="30"
-        rows="10"
+        name="message"
+        cols="20"
+        rows="4"
         placeholder="Ecrivez votre commentaire"
       ></textarea>
+      <input type="submit" value="Publier" />
     </div>
   </div>
 </template>
@@ -22,14 +23,50 @@ export default {
 };
 </script>
 
-<style>
-.nom {
-  background-color: #232323;
-  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
-  border: 1px solid #000000;
-  border-radius: 3px;
-  width: 90%;
-  margin: 20px 5%;
-  padding: 0 10px;
+<style lang="scss">
+.comment {
+  .nom {
+    background-color: #232323;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #000000;
+    border-radius: 3px;
+    width: 90%;
+    margin: 20px 5%;
+    padding: 10 10px;
+    height: 350px;
+  }
+  input {
+    margin-top: 20px;
+    width: 40vw;
+    padding: 5px;
+    border: 2px solid whitesmoke;
+    border-radius: 3px;
+    background-color: transparent;
+    color: whitesmoke;
+    outline: none;
+    font-size: 1rem;
+    transition: 0.4s;
+    resize: none;
+  }
+  textarea {
+    margin-top: 360px;
+    width: 85vw;
+    padding: 5px;
+    border: 2px solid whitesmoke;
+    border-radius: 3px;
+    background-color: transparent;
+    color: whitesmoke;
+    outline: none;
+    font-size: 1rem;
+    transition: 0.4s;
+    resize: none;
+
+    &::placeholder {
+      color: rgb(107, 107, 107);
+    }
+    &:focus {
+      border: 2px solid #ff1616;
+    }
+  }
 }
 </style>
