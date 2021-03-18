@@ -4,12 +4,13 @@
     <div class="nom">
       <label for="commentaire">Commentaires</label>
       <textarea
+        v-model="commentaire"
         name="message"
         cols="20"
         rows="4"
         placeholder="Ecrivez votre commentaire"
       ></textarea>
-      <input type="submit" value="Publier" />
+      <input type="submit" value="Publier" @click="sendComment" />
     </div>
   </div>
 </template>
@@ -17,8 +18,43 @@
 <script>
 import Header from "@/components/Header.vue";
 export default {
+  name: "comment",
+  inject: ["token"],
   components: {
     Header,
+  },
+  data: () => ({
+    commentaire: "",
+  }),
+
+  methods: {
+    sendComment: async function() {
+      const body = {
+        content: this.commentaire,
+        postId: "6053821421aed7001bfdd110",
+      };
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "bearer " + this.token.value,
+        },
+        body: JSON.stringify(body),
+      };
+      console.log(body);
+
+      try {
+        const response = await fetch(
+          "https://fitbook-api.osc-fr1.scalingo.io/post/comment",
+          options
+        );
+        console.log(response);
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>
