@@ -83,29 +83,31 @@ export default {
 
     sendPost: async function() {
       const body = {
-        content: this.description,
-        image: this.image,
+        Content: this.description,
       };
       const options = {
         method: "POST",
 
-        Headers: {
-          "content-type": "application/json",
+        headers: {
+          "Content-Type": "application/json",
           Authorization: "bearer " + this.token.value,
         },
 
         body: JSON.stringify(body),
       };
 
+      console.log(body);
+
       try {
         const response = await fetch(
-          "https://fitbook-api.osc-fr1.scalingo.io/utilisateur",
+          "https://fitbook-api.osc-fr1.scalingo.io/post",
           options
         );
 
         console.log(response);
 
         const data = await response.json();
+
         console.log(data);
       } catch (error) {
         console.log(error);
