@@ -2,14 +2,14 @@
   <div class="comment">
     <Header />
     <div class="nom">
-      <label for="commentaire">Commentaire:</label>
+      <label for="commentaire">Commentaires</label>
       <textarea
         name="message"
-        cols="30"
-        rows="10"
-        placeholder="Commentez"
+        cols="20"
+        rows="4"
+        placeholder="Ecrivez votre commentaire"
       ></textarea>
-      <input type="submit" value="Valider" />
+      <input type="submit" value="Publier" />
     </div>
   </div>
 </template>
@@ -32,15 +32,28 @@ export default {
     border-radius: 3px;
     width: 90%;
     margin: 20px 5%;
-    padding: 0 10px;
+    padding: 10 10px;
     height: 350px;
   }
-  input,
-  textarea {
-    width: 75vw;
+  input {
+    margin-top: 20px;
+    width: 40vw;
     padding: 5px;
     border: 2px solid whitesmoke;
-    border-radius: 5px;
+    border-radius: 3px;
+    background-color: transparent;
+    color: whitesmoke;
+    outline: none;
+    font-size: 1rem;
+    transition: 0.4s;
+    resize: none;
+  }
+  textarea {
+    margin-top: 360px;
+    width: 85vw;
+    padding: 5px;
+    border: 2px solid whitesmoke;
+    border-radius: 3px;
     background-color: transparent;
     color: whitesmoke;
     outline: none;
