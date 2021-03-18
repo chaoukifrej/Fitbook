@@ -39,7 +39,7 @@
         </div>
 
         <div class="containerBtn">
-          <input type="submit" />
+          <input type="submit" @click.prevent="sendPost" />
         </div>
       </div>
     </form>
@@ -67,6 +67,37 @@ export default {
         this.valueImg = readerEvent.target.result;
       };
       reader.readAsDataURL(e.target.files[0]);
+    },
+
+    sendPost: async function() {
+      const body = {
+        content: this.description,
+        image: this.image,
+      };
+      const options = {
+        method: "POST",
+
+        Headers: {
+          "content-type": "application/json",
+          Authorization: "bearer abc",
+        },
+
+        body: JSON.stringify(body),
+      };
+
+      try {
+        const response = await fetch(
+          "https://fitbook-api.osc-fr1.scalingo.io/utilisateur",
+          options
+        );
+
+        console.log(response);
+
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
