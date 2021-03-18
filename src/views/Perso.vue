@@ -24,19 +24,23 @@
               <p id="nom">
                 <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
               </p>
-              <p class="optionelContent"><span>Ville</span> {{ city }}</p>
-              <p class="optionelContent"><span>Age</span> {{ age }} ans</p>
+              <p v-show="city" class="optionelContent">
+                <span>Ville</span> {{ city }}
+              </p>
+              <p v-show="age" class="optionelContent">
+                <span>Age</span> {{ age }} ans
+              </p>
 
-              <p class="optionelContent">
+              <p v-show="sports[0]" class="optionelContent">
                 <span>Mon sport</span> {{ sports[0] }}
               </p>
-              <p class="optionelContent">
+              <p v-show="sportsHall" class="optionelContent">
                 <span>Ma salle </span> {{ sportsHall }}
               </p>
-              <p><span> Status</span>{{ status }}</p>
+              <p v-show="status"><span> Status</span>{{ status }}</p>
             </div>
           </div>
-          <div class="description">
+          <div v-show="description" class="description">
             <p>{{ description }}</p>
           </div>
         </div>
@@ -61,16 +65,16 @@ export default {
     Post,
   },
   data: () => ({
-    firstname: "Jean",
-    lastname: "Onche",
+    firstname: "Prenom",
+    lastname: "Nom",
     age: 26,
     profilePicture:
       "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-TkKO4S3bFZU%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FdfhYjIlWsO4%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-    city: "Bruxelles",
-    description: "Je fais 1m75 pour 60kg",
+    city: "Ville",
+    description: "ma description",
     status: "Pro",
-    sportsHall: "FitPoney",
-    sports: ["AquaPoney"],
+    sportsHall: "ma salle",
+    sports: ["mon sport"],
   }),
   mounted: async function() {
     const options = {
@@ -87,6 +91,15 @@ export default {
       console.log(response);
       const data = await response.json();
       console.log(data);
+      this.firstname = data.firstname;
+      this.lastname = data.lastname;
+      this.age = data.age;
+      this.profilePicture = data.profilePicture;
+      this.city = data.city;
+      this.description = data.description;
+      this.status = data.status;
+      this.sportsHall = data.sportsHall;
+      this.sports = data.sports;
     } catch (error) {
       console.log(error);
     }
