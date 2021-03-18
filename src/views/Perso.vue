@@ -10,11 +10,7 @@
       Modifier profil
     </button>
 
-    <button
-      v-show="isConnected.is"
-      class="btnDisconnect"
-      @click="isConnected.is = false"
-    >
+    <button v-show="isConnected.is" class="btnDisconnect" @click="disconnect">
       Se deconnecter
     </button>
     <div class="containerPerso">
@@ -58,7 +54,7 @@ import Header from "@/components/Header.vue";
 import Post from "@/components/Post.vue";
 export default {
   name: "Perso",
-  inject: ["isConnected", "token"],
+  inject: ["isConnected", "token", "disconnect"],
   components: {
     Header,
     Footer,
@@ -85,7 +81,7 @@ export default {
     };
     try {
       const response = await fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/user",
+        "https://fitbook-api.osc-fr1.scalingo.io/user?limit=8000",
         options
       );
       console.log(response);
