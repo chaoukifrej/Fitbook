@@ -22,7 +22,7 @@
           /></label>
         </div>
 
-        <div class="nom">
+        <div class="nomModifier">
           <label for="nom">Modifiez votre Nom</label>
           <input
             v-model="lastname"
