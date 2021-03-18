@@ -2,7 +2,7 @@
   <div class="contact">
     <Header />
     <div class="containerContact">
-      <h2>Contact moi</h2>
+      <h2>Contacte moi</h2>
       <form action="" method="">
         <div class="nomPrenom">
           <label for="nomPrenom">Nom et prénom</label>
