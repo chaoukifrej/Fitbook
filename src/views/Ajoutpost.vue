@@ -1,7 +1,7 @@
 <template>
   <div class="ajoutpost">
     <Header />
-    <form @submit.prevent="sendPost">
+    <form @submit.prevent="sendPostq">
       <div class="mainContainer">
         <h2>Publier un post</h2>
         <div class="ajoutphoto">
@@ -79,32 +79,36 @@ export default {
         Location: this.lieu,
       };
 
-      const options = {
-        method: "POST",
+      if (body.content == "" && body.image == "/assets/imgUtilisateur.png") {
+        console.log("veuillez ecrire une description");
+      } else {
+        const options = {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "bearer " + this.token.value,
-        },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + this.token.value,
+          },
 
-        body: JSON.stringify(body),
-      };
+          body: JSON.stringify(body),
+        };
 
-      console.log(body);
+        console.log(body);
 
-      try {
-        const response = await fetch(
-          "https://fitbook-api.osc-fr1.scalingo.io/post",
-          options
-        );
+        try {
+          const response = await fetch(
+            "https://fitbook-api.osc-fr1.scalingo.io/post",
+            options
+          );
 
-        console.log(response);
+          console.log(response);
 
-        const data = await response.json();
+          const data = await response.json();
 
-        console.log(data);
-      } catch (error) {
-        console.log(error);
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
   },
