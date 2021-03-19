@@ -5,7 +5,7 @@
     <div class="containerAmodifier">
       <h2>Modifier votre Profil</h2>
 
-      <form action="">
+      <form @submit.prevent>
         <div class="ajoutphoto">
           <label for="files" style="  border-radius: 50%;"
             ><div
@@ -90,7 +90,7 @@
             name="description"
             id="description"
             cols="30"
-            rows="10"
+            rows="5"
           ></textarea>
         </div>
 
@@ -116,7 +116,7 @@
             required
           />
         </div>
-        <input type="submit" value="Valider" @click.prevent="modifeProfile" />
+        <input type="submit" value="Valider" @click="modifeProfile" />
       </form>
     </div>
   </div>
@@ -194,7 +194,7 @@ export default {
     modifeProfile: async function() {
       if (this.password != this.repassword) {
         console.log("retaper votre mp");
-      } else {
+      } else if (this.password == "") {
         const body = {
           firstname: this.firstname,
           lastname: this.lastname,

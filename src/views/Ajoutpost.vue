@@ -82,6 +82,7 @@ export default {
       /*  if (body.content == "" || body.image == "/assets/imgUtilisateur.png") {
         console.log("error");
       } else {} */
+
       const options = {
         method: "POST",
 
