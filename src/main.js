@@ -9,18 +9,16 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 
 library.add(faHome);
 library.add(faThumbsUp);
 library.add(faComment);
 library.add(faInfo);
-
-Vue.component("font-awesome-icon", FontAwesomeIcon);
-
 library.add(faPlusSquare);
-Vue.component("font-awesome-icon", FontAwesomeIcon);
-
 library.add(faUserCircle);
+library.add(faPaperPlane);
+
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
