@@ -23,6 +23,7 @@ export default {
       this.$router.go(-1);
     },
   },
+
   //Mise en place du Local Storage
   mounted() {
     localStorage.getItem("token")

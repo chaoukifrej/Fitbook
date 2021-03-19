@@ -69,7 +69,12 @@ export default {
       reader.onload = (readerEvent) => {
         this.image = readerEvent.target.result;
       };
-      reader.readAsDataURL(e.target.files[0]);
+
+      if (e.target.files[0].size / 1024 / 1024 > 3) {
+        console.log("image trop grande");
+      } else {
+        reader.readAsDataURL(e.target.files[0]);
+      }
     },
 
     sendPost: async function() {
