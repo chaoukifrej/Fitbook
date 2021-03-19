@@ -295,6 +295,9 @@ export default {
         &:focus {
           border: 2px solid #ff1616;
         }
+        &:active {
+          border: 2px solid #ff1616;
+        }
 
         option {
           background-color: #232323;

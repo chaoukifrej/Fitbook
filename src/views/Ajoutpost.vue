@@ -198,6 +198,9 @@ export default {
         border: 2px solid #ff1616;
       }
     }
+    &:active {
+      border: 2px solid #ff1616;
+    }
   }
 
   /* boutton VALIDER */
