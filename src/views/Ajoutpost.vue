@@ -1,18 +1,19 @@
 <template>
   <div class="ajoutpost">
     <Header />
-    <form>
+    <form @submit.prevent="sendPost">
       <div class="mainContainer">
         <h2>Publier un post</h2>
         <div class="ajoutphoto">
           <label for="files" style="  border-radius: 50%;"
             ><div
               class="imgUtilisateur"
-              :style="{ backgroundImage: 'url(' + valueImg + ')' }"
+              :style="{ backgroundImage: 'url(' + image + ')' }"
               ref="value"
             ></div>
 
             <input
+              required
               accept=".jpeg,.png, .jpg"
               ref="img"
               @change="addPhoto"
@@ -25,6 +26,7 @@
         <div class="description">
           <label for="description"> Description </label>
           <textarea
+            required
             v-model="description"
             placeholder="Entrer votre description"
             name="description"
@@ -39,7 +41,7 @@
         </div>
 
         <div class="containerBtn">
-          <input type="submit" @click.prevent="sendPost" />
+          <input type="submit" @click="sendPost" />
         </div>
       </div>
     </form>
@@ -56,17 +58,16 @@ export default {
     Header,
   },
   data: () => ({
-    image: "",
     description: "",
     lieu: "",
-    valueImg: "/assets/imgUtilisateur.png",
+    image: "/assets/imgUtilisateur.png",
   }),
 
   methods: {
     addPhoto(e) {
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
-        this.valueImg = readerEvent.target.result;
+        this.image = readerEvent.target.result;
       };
       reader.readAsDataURL(e.target.files[0]);
     },
@@ -74,9 +75,10 @@ export default {
     sendPost: async function() {
       const body = {
         content: this.description,
-        Image: this.valueImg,
+        image: this.image,
         Location: this.lieu,
       };
+
       const options = {
         method: "POST",
 
