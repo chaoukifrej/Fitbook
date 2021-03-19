@@ -20,6 +20,7 @@
             <font-awesome-icon
               @click="addLike"
               class="icons"
+              :class="{ active: isActive }"
               :icon="['far', 'thumbs-up']"
             />
           </span>
@@ -65,10 +66,18 @@ export default {
     return {
       likes: this.post.likes,
       likesNumber: this.post.likes.length,
-      likeOk: false,
+      comments: this.post.comments,
+      isActive: false,
     };
   },
-
+  /* En suspend, en attente de modif par Guillaume route/user. mounted() {
+    for (const like of this.likes) {
+      if (like.userId == this.post.userId) {
+        console.log(like);
+        this.isActive = true;
+      }
+    }
+  }, */
   methods: {
     addLike: async function() {
       const body = { postId: this.post._id };
@@ -87,16 +96,7 @@ export default {
       console.log("Like status : " + response.status);
       if (response.status == 200) {
         this.likesNumber++;
-      }
-    },
-  },
-  watch: {
-    likesNumber: function() {
-      for (const like of this.likes) {
-        console.log(like.userId);
-        if (like.userId == this.post.userId) {
-          this.likeOk = true;
-        }
+        this.isActive = true;
       }
     },
   },
@@ -105,6 +105,10 @@ export default {
 
 <style lang="scss">
 .card {
+  /* Bouton Like actif */
+  .active {
+    color: #ff1616;
+  }
   margin: 10px 1%;
   border: 1px solid #000000;
   border-radius: 3px;
