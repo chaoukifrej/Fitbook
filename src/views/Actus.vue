@@ -41,6 +41,7 @@ export default {
       console.log(data);
 
       this.posts = data.posts;
+
       console.log(this.posts);
     } catch (error) {
       console.log(error);
