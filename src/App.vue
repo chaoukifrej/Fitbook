@@ -29,7 +29,7 @@ export default {
     localStorage.getItem("token")
       ? (this.token = JSON.parse(localStorage.getItem("token")))
       : (this.token = "");
-    const options = {
+    /* const options = {
       method: "GET",
       headers: {
         Authorization: "bearer " + this.token.value,
@@ -42,7 +42,7 @@ export default {
           this.token = "";
         }
       }
-    );
+    ); */
   },
   watch: {
     token: function() {
