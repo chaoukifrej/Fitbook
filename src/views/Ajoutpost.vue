@@ -79,36 +79,35 @@ export default {
         Location: this.lieu,
       };
 
-      if (body.content == "" || body.image == "/assets/imgUtilisateur.png") {
+      /*  if (body.content == "" || body.image == "/assets/imgUtilisateur.png") {
         console.log("error");
-      } else {
-        const options = {
-          method: "POST",
+      } else {} */
+      const options = {
+        method: "POST",
 
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "bearer " + this.token.value,
-          },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "bearer " + this.token.value,
+        },
 
-          body: JSON.stringify(body),
-        };
+        body: JSON.stringify(body),
+      };
 
-        console.log(body);
+      console.log(body);
 
-        try {
-          const response = await fetch(
-            "https://fitbook-api.osc-fr1.scalingo.io/post",
-            options
-          );
+      try {
+        const response = await fetch(
+          "https://fitbook-api.osc-fr1.scalingo.io/post",
+          options
+        );
 
-          console.log(response);
+        console.log(response);
 
-          const data = await response.json();
+        const data = await response.json();
 
-          console.log(data);
-        } catch (error) {
-          console.log(error);
-        }
+        console.log(data);
+      } catch (error) {
+        console.log(error);
       }
     },
   },
