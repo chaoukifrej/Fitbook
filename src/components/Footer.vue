@@ -1,21 +1,40 @@
 <template>
   <div class="footer">
-    <router-link to="/"
+    <router-link to="/FilActus"
       ><font-awesome-icon class="iconHome" :icon="['fas', 'home']"
     /></router-link>
 
-    <router-link to="/Ajoutpost"
-      ><font-awesome-icon class="iconPlus" :icon="['fas', 'plus-square']"
-    /></router-link>
+    <span v-if="isConnected.is">
+      <router-link to="/Ajoutpost"
+        ><font-awesome-icon class="iconPlus" :icon="['fas', 'plus-square']"
+      /></router-link>
+    </span>
+    <span v-else>
+      <router-link to="/Connexion"
+        ><font-awesome-icon class="iconPlus" :icon="['fas', 'plus-square']"
+      /></router-link>
+    </span>
 
-    <router-link to="/Perso"
-      ><font-awesome-icon class="iconUser" :icon="['fas', 'user-circle']"
-    /></router-link>
+    <span v-if="isConnected.is">
+      <router-link to="/PagePerso"
+        ><font-awesome-icon class="iconUser" :icon="['fas', 'user-circle']"
+      /></router-link>
+    </span>
+    <span v-else>
+      <router-link to="/Connexion"
+        ><font-awesome-icon class="iconUser" :icon="['fas', 'user-circle']"
+      /></router-link>
+    </span>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  inject: ["isConnected"],
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style lang="scss">

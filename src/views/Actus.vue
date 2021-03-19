@@ -1,12 +1,10 @@
 <template>
   <div class="actus">
     <Header />
-    <Post />
-    <Post />
-    <Post />
-    <Post />
-    <Post />
 
+    <div v-for="post in posts" :key="post._id">
+      <Post :post="post" />
+    </div>
     <Footer />
   </div>
 </template>
@@ -23,6 +21,26 @@ export default {
     Header,
     Footer,
     Post,
+  },
+
+  data: () => ({ posts: [] }),
+
+  mounted: async function() {
+    const options = {
+      method: "GET",
+    };
+    try {
+      const response = await fetch(
+        "https://fitbook-api.osc-fr1.scalingo.io/posts",
+        options
+      );
+      const data = await response.json();
+      this.posts = data.posts;
+
+      console.log(this.posts);
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 </script>

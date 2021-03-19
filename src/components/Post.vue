@@ -1,24 +1,58 @@
 <template>
   <div class="post">
     <div class="card">
-      <div class="img" :style="{ backgroundImage: 'url(' + card.img + ')' }">
-        <p class="hautCard">
-          <span>{{ card.name }}</span>
-          <span class="date">{{ card.date }}</span>
-        </p>
-      </div>
+      <p class="hautCard">
+        <span>
+          <b>{{ post.firstname }} {{ post.lastname }}</b>
+        </span>
+        <span class="date">
+          {{ new Date(post.date).toLocaleDateString() }} -
+          {{ new Date(post.date).toLocaleTimeString() }}
+        </span>
+      </p>
+      <div
+        class="img"
+        :style="{ backgroundImage: 'url(' + post.image + ')' }"
+      ></div>
       <div class="btnCard">
         <div class="like">
-          <font-awesome-icon class="icons" :icon="['far', 'thumbs-up']" />
-          <p>{{ card.nbLike }} j'aime</p>
+          <span v-if="isConnected.is">
+            <font-awesome-icon
+              @click="addLike"
+              class="icons"
+              :class="{ active: isActive }"
+              :icon="['far', 'thumbs-up']"
+            />
+          </span>
+          <span v-else>
+            <font-awesome-icon
+              @click="$router.push('Connexion')"
+              class="icons"
+              :icon="['far', 'thumbs-up']"
+            />
+          </span>
+          <p>{{ likesNumber }} j'aime</p>
         </div>
         <div class="comment">
-          <p>{{ card.nbComment }} commentaires</p>
-          <font-awesome-icon class="icons" :icon="['far', 'comment']" />
+          <p>{{ post.comments.length }} commentaires</p>
+          <span v-if="isConnected.is">
+            <font-awesome-icon
+              @click="$router.push('Comment')"
+              class="icons"
+              :icon="['far', 'comment']"
+            />
+          </span>
+          <span v-else>
+            <font-awesome-icon
+              @click="$router.push('Connexion')"
+              class="icons"
+              :icon="['far', 'comment']"
+            />
+          </span>
         </div>
       </div>
       <div class="description">
-        <p>{{ card.description }}</p>
+        <p>{{ post.content }}</p>
       </div>
     </div>
   </div>
@@ -26,25 +60,55 @@
 
 <script>
 export default {
+  inject: ["isConnected", "token"],
+  props: ["post"],
   data() {
     return {
-      card: {
-        name: "Jean Onche la tapette",
-        date: "15/03/20",
-        img:
-          "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-TkKO4S3bFZU%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FdfhYjIlWsO4%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-        description:
-          "Fin de séance, 21k de poussé !!! De la pure folie cette seance de merde",
-        nbLike: "12",
-        nbComment: "3",
-      },
+      likes: this.post.likes,
+      likesNumber: this.post.likes.length,
+      comments: this.post.comments,
+      isActive: false,
     };
+  },
+  /* En suspend, en attente de modif par Guillaume route/user. mounted() {
+    for (const like of this.likes) {
+      if (like.userId == this.post.userId) {
+        console.log(like);
+        this.isActive = true;
+      }
+    }
+  }, */
+  methods: {
+    addLike: async function() {
+      const body = { postId: this.post._id };
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "bearer " + this.token.value,
+        },
+        body: JSON.stringify(body),
+      };
+      const response = await fetch(
+        "https://fitbook-api.osc-fr1.scalingo.io/post/like",
+        options
+      );
+      console.log("Like status : " + response.status);
+      if (response.status == 200) {
+        this.likesNumber++;
+        this.isActive = true;
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss">
 .card {
+  /* Bouton Like actif */
+  .active {
+    color: #ff1616;
+  }
   margin: 10px 1%;
   border: 1px solid #000000;
   border-radius: 3px;
@@ -53,16 +117,16 @@ export default {
   min-height: 350px;
   width: 98%;
   .img {
-    height: 250px;
-    background-color: rgb(207, 207, 207);
+    min-height: 300px;
     background-size: cover;
+    background-position: center;
   }
   .hautCard {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px 10px;
-    background: linear-gradient(#000000, #36363600);
-
+    background: transparent;
     .date {
       font-size: 0.8rem;
     }
@@ -88,7 +152,7 @@ export default {
   }
   .description p {
     text-align: start;
-    margin: 0 10px;
+    margin: 10px;
   }
 }
 </style>

@@ -5,7 +5,82 @@
   </div>
 </template>
 
+<script>
+export default {
+  data: () => ({
+    name: "AppVue",
+    isConnected: false,
+    token: "",
+  }),
+  methods: {
+    connect: function() {
+      this.isConnected = true;
+      console.log("connecté");
+    },
+    disconnect: function() {
+      this.isConnected = false;
+      this.token = "";
+      this.$router.go(-1);
+    },
+  },
+
+  //Mise en place du Local Storage
+  beforeMount() {
+    localStorage.getItem("token")
+      ? (this.token = JSON.parse(localStorage.getItem("token")))
+      : (this.token = "");
+    /* const options = {
+      method: "GET",
+      headers: {
+        Authorization: "bearer " + this.token.value,
+      },
+    };
+    fetch("https://fitbook-api.osc-fr1.scalingo.io/user", options).then(
+      (response) => {
+        if (response.status != 200) {
+          console.log(response.message);
+          this.token = "";
+        }
+      }
+    ); */
+  },
+  watch: {
+    token: function() {
+      if (this.token != "") {
+        this.isConnected = true;
+      } else {
+        this.isConnected = false;
+      }
+      localStorage.setItem("token", JSON.stringify(this.token));
+    },
+  },
+  provide() {
+    const isConnected = {};
+    Object.defineProperty(isConnected, "is", {
+      enumerable: true,
+      get: () => this.isConnected,
+      set: (n) => (this.isConnected = n),
+    });
+    const token = {};
+    Object.defineProperty(token, "value", {
+      enumerable: true,
+      get: () => this.token,
+      set: (n) => (this.token = n),
+    });
+    return {
+      isConnected,
+      token,
+      connect: this.connect,
+      disconnect: this.disconnect,
+    };
+  },
+};
+</script>
+
 <style lang="scss">
+/* Google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
+/* Variables */
 $bgColor: #232323;
 $bgColorView: #363636;
 $redColor: #ff1616;
@@ -13,17 +88,25 @@ $redColor: #ff1616;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Ubuntu", Arial, sans-serif;
 }
 body {
   background-color: $bgColorView;
   color: rgb(235, 235, 235);
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Ubuntu", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: whitesmoke;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Chau Philomene One", sans-serif;
+  }
 }
 
 #nav {
@@ -31,7 +114,7 @@ body {
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: whitesmoke;
 
     &.router-link-exact-active {
       color: #42b983;
@@ -46,6 +129,7 @@ body {
   border-bottom: 1px solid black;
   background-color: $bgColor;
   top: 0;
+  z-index: 1000;
 }
 
 /* Barre de Navigation (Footer) */
@@ -56,5 +140,6 @@ body {
   border-top: 1px solid black;
   background-color: $bgColor;
   bottom: 0;
+  z-index: 1000;
 }
 </style>
