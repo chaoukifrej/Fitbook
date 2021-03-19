@@ -30,7 +30,7 @@
               :icon="['far', 'thumbs-up']"
             />
           </span>
-          <p>{{ post.likes.length }} j'aime</p>
+          <p>{{ likes.length }} j'aime</p>
         </div>
         <div class="comment">
           <p>{{ post.comments.length }} commentaires</p>
@@ -61,12 +61,15 @@
 export default {
   inject: ["isConnected", "token"],
   props: ["post"],
+  data() {
+    return {
+      likes: this.post.likes,
+    };
+  },
   methods: {
     addLike: async function() {
       console.log(this.post._id);
       const body = { postId: this.post._id };
-      console.log(body);
-
       const options = {
         method: "POST",
         headers: {
@@ -75,7 +78,6 @@ export default {
         },
         body: JSON.stringify(body),
       };
-      console.log(options);
       const response = await fetch(
         "https://fitbook-api.osc-fr1.scalingo.io/post/like",
         options

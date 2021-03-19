@@ -4,7 +4,6 @@
 
     <div v-for="post in posts" :key="post._id">
       <Post :post="post" />
-      <Post />
     </div>
     <Footer />
   </div>
