@@ -24,19 +24,14 @@
           /></label>
         </div>
 
-        <div class="nomModifier">
-          <label for="nom">Modifiez votre Nom</label>
-          <input
-            v-model="lastname"
-            type="text"
-            placeholder="Delatour"
-            required
-          />
+        <div class="prenom">
+          <label for="prenom">Modifiez votre Prénom </label>
+          <input v-model="firstname" type="text" required />
         </div>
 
-        <div class="prenom">
-          <label for="prenom">Modifiez votre Prénom</label>
-          <input v-model="firstname" type="text" placeholder="Jean" required />
+        <div class="nomModifier">
+          <label for="nom">Modifiez votre Nom</label>
+          <input v-model="lastname" type="text" value="bl" required />
         </div>
 
         <div class="age">
@@ -141,7 +136,7 @@ export default {
     email: "",
     age: Number,
     city: "",
-    sports: "",
+    sports: [],
     status: "",
     sportHall: "",
     description: "",
@@ -149,6 +144,41 @@ export default {
     repassword: "",
     profilePicture: "/assets/imgUtilisateur.png",
   }),
+
+  mounted: async function() {
+    console.log("ok");
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: "bearer " + this.token.value,
+      },
+    };
+    try {
+      const response = await fetch(
+        "https://fitbook-api.osc-fr1.scalingo.io/user",
+        options
+      );
+
+      console.log(response);
+
+      const data = await response.json();
+
+      console.log(data);
+      this.firstname = data.firstname;
+      this.lastname = data.lastname;
+      this.email = data.email;
+      this.age = data.age;
+      this.profilePicture = data.profilePicture;
+      this.city = data.city;
+      this.description = data.description;
+      this.status = data.status;
+      this.sportsHall = data.sportsHall;
+      this.sports = data.sports;
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
   methods: {
     addPhoto(e) {
@@ -158,6 +188,8 @@ export default {
       };
       reader.readAsDataURL(e.target.files[0]);
     },
+
+    /* affichage des information Page perso */
 
     modifeProfile: async function() {
       if (this.password != this.repassword) {
@@ -256,6 +288,7 @@ export default {
         outline: none;
         font-size: 1rem;
         transition: 0.4s;
+        resize: none;
         &::placeholder {
           color: rgb(107, 107, 107);
         }
