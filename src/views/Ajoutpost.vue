@@ -98,20 +98,15 @@ export default {
 
         body: JSON.stringify(body),
       };
-
-      console.log(body);
-
       try {
         const response = await fetch(
           "https://fitbook-api.osc-fr1.scalingo.io/post",
           options
         );
-
         console.log(response);
-
-        const data = await response.json();
-
-        console.log(data);
+        if (response.status == 200) {
+          this.$router.go(-1);
+        }
       } catch (error) {
         console.log(error);
       }
