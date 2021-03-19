@@ -70,6 +70,7 @@ export default {
       const options = {
         method: "POST",
         headers: {
+          "Content-Type": "application/json",
           Authorization: "bearer " + this.token.value,
         },
         body: JSON.stringify(body),

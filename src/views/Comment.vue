@@ -1,17 +1,18 @@
 <template>
   <div class="comment">
     <Header />
-    <div class="nom">
-      <label for="commentaire">Commentaires</label>
+    <h2>Ajouter un commentaire</h2>
+    <div class="commentaires"></div>
+    <form @submit.prevent>
       <textarea
         v-model="commentaire"
         name="message"
-        cols="20"
-        rows="4"
+        cols="auto"
+        rows="auto"
         placeholder="Ecrivez votre commentaire"
       ></textarea>
       <input type="submit" value="Publier" @click="sendComment" />
-    </div>
+    </form>
   </div>
 </template>
 
@@ -61,47 +62,57 @@ export default {
 
 <style lang="scss">
 .comment {
-  .nom {
-    background-color: #232323;
-    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
-    border: 1px solid #000000;
-    border-radius: 3px;
-    width: 90%;
-    margin: 20px 5%;
-    padding: 10 10px;
-    height: 350px;
+  h2 {
+    font-size: 1.3rem;
+    margin: 10px 0 10px;
   }
-  input {
-    margin-top: 20px;
-    width: 45vw;
-    padding: 5px;
-    border: 2px solid whitesmoke;
-    border-radius: 3px;
-    background-color: transparent;
-    color: whitesmoke;
-    outline: none;
-    font-size: 1rem;
-    transition: 0.4s;
-    resize: none;
+  .commentaires {
+    height: 60vh;
   }
-  textarea {
-    margin-top: 360px;
-    width: 85vw;
-    padding: 5px;
-    border: 2px solid whitesmoke;
-    border-radius: 3px;
-    background-color: transparent;
-    color: whitesmoke;
-    outline: none;
-    font-size: 1rem;
-    transition: 0.4s;
-    resize: none;
-
-    &::placeholder {
-      color: rgb(107, 107, 107);
+  form {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    margin: 5px;
+    width: 100%;
+    textarea {
+      padding: 5px;
+      border: 2px solid whitesmoke;
+      border-radius: 5px;
+      background-color: transparent;
+      color: whitesmoke;
+      outline: none;
+      font-size: 1rem;
+      transition: 0.4s;
+      resize: none;
+      &::placeholder {
+        color: rgb(107, 107, 107);
+      }
+      &:focus {
+        border: 2px solid #ff1616;
+      }
     }
-    &:focus {
-      border: 2px solid #ff1616;
+    input[type="submit"] {
+      margin-left: 5px;
+      font-size: 1rem;
+      padding: 5px 15px;
+      border: 2px solid whitesmoke;
+      background-color: transparent;
+      border-radius: 5px;
+      color: whitesmoke;
+      outline: none;
+      transition: 0.4s;
+      &:active {
+        transform: scale(0.98);
+        border: 2px solid #ff1616;
+        color: #ff1616;
+      }
+      &:focus {
+        transform: scale(0.98);
+        border: 2px solid #ff1616;
+        color: #ff1616;
+      }
     }
   }
 }

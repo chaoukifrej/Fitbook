@@ -90,9 +90,7 @@ export default {
         "https://fitbook-api.osc-fr1.scalingo.io/user?limit=8000",
         options
       );
-      console.log(response.status);
       const data = await response.json();
-      console.log(data);
       this.firstname = data.firstname;
       this.lastname = data.lastname;
       this.age = data.age;

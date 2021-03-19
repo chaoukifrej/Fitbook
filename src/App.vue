@@ -25,7 +25,7 @@ export default {
   },
 
   //Mise en place du Local Storage
-  mounted() {
+  beforeMount() {
     localStorage.getItem("token")
       ? (this.token = JSON.parse(localStorage.getItem("token")))
       : (this.token = "");
