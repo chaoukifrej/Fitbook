@@ -84,31 +84,31 @@ export default {
         Location: this.lieu,
       };
 
-      /*  if (body.content == "" || body.image == "/assets/imgUtilisateur.png") {
+      if (body.content == null || body.image == "/assets/imgUtilisateur.png") {
         console.log("error");
-      } else {} */
+      } else {
+        const options = {
+          method: "POST",
 
-      const options = {
-        method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + this.token.value,
+          },
 
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "bearer " + this.token.value,
-        },
+          body: JSON.stringify(body),
+        };
+        try {
+          const response = await fetch(
+            "https://fitbook-api.osc-fr1.scalingo.io/post",
+            options
+          );
 
-        body: JSON.stringify(body),
-      };
-      try {
-        const response = await fetch(
-          "https://fitbook-api.osc-fr1.scalingo.io/post",
-          options
-        );
-        console.log(response);
-        if (response.status == 200) {
-          this.$router.go(-1);
+          if (response.status == 200) {
+            this.$router.go(-1);
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
       }
     },
   },
