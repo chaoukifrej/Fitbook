@@ -36,6 +36,7 @@ export default {
       );
       const data = await response.json();
       this.posts = data.posts;
+
       console.log(this.posts);
     } catch (error) {
       console.log(error);
