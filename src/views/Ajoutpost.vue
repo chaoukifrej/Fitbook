@@ -1,7 +1,7 @@
 <template>
   <div class="ajoutpost">
     <Header />
-    <form @submit.prevent="sendPost">
+    <form @submit.prevent>
       <div class="PublicationContainer">
         <h2>Publier un post</h2>
         <div class="ajoutphoto">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="containerBtn">
-          <input type="submit" value="Publier" />
+          <input @click="sendPost" type="submit" value="Publier" />
         </div>
       </div>
     </form>
