@@ -28,6 +28,20 @@ export default {
     localStorage.getItem("token")
       ? (this.token = JSON.parse(localStorage.getItem("token")))
       : (this.token = "");
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: "bearer " + this.token.value,
+      },
+    };
+    fetch("https://fitbook-api.osc-fr1.scalingo.io/user", options).then(
+      (response) => {
+        if (response.status != 200) {
+          console.log(response.message);
+          this.token = "";
+        }
+      }
+    );
   },
   watch: {
     token: function() {

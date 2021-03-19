@@ -17,9 +17,10 @@
       <div class="cardPerso">
         <div class="contenu">
           <div class="haut">
-            <div class="image">
-              <img :src="profilePicture" alt="" />
-            </div>
+            <div
+              class="image"
+              :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
+            ></div>
             <div class="droite">
               <p id="nom">
                 <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
@@ -89,7 +90,10 @@ export default {
         "https://fitbook-api.osc-fr1.scalingo.io/user?limit=8000",
         options
       );
-      console.log(response);
+      console.log(response.status);
+      if (response.status != 200) {
+        this.$router.push("Connexion");
+      }
       const data = await response.json();
       console.log(data);
       this.firstname = data.firstname;
@@ -128,12 +132,9 @@ export default {
 }
 .containerPerso {
   .cardPerso {
-    background-color: #232323;
-    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
-    border: 1px solid #000000;
-    border-radius: 3px;
-    width: 98%;
-    margin: 10px 1%;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    margin: 10px 0;
     padding: 20px 10px;
   }
   .contenu {
@@ -141,9 +142,11 @@ export default {
     .haut {
       display: flex;
       justify-content: space-around;
-      img {
-        height: 7rem;
-        border-radius: 50%;
+      .image {
+        height: 6.5rem;
+        width: 10rem;
+        background-size: cover;
+        border-radius: 5px;
         border: 1px solid #000000;
       }
       .droite {
@@ -172,9 +175,11 @@ export default {
       }
     }
     .description {
-      margin: 20px 0 0;
+      padding-top: 10px;
+      margin: 10px 0 0;
       display: flex;
       justify-content: start;
+      text-align: start;
     }
   }
 }
