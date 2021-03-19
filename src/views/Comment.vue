@@ -31,7 +31,7 @@ export default {
     sendComment: async function() {
       const body = {
         content: this.commentaire,
-        postId: "6053821421aed7001bfdd110",
+        postId: this.postId,
       };
       const options = {
         method: "POST",
