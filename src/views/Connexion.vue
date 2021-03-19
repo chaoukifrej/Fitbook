@@ -67,7 +67,6 @@ export default {
           options
         );
         const data = await response.json();
-        console.log(data.token);
         this.token.value = data.token;
         this.sendOK = true;
       } catch (error) {

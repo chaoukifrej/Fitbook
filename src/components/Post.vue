@@ -30,7 +30,7 @@
               :icon="['far', 'thumbs-up']"
             />
           </span>
-          <p>{{ likes.length }} j'aime</p>
+          <p>{{ likesNumber }} j'aime</p>
         </div>
         <div class="comment">
           <p>{{ post.comments.length }} commentaires</p>
@@ -64,11 +64,13 @@ export default {
   data() {
     return {
       likes: this.post.likes,
+      likesNumber: this.post.likes.length,
+      likeOk: false,
     };
   },
+
   methods: {
     addLike: async function() {
-      console.log(this.post._id);
       const body = { postId: this.post._id };
       const options = {
         method: "POST",
@@ -82,7 +84,20 @@ export default {
         "https://fitbook-api.osc-fr1.scalingo.io/post/like",
         options
       );
-      console.log(response);
+      console.log("Like status : " + response.status);
+      if (response.status == 200) {
+        this.likesNumber++;
+      }
+    },
+  },
+  watch: {
+    likesNumber: function() {
+      for (const like of this.likes) {
+        console.log(like.userId);
+        if (like.userId == this.post.userId) {
+          this.likeOk = true;
+        }
+      }
     },
   },
 };

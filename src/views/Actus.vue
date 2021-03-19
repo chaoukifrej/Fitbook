@@ -34,11 +34,7 @@ export default {
         "https://fitbook-api.osc-fr1.scalingo.io/posts",
         options
       );
-      console.log(response.status);
-
       const data = await response.json();
-      console.log(data);
-
       this.posts = data.posts;
       console.log(this.posts);
     } catch (error) {
