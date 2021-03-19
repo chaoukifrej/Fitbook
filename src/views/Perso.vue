@@ -46,9 +46,9 @@
         </div>
       </div>
     </div>
-    <!--     <div v-for="post in posts" :key="post._id">
-      <Post v-bind:post="post" />
-    </div> -->
+    <div v-for="post in posts" :key="post._id">
+      <Post :post="post" />
+    </div>
     <Footer />
   </div>
 </template>
@@ -56,14 +56,14 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
-//import Post from "@/components/Post.vue";
+import Post from "@/components/Post.vue";
 export default {
   name: "Perso",
   inject: ["isConnected", "token", "disconnect"],
   components: {
     Header,
     Footer,
-    //Post,
+    Post,
   },
   data: () => ({
     firstname: "",

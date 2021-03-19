@@ -1,10 +1,10 @@
 <template>
   <div class="post">
     <div class="card">
-      <div class="img" :style="{ backgroundImage: 'url(' + card.img + ')' }">
+      <div class="img" :style="{ backgroundImage: 'url(' + post.image + ')' }">
         <p class="hautCard">
-          <span>{{ prop.firstname }}</span>
-          <span class="date">{{ date }}</span>
+          <span>{{ post.firstname }}</span>
+          <span class="date">{{ post.date }}</span>
         </p>
       </div>
       <div class="btnCard">
@@ -23,10 +23,10 @@
               :icon="['far', 'thumbs-up']"
             />
           </span>
-          <p>{{ likes.length }} j'aime</p>
+          <p>{{ post.likes.length }} j'aime</p>
         </div>
         <div class="comment">
-          <p>{{ comment.length }} commentaires</p>
+          <p>{{ post.comments.length }} commentaires</p>
           <span v-if="isConnected.is">
             <font-awesome-icon
               @click="$router.push('Comment')"
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="description">
-        <p>{{ description }}</p>
+        <p>{{ post.description }}</p>
       </div>
     </div>
   </div>
@@ -53,60 +53,10 @@
 <script>
 export default {
   inject: ["isConnected"],
-  props: {
-    prop: {
-      content: String,
-      image: String,
-      date: String,
-      likes: [
-        {
-          firstname: String,
-          lastname: String,
-          userId: String,
-        },
-      ],
-      comments: [
-        {
-          firstname: String,
-          lastname: String,
-          userId: String,
-          content: String,
-          likes: [
-            {
-              firstname: String,
-              lastname: String,
-              userId: String,
-            },
-          ],
-        },
-      ],
-      location: {
-        long: Number,
-        lat: Number,
-        name: String,
-      },
-      firstname: String,
-      lastname: String,
-      userId: String,
-    },
-  },
-  data() {
-    return {
-      card: {
-        name: "Jean Onche la tapette",
-        date: "15/03/20",
-        img:
-          "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-TkKO4S3bFZU%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FdfhYjIlWsO4%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-        description:
-          "Fin de séance, 21k de poussé !!! De la pure folie cette seance de merde",
-        nbLike: "12",
-        nbComment: "3",
-      },
-    };
-  },
+  props: ["post"],
   methods: {
     addLike: function() {
-      this.card.nbLike++;
+      //this.card.nbLike++;
     },
   },
 };

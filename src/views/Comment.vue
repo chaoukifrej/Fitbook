@@ -73,7 +73,7 @@ export default {
   }
   input {
     margin-top: 20px;
-    width: 40vw;
+    width: 45vw;
     padding: 5px;
     border: 2px solid whitesmoke;
     border-radius: 3px;
