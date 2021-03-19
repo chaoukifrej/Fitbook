@@ -1,54 +1,55 @@
 <template>
   <div class="divPerso">
     <Header />
+    <div class="maxContenu">
+      <button
+        v-show="isConnected.is"
+        class="btnModification"
+        @click.prevent="$router.push('Modifprofil')"
+      >
+        Modifier profil
+      </button>
 
-    <button
-      v-show="isConnected.is"
-      class="btnModification"
-      @click.prevent="$router.push('Modifprofil')"
-    >
-      Modifier profil
-    </button>
+      <button v-show="isConnected.is" class="btnDisconnect" @click="disconnect">
+        Se deconnecter
+      </button>
+      <div class="containerPerso">
+        <div class="cardPerso">
+          <div class="contenu">
+            <div class="haut">
+              <div
+                class="image"
+                :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
+              ></div>
+              <div class="droite">
+                <p id="nom">
+                  <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
+                </p>
+                <p v-show="city" class="optionelContent">
+                  <span>Ville</span> {{ city }}
+                </p>
+                <p v-show="age" class="optionelContent">
+                  <span>Age</span> {{ age }} ans
+                </p>
 
-    <button v-show="isConnected.is" class="btnDisconnect" @click="disconnect">
-      Se deconnecter
-    </button>
-    <div class="containerPerso">
-      <div class="cardPerso">
-        <div class="contenu">
-          <div class="haut">
-            <div
-              class="image"
-              :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
-            ></div>
-            <div class="droite">
-              <p id="nom">
-                <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
-              </p>
-              <p v-show="city" class="optionelContent">
-                <span>Ville</span> {{ city }}
-              </p>
-              <p v-show="age" class="optionelContent">
-                <span>Age</span> {{ age }} ans
-              </p>
-
-              <p v-show="sports[0]" class="optionelContent">
-                <span>Mon sport</span> {{ sports[0] }}
-              </p>
-              <p v-show="sportsHall" class="optionelContent">
-                <span>Ma salle </span> {{ sportsHall }}
-              </p>
-              <p v-show="status"><span> Status</span>{{ status }}</p>
+                <p v-show="sports[0]" class="optionelContent">
+                  <span>Mon sport</span> {{ sports[0] }}
+                </p>
+                <p v-show="sportsHall" class="optionelContent">
+                  <span>Ma salle </span> {{ sportsHall }}
+                </p>
+                <p v-show="status"><span> Status</span>{{ status }}</p>
+              </div>
             </div>
-          </div>
-          <div v-show="description" class="description">
-            <p>{{ description }}</p>
+            <div v-show="description" class="description">
+              <p>{{ description }}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div v-for="post in posts" :key="post._id">
-      <Post :post="post" />
+      <div v-for="post in posts" :key="post._id">
+        <Post :post="post" />
+      </div>
     </div>
     <Footer />
   </div>
@@ -60,7 +61,7 @@ import Header from "@/components/Header.vue";
 import Post from "@/components/Post.vue";
 export default {
   name: "Perso",
-  inject: ["isConnected", "token", "disconnect"],
+  inject: ["isConnected", "token", "disconnect", "user"],
   components: {
     Header,
     Footer,
@@ -101,6 +102,7 @@ export default {
       this.sportsHall = data.sportsHall;
       this.sports = data.sports;
       this.posts = data.posts;
+      this.user.id = data._id;
     } catch (error) {
       console.log(error);
     }

@@ -11,6 +11,7 @@ export default {
     name: "AppVue",
     isConnected: false,
     token: "",
+    user: "",
   }),
   methods: {
     connect: function() {
@@ -20,29 +21,36 @@ export default {
     disconnect: function() {
       this.isConnected = false;
       this.token = "";
+      this.user = "";
       this.$router.go(-1);
     },
   },
 
   //Mise en place du Local Storage
   beforeMount() {
+    let oldToken = "";
     localStorage.getItem("token")
-      ? (this.token = JSON.parse(localStorage.getItem("token")))
+      ? (oldToken = JSON.parse(localStorage.getItem("token")))
       : (this.token = "");
-    /* const options = {
+    localStorage.getItem("userId")
+      ? (this.user = JSON.parse(localStorage.getItem("userId")))
+      : (this.user = "");
+    const options = {
       method: "GET",
       headers: {
-        Authorization: "bearer " + this.token.value,
+        Authorization: "bearer " + oldToken,
       },
     };
     fetch("https://fitbook-api.osc-fr1.scalingo.io/user", options).then(
       (response) => {
-        if (response.status != 200) {
-          console.log(response.message);
+        if (response.status == 200) {
+          console.log("Token get status " + response.status);
+          this.token = oldToken;
+        } else {
           this.token = "";
         }
       }
-    ); */
+    );
   },
   watch: {
     token: function() {
@@ -52,6 +60,9 @@ export default {
         this.isConnected = false;
       }
       localStorage.setItem("token", JSON.stringify(this.token));
+    },
+    user: function() {
+      localStorage.setItem("userId", JSON.stringify(this.user));
     },
   },
   provide() {
@@ -67,7 +78,14 @@ export default {
       get: () => this.token,
       set: (n) => (this.token = n),
     });
+    const user = {};
+    Object.defineProperty(user, "id", {
+      enumerable: true,
+      get: () => this.user,
+      set: (s) => (this.user = s),
+    });
     return {
+      user,
       isConnected,
       token,
       connect: this.connect,

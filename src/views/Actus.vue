@@ -1,9 +1,10 @@
 <template>
   <div class="actus">
     <Header />
-
-    <div v-for="post in posts" :key="post._id">
-      <Post :post="post" />
+    <div class="maxContenu">
+      <div v-for="post in posts" :key="post._id">
+        <Post :post="post" />
+      </div>
     </div>
     <Footer />
   </div>
@@ -36,8 +37,6 @@ export default {
       );
       const data = await response.json();
       this.posts = data.posts;
-
-      console.log(this.posts);
     } catch (error) {
       console.log(error);
     }
@@ -45,4 +44,9 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+/* Attention - utilisé aussi pour page Perso.vue */
+.maxContenu {
+  margin-bottom: 70px;
+}
+</style>

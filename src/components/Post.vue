@@ -60,7 +60,7 @@
 
 <script>
 export default {
-  inject: ["isConnected", "token"],
+  inject: ["isConnected", "token", "user"],
   props: ["post"],
   data() {
     return {
@@ -70,14 +70,13 @@ export default {
       isActive: false,
     };
   },
-  /* En suspend, en attente de modif par Guillaume route/user. mounted() {
+  mounted() {
     for (const like of this.likes) {
-      if (like.userId == this.post.userId) {
-        console.log(like);
+      if (like.userId == this.user.id) {
         this.isActive = true;
       }
     }
-  }, */
+  },
   methods: {
     addLike: async function() {
       const body = { postId: this.post._id };
