@@ -101,7 +101,6 @@ export default {
       this.sportsHall = data.sportsHall;
       this.sports = data.sports;
       this.posts = data.posts;
-      console.log(this.posts);
     } catch (error) {
       console.log(error);
     }
