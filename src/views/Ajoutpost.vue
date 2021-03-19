@@ -2,7 +2,7 @@
   <div class="ajoutpost">
     <Header />
     <form @submit.prevent="sendPost">
-      <div class="mainContainer">
+      <div class="PublicationContainer">
         <h2>Publier un post</h2>
         <div class="ajoutphoto">
           <label for="files" style="  border-radius: 50%;"
@@ -32,16 +32,16 @@
             name="description"
             id="description"
             cols="30"
-            rows="10"
+            rows="5"
           ></textarea>
         </div>
         <div class="lieu">
-          <label for="lieu">Indiquer le Lieu</label>
+          <label for="lieu">Indiquer le Lieu (optionnel)</label>
           <input v-model="lieu" type="text" placeholder="lieu" />
         </div>
 
         <div class="containerBtn">
-          <input type="submit" @click="sendPost" />
+          <input type="submit" value="Publier" />
         </div>
       </div>
     </form>
@@ -115,7 +115,7 @@ export default {
 </script>
 
 <style lang="scss">
-.mainContainer {
+.PublicationContainer {
   h2 {
     font-size: 1.3rem;
     margin: 10px 0 10px;
@@ -137,7 +137,7 @@ export default {
   .imgUtilisateur {
     background-size: cover;
     height: 15rem;
-    border-radius: 50%;
+    border-radius: 5px;
     border: 1px solid #000000;
     opacity: 0.6;
   }
@@ -216,6 +216,11 @@ export default {
     outline: none;
     transition: 0.4s;
     &:active {
+      transform: scale(0.98);
+      border: 2px solid #ff1616;
+      color: #ff1616;
+    }
+    &:focus {
       transform: scale(0.98);
       border: 2px solid #ff1616;
       color: #ff1616;
