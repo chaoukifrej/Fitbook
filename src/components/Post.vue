@@ -54,58 +54,6 @@
 export default {
   inject: ["isConnected"],
   props: ["post"],
-
-  /* Props forme objet  {
-    post: {
-      content: String,
-      image: String,
-      date: String,
-      likes: [
-        {
-          firstname: String,
-          lastname: String,
-          userId: String,
-        },
-      ],
-      comments: [
-        {
-          firstname: String,
-          lastname: String,
-          userId: String,
-          content: String,
-          likes: [
-            {
-              firstname: String,
-              lastname: String,
-              userId: String,
-            },
-          ],
-        },
-      ],
-      location: {
-        long: Number,
-        lat: Number,
-        name: String,
-      },
-      firstname: String,
-      lastname: String,
-      userId: String,
-    }, 
-  }*/
-  data() {
-    return {
-      /*       card: {
-        name: "Jean Onche la tapette",
-        date: "15/03/20",
-        img:
-          "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-TkKO4S3bFZU%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FdfhYjIlWsO4%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-        description:
-          "Fin de séance, 21k de poussé !!! De la pure folie cette seance de merde",
-        nbLike: "12",
-        nbComment: "3",
-      }, */
-    };
-  },
   methods: {
     addLike: function() {
       //this.card.nbLike++;
