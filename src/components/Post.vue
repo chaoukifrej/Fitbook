@@ -3,7 +3,7 @@
     <div class="card">
       <p class="hautCard">
         <span>
-          <b>{{ post.firstname }}</b>
+          <b>{{ post.firstname }} {{ post.lastname }}</b>
         </span>
         <span class="date">
           {{ new Date(post.date).toLocaleDateString() }} -
