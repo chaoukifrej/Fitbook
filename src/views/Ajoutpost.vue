@@ -1,7 +1,7 @@
 <template>
   <div class="ajoutpost">
     <Header />
-    <form @submit.prevent="sendPostq">
+    <form @submit.prevent="sendPost">
       <div class="mainContainer">
         <h2>Publier un post</h2>
         <div class="ajoutphoto">
@@ -79,8 +79,8 @@ export default {
         Location: this.lieu,
       };
 
-      if (body.content == "" && body.image == "/assets/imgUtilisateur.png") {
-        console.log("veuillez ecrire une description");
+      if (body.content == "" || body.image == "/assets/imgUtilisateur.png") {
+        console.log("error");
       } else {
         const options = {
           method: "POST",
