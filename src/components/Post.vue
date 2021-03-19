@@ -1,12 +1,19 @@
 <template>
   <div class="post">
     <div class="card">
-      <div class="img" :style="{ backgroundImage: 'url(' + post.image + ')' }">
-        <p class="hautCard">
-          <span>{{ post.firstname }}</span>
-          <span class="date">{{ post.date }}</span>
-        </p>
-      </div>
+      <p class="hautCard">
+        <span>
+          <b>{{ post.firstname }}</b>
+        </span>
+        <span class="date">
+          {{ new Date(post.date).toLocaleDateString() }} -
+          {{ new Date(post.date).toLocaleTimeString() }}
+        </span>
+      </p>
+      <div
+        class="img"
+        :style="{ backgroundImage: 'url(' + post.image + ')' }"
+      ></div>
       <div class="btnCard">
         <div class="like">
           <span v-if="isConnected.is">
@@ -44,7 +51,7 @@
         </div>
       </div>
       <div class="description">
-        <p>{{ post.description }}</p>
+        <p>{{ post.content }}</p>
       </div>
     </div>
   </div>
@@ -52,11 +59,25 @@
 
 <script>
 export default {
-  inject: ["isConnected"],
+  inject: ["isConnected", "token"],
   props: ["post"],
   methods: {
-    addLike: function() {
-      //this.card.nbLike++;
+    addLike: async function() {
+      console.log(this.post._id);
+
+      const options = {
+        method: "POST",
+        headers: {
+          Authorization: "bearer " + this.token.value,
+        },
+        body: { PostId: this.post._id },
+      };
+
+      const envoi = await fetch(
+        "https://fitbook-api.osc-fr1.scalingo.io/post/like",
+        options
+      );
+      console.log(envoi);
     },
   },
 };
@@ -72,16 +93,16 @@ export default {
   min-height: 350px;
   width: 98%;
   .img {
-    height: 250px;
-    background-color: rgb(207, 207, 207);
+    min-height: 300px;
     background-size: cover;
+    background-position: center;
   }
   .hautCard {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px 10px;
-    background: linear-gradient(#000000, #36363600);
-
+    background: transparent;
     .date {
       font-size: 0.8rem;
     }
@@ -107,7 +128,7 @@ export default {
   }
   .description p {
     text-align: start;
-    margin: 0 10px;
+    margin: 10px;
   }
 }
 </style>

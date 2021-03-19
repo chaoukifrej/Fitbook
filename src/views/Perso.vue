@@ -91,9 +91,6 @@ export default {
         options
       );
       console.log(response.status);
-      if (response.status != 200) {
-        this.$router.push("Connexion");
-      }
       const data = await response.json();
       console.log(data);
       this.firstname = data.firstname;
