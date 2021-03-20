@@ -170,6 +170,9 @@ export default {
         color: rgb(143, 143, 143);
       }
     }
+    .comment {
+      margin: 0px;
+    }
     .comment span {
       background: transparent;
       display: flex;
