@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="description">
-        <p class="endroitPost">{{ lieu }}</p>
+        <p class="endroitPost">{{ endroit }}</p>
         <p>{{ post.content }}</p>
       </div>
     </div>
@@ -83,8 +83,15 @@ export default {
       comments: this.post.comments,
       isActive: false,
       comActive: false,
-      lieu: this.post.location.name,
+      //lieu: this.post.location.name,
     };
+  },
+  computed: {
+    endroit: function() {
+      let endroit = "";
+      this.post.location ? (endroit = this.post.location.name) : (endroit = "");
+      return endroit;
+    },
   },
   mounted() {
     for (const like of this.likes) {

@@ -4,7 +4,18 @@
     <h2>Ajouter un commentaire</h2>
 
     <div class="commentaires">
-      {{ comments }}
+      <div class="commentaireCard" v-for="com in comments" :key="com._id">
+        <p class="nomEtPrenom">{{ com.firstname }} {{ com.lastname }}</p>
+        <p class="commentaireContent">{{ com.content }}</p>
+        <span class="commentaireLike">
+          <font-awesome-icon
+            class="icons"
+            :class="{ active: isActive }"
+            :icon="['far', 'thumbs-up']"
+          />
+          <p>{{ com.likes.length }} j'aime</p>
+        </span>
+      </div>
     </div>
     <form @submit.prevent>
       <textarea
@@ -69,7 +80,7 @@ export default {
     margin: 10px 0 10px;
   }
   .commentaires {
-    height: 60vh;
+    height: 100%;
   }
   form {
     display: flex;
