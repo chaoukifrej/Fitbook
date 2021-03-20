@@ -37,7 +37,12 @@
           <p>{{ post.comments.length }} commentaires</p>
           <span v-if="isConnected.is">
             <font-awesome-icon
-              @click="$router.push('Comment')"
+              @click="
+                $router.push({
+                  name: 'Comment',
+                  params: { postId: post._id },
+                })
+              "
               class="icons"
               :icon="['far', 'comment']"
             />

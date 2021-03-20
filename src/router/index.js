@@ -41,9 +41,10 @@ const routes = [
     component: Ajoutpost,
   },
   {
-    path: "/Comment",
+    path: "/Comment/:postId",
     name: "Comment",
     component: Comment,
+    props: true,
   },
   {
     path: "/Contact",

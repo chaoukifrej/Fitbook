@@ -23,6 +23,7 @@
 import Header from "@/components/Header.vue";
 export default {
   name: "comment",
+  props: ["postId"],
   inject: ["token"],
   components: {
     Header,
