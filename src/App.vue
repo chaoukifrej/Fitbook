@@ -27,7 +27,7 @@ export default {
   },
 
   //Mise en place du Local Storage
-  
+
   beforeMount() {
     let oldToken = "";
     localStorage.getItem("token")
@@ -145,7 +145,8 @@ body {
   position: fixed;
   width: 100%;
   height: 50px;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
   background-color: $bgColor;
   top: 0;
   z-index: 1000;
@@ -156,7 +157,8 @@ body {
   position: fixed;
   width: 100%;
   height: 50px;
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
   background-color: $bgColor;
   bottom: 0;
   z-index: 1000;

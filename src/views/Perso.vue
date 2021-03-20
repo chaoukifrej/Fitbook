@@ -128,7 +128,6 @@ export default {
 }
 .containerPerso {
   .cardPerso {
-    border-bottom: 1px solid #000;
     width: 100%;
     margin: 10px 0;
     padding: 20px 10px;
@@ -143,7 +142,7 @@ export default {
         width: 10rem;
         background-size: cover;
         border-radius: 5px;
-        border: 1px solid #000000;
+        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
       }
       .droite {
         width: 100%;

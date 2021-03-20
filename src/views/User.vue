@@ -99,28 +99,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.btnDisconnect,
-.btnModification {
-  font-size: 0.9rem;
-  padding: 3px 10px;
-  margin: 0 15px;
-  border: 2px solid whitesmoke;
-  background-color: transparent;
-  border-radius: 5px;
-  color: whitesmoke;
-  outline: none;
-  transition: 0.4s;
-  &:active {
-    transform: scale(0.98);
-  }
-}
+<style lang="scss" scoped>
 .containerPerso {
   .cardPerso {
-    border-bottom: 1px solid #000;
     width: 100%;
-    margin: 10px 0;
-    padding: 20px 10px;
+    margin: 0;
+    padding: 10px;
   }
   .contenu {
     width: 100%;
@@ -132,7 +116,7 @@ export default {
         width: 10rem;
         background-size: cover;
         border-radius: 5px;
-        border: 1px solid #000000;
+        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
       }
       .droite {
         width: 100%;
