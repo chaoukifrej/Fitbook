@@ -3,7 +3,9 @@
     <Header />
     <h2>Ajouter un commentaire</h2>
 
-    <div class="commentaires"></div>
+    <div class="commentaires">
+      {{ comments }}
+    </div>
     <form @submit.prevent>
       <textarea
         v-model="commentaire"
@@ -23,7 +25,7 @@
 import Header from "@/components/Header.vue";
 export default {
   name: "comment",
-  props: ["postId"],
+  props: ["postId", "comments"],
   inject: ["token"],
   components: {
     Header,

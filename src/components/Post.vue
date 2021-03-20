@@ -3,7 +3,12 @@
     <div class="card">
       <p class="hautCard">
         <span
-          @click="$router.push({ name: 'User', params: { id: post.userId } })"
+          @click="
+            $router.push({
+              name: 'User',
+              params: { id: post.userId },
+            })
+          "
         >
           <b>{{ post.firstname }} {{ post.lastname }}</b>
         </span>
@@ -43,7 +48,7 @@
               @click="
                 $router.push({
                   name: 'Comment',
-                  params: { postId: post._id },
+                  params: { postId: post._id, comments: post.comments },
                 })
               "
               class="icons"
@@ -60,6 +65,7 @@
         </div>
       </div>
       <div class="description">
+        <p class="endroitPost">{{ lieu }}</p>
         <p>{{ post.content }}</p>
       </div>
     </div>
@@ -77,6 +83,7 @@ export default {
       comments: this.post.comments,
       isActive: false,
       comActive: false,
+      lieu: this.post.location.name,
     };
   },
   mounted() {
@@ -163,9 +170,13 @@ export default {
       font-size: 1.5rem;
     }
   }
-  .description p {
+  .description {
     text-align: start;
     margin: 10px;
+    .endroitPost {
+      text-align: right;
+      font-size: 0.9rem;
+    }
   }
 }
 </style>
