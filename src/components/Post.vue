@@ -205,6 +205,7 @@ export default {
     text-align: start;
     margin: 10px;
     padding-bottom: 10px;
+    color: rgb(230, 230, 230);
   }
 }
 </style>
