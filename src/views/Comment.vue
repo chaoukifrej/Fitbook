@@ -76,15 +76,47 @@ export default {
 
 <style lang="scss">
 .comment {
+  /* Bouton Like actif */
+  .active {
+    color: #ff1616;
+  }
   h2 {
     font-size: 1.3rem;
     margin: 10px 0 10px;
   }
   .commentaires {
     height: 100%;
-    /* Bouton Like actif */
-    .active {
-      color: #ff1616;
+    overflow-y: scroll;
+    .commentaireCard {
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      align-items: center;
+      column-gap: 10px;
+      background-color: #232323;
+      margin: 5px 0;
+      padding: 10px;
+      .nomEtPrenom {
+        grid-area: 1 / 1 / 2 / 3;
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+      .commentaireContent {
+        text-align: left;
+        margin: 5px 0 0 5px;
+      }
+      .commentaireLike {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-self: end;
+        font-size: 1.5rem;
+        p {
+          font-size: 0.8rem;
+          margin-top: 3px;
+          color: rgb(153, 153, 153);
+        }
+      }
     }
   }
   form {
