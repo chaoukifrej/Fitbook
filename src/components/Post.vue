@@ -41,26 +41,25 @@
           <p>{{ likesNumber }} j'aime</p>
         </div>
         <div class="comment">
-          <p>{{ post.comments.length }} commentaires</p>
-          <span v-if="isConnected.is">
+          <span
+            v-if="isConnected.is"
+            @click="
+              $router.push({
+                name: 'Comment',
+                params: { postId: post._id, comments: post.comments },
+              })
+            "
+          >
+            <p>{{ post.comments.length }} commentaires</p>
             <font-awesome-icon
               :class="{ active: comActive }"
-              @click="
-                $router.push({
-                  name: 'Comment',
-                  params: { postId: post._id, comments: post.comments },
-                })
-              "
               class="icons"
               :icon="['far', 'comment']"
             />
           </span>
-          <span v-else>
-            <font-awesome-icon
-              @click="$router.push('Connexion')"
-              class="icons"
-              :icon="['far', 'comment']"
-            />
+          <span v-else @click="$router.push('Connexion')">
+            <p>{{ post.comments.length }} commentaires</p>
+            <font-awesome-icon class="icons" :icon="['far', 'comment']" />
           </span>
         </div>
       </div>
@@ -161,8 +160,17 @@ export default {
     background: transparent;
     display: flex;
     justify-content: space-between;
-    .like,
-    .comment {
+    .like {
+      background: transparent;
+      display: flex;
+      align-items: center;
+      margin: 10px;
+      p {
+        margin: 3px 10px 0;
+        color: rgb(143, 143, 143);
+      }
+    }
+    .comment span {
       background: transparent;
       display: flex;
       align-items: center;

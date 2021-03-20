@@ -66,6 +66,7 @@ export default {
           options
         );
         console.log("Commentaire status : " + response.status);
+        this.$router.go(-1);
       } catch (error) {
         console.log(error);
       }
@@ -76,6 +77,7 @@ export default {
 
 <style lang="scss">
 .comment {
+  margin-bottom: 70px;
   /* Bouton Like actif */
   .active {
     color: #ff1616;
@@ -125,11 +127,12 @@ export default {
     align-items: center;
     position: fixed;
     bottom: 0;
-    margin: 5px;
-    width: 98vw;
+    padding: 5px;
+    width: 100vw;
+    background-color: #232323;
     textarea {
       padding: 5px;
-      border: 2px solid whitesmoke;
+      border: 2px solid transparent;
       border-radius: 5px;
       background-color: transparent;
       color: whitesmoke;
@@ -149,23 +152,21 @@ export default {
     .btnSend {
       width: 50px;
       height: 50px;
-      margin: 5px;
+      margin-left: 5px;
       font-size: 1.2rem;
       padding: 5px;
-      border: 2px solid whitesmoke;
       background-color: transparent;
       border-radius: 5px;
       color: whitesmoke;
       outline: none;
       transition: 0.4s;
+      border: none;
       &:active {
         transform: scale(0.98);
-        border: 2px solid #ff1616;
         color: #ff1616;
       }
       &:focus {
         transform: scale(0.98);
-        border: 2px solid #ff1616;
         color: #ff1616;
       }
     }
