@@ -27,6 +27,7 @@ export default {
   },
 
   //Mise en place du Local Storage
+  
   beforeMount() {
     let oldToken = "";
     localStorage.getItem("token")

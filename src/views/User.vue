@@ -50,6 +50,7 @@ import Header from "@/components/Header.vue";
 import Post from "@/components/Post.vue";
 export default {
   name: "Perso",
+  props: ["id"],
   inject: ["isConnected", "token", "disconnect", "userIdLoggedIn"],
   components: {
     Header,
@@ -77,7 +78,7 @@ export default {
     };
     try {
       const response = await fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/user?limit=8000",
+        "https://fitbook-api.osc-fr1.scalingo.io/user/" + this.id,
         options
       );
       const data = await response.json();
@@ -91,7 +92,6 @@ export default {
       this.sportsHall = data.sportsHall;
       this.sports = data.sports;
       this.posts = data.posts;
-      this.userIdLoggedIn.id = data._id;
     } catch (error) {
       console.log(error);
     }
