@@ -43,6 +43,7 @@ export default {
   },
   data: () => ({
     commentaire: "",
+    isActive: false,
   }),
 
   methods: {
@@ -81,6 +82,10 @@ export default {
   }
   .commentaires {
     height: 100%;
+    /* Bouton Like actif */
+    .active {
+      color: #ff1616;
+    }
   }
   form {
     display: flex;

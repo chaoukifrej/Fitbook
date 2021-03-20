@@ -83,7 +83,6 @@ export default {
       comments: this.post.comments,
       isActive: false,
       comActive: false,
-      //lieu: this.post.location.name,
     };
   },
   computed: {
