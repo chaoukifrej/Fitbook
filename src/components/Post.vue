@@ -119,6 +119,7 @@ export default {
       console.log("Like status : " + response.status);
       if (response.status == 200) {
         this.likesNumber++;
+        this.likeAnimate = !this.likeAnimate;
         this.isActive = true;
       }
     },
@@ -211,6 +212,7 @@ export default {
     color: rgb(230, 230, 230);
   }
 }
+
 /* Media Queries */
 @media screen and (min-width: 374px) {
   .card {
