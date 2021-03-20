@@ -60,7 +60,7 @@
 
 <script>
 export default {
-  inject: ["isConnected", "token", "user"],
+  inject: ["isConnected", "token", "userIdLoggedIn"],
   props: ["post"],
   data() {
     return {
@@ -72,7 +72,7 @@ export default {
   },
   mounted() {
     for (const like of this.likes) {
-      if (like.userId == this.user.id) {
+      if (like.userId == this.userIdLoggedIn.id) {
         this.isActive = true;
       }
     }

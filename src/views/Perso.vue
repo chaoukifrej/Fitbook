@@ -61,7 +61,7 @@ import Header from "@/components/Header.vue";
 import Post from "@/components/Post.vue";
 export default {
   name: "Perso",
-  inject: ["isConnected", "token", "disconnect", "user"],
+  inject: ["isConnected", "token", "disconnect", "userIdLoggedIn"],
   components: {
     Header,
     Footer,
@@ -102,7 +102,7 @@ export default {
       this.sportsHall = data.sportsHall;
       this.sports = data.sports;
       this.posts = data.posts;
-      this.user.id = data._id;
+      this.userIdLoggedIn.id = data._id;
     } catch (error) {
       console.log(error);
     }

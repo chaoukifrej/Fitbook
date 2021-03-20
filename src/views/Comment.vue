@@ -21,7 +21,6 @@
 
 <script>
 import Header from "@/components/Header.vue";
-/* import func from 'vue-editor-bridge'; */
 export default {
   name: "comment",
   inject: ["token"],

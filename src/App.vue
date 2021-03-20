@@ -11,7 +11,7 @@ export default {
     name: "AppVue",
     isConnected: false,
     token: "",
-    user: "",
+    userIdLoggedIn: "",
   }),
   methods: {
     connect: function() {
@@ -21,7 +21,7 @@ export default {
     disconnect: function() {
       this.isConnected = false;
       this.token = "";
-      this.user = "";
+      this.userIdLoggedIn = "";
       this.$router.go(-1);
     },
   },
@@ -33,8 +33,8 @@ export default {
       ? (oldToken = JSON.parse(localStorage.getItem("token")))
       : (this.token = "");
     localStorage.getItem("userId")
-      ? (this.user = JSON.parse(localStorage.getItem("userId")))
-      : (this.user = "");
+      ? (this.userIdLoggedIn = JSON.parse(localStorage.getItem("userId")))
+      : (this.userIdLoggedIn = "");
     const options = {
       method: "GET",
       headers: {
@@ -78,14 +78,14 @@ export default {
       get: () => this.token,
       set: (n) => (this.token = n),
     });
-    const user = {};
-    Object.defineProperty(user, "id", {
+    const userIdLoggedIn = {};
+    Object.defineProperty(userIdLoggedIn, "id", {
       enumerable: true,
-      get: () => this.user,
-      set: (s) => (this.user = s),
+      get: () => this.userIdLoggedIn,
+      set: (s) => (this.userIdLoggedIn = s),
     });
     return {
-      user,
+      userIdLoggedIn,
       isConnected,
       token,
       connect: this.connect,
