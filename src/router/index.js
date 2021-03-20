@@ -8,6 +8,7 @@ import Ajoutpost from "../views/Ajoutpost.vue";
 import Comment from "../views/Comment.vue";
 import Contact from "../views/Contact.vue";
 import Modifprofil from "../views/Modifprofil.vue";
+import User from "../views/User.vue";
 
 Vue.use(VueRouter);
 
@@ -53,6 +54,11 @@ const routes = [
     path: "/Modifprofil",
     name: "Modifprofil",
     component: Modifprofil,
+  },
+  {
+    path: "/User/",
+    name: "User",
+    component: User,
   },
 ];
 

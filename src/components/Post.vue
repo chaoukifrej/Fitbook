@@ -2,7 +2,7 @@
   <div class="post">
     <div class="card">
       <p class="hautCard">
-        <span>
+        <span @click="GoToPageUser">
           <b>{{ post.firstname }} {{ post.lastname }}</b>
         </span>
         <span class="date">
@@ -97,6 +97,9 @@ export default {
         this.likesNumber++;
         this.isActive = true;
       }
+    },
+    GoToPageUser: function() {
+      //tu doit emettre (event personnalisé => $emit) le userId
     },
   },
 };
