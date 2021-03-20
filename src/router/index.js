@@ -57,9 +57,10 @@ const routes = [
     component: Modifprofil,
   },
   {
-    path: "/User/",
+    path: "/User/:id",
     name: "User",
     component: User,
+    props: true,
   },
 ];
 
