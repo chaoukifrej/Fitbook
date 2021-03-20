@@ -39,6 +39,7 @@
           <p>{{ post.comments.length }} commentaires</p>
           <span v-if="isConnected.is">
             <font-awesome-icon
+              :class="{ active: comActive }"
               @click="
                 $router.push({
                   name: 'Comment',
@@ -75,12 +76,18 @@ export default {
       likesNumber: this.post.likes.length,
       comments: this.post.comments,
       isActive: false,
+      comActive: false,
     };
   },
   mounted() {
     for (const like of this.likes) {
       if (like.userId == this.userIdLoggedIn.id) {
         this.isActive = true;
+      }
+    }
+    for (const com of this.comments) {
+      if (com.userId == this.userIdLoggedIn.id) {
+        this.comActive = true;
       }
     }
   },

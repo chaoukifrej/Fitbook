@@ -36,7 +36,7 @@ export default {
     sendComment: async function() {
       const body = {
         content: this.commentaire,
-        postId: "",
+        postId: this.postId,
       };
       const options = {
         method: "POST",
@@ -46,14 +46,12 @@ export default {
         },
         body: JSON.stringify(body),
       };
-      console.log(body);
-
       try {
         const response = await fetch(
           "https://fitbook-api.osc-fr1.scalingo.io/post/comment",
           options
         );
-        console.log(response);
+        console.log("Commentaire status : " + response.status);
       } catch (error) {
         console.log(error);
       }
@@ -86,7 +84,7 @@ export default {
       background-color: transparent;
       color: whitesmoke;
       outline: none;
-      font-size: 1.1rem;
+      font-size: 1rem;
       transition: 0.4s;
       resize: none;
       width: 100%;
