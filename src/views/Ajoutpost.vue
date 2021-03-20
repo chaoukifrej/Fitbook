@@ -81,7 +81,7 @@ export default {
       const body = {
         content: this.description,
         image: this.image,
-        Location: this.lieu,
+        location: { name: this.lieu },
       };
 
       if (body.content == null || body.image == "/assets/imgUtilisateur.png") {

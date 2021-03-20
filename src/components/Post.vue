@@ -3,7 +3,12 @@
     <div class="card">
       <p class="hautCard">
         <span
-          @click="$router.push({ name: 'User', params: { id: post.userId } })"
+          @click="
+            $router.push({
+              name: 'User',
+              params: { id: post.userId },
+            })
+          "
         >
           <b>{{ post.firstname }} {{ post.lastname }}</b>
         </span>
@@ -36,29 +41,30 @@
           <p>{{ likesNumber }} j'aime</p>
         </div>
         <div class="comment">
-          <p>{{ post.comments.length }} commentaires</p>
-          <span v-if="isConnected.is">
+          <span
+            v-if="isConnected.is"
+            @click="
+              $router.push({
+                name: 'Comment',
+                params: { postId: post._id, comments: post.comments },
+              })
+            "
+          >
+            <p>{{ post.comments.length }} commentaires</p>
             <font-awesome-icon
-              @click="
-                $router.push({
-                  name: 'Comment',
-                  params: { postId: post._id },
-                })
-              "
+              :class="{ active: comActive }"
               class="icons"
               :icon="['far', 'comment']"
             />
           </span>
-          <span v-else>
-            <font-awesome-icon
-              @click="$router.push('Connexion')"
-              class="icons"
-              :icon="['far', 'comment']"
-            />
+          <span v-else @click="$router.push('Connexion')">
+            <p>{{ post.comments.length }} commentaires</p>
+            <font-awesome-icon class="icons" :icon="['far', 'comment']" />
           </span>
         </div>
       </div>
       <div class="description">
+        <p class="endroitPost">{{ endroit }}</p>
         <p>{{ post.content }}</p>
       </div>
     </div>
@@ -75,12 +81,25 @@ export default {
       likesNumber: this.post.likes.length,
       comments: this.post.comments,
       isActive: false,
+      comActive: false,
     };
+  },
+  computed: {
+    endroit: function() {
+      let endroit = "";
+      this.post.location ? (endroit = this.post.location.name) : (endroit = "");
+      return endroit;
+    },
   },
   mounted() {
     for (const like of this.likes) {
       if (like.userId == this.userIdLoggedIn.id) {
         this.isActive = true;
+      }
+    }
+    for (const com of this.comments) {
+      if (com.userId == this.userIdLoggedIn.id) {
+        this.comActive = true;
       }
     }
   },
@@ -141,8 +160,20 @@ export default {
     background: transparent;
     display: flex;
     justify-content: space-between;
-    .like,
+    .like {
+      background: transparent;
+      display: flex;
+      align-items: center;
+      margin: 10px;
+      p {
+        margin: 3px 10px 0;
+        color: rgb(143, 143, 143);
+      }
+    }
     .comment {
+      margin: 0px;
+    }
+    .comment span {
       background: transparent;
       display: flex;
       align-items: center;
@@ -156,9 +187,13 @@ export default {
       font-size: 1.5rem;
     }
   }
-  .description p {
+  .description {
     text-align: start;
     margin: 10px;
+    .endroitPost {
+      text-align: right;
+      font-size: 0.9rem;
+    }
   }
 }
 </style>
