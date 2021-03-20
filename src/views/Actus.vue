@@ -1,12 +1,19 @@
 <template>
   <div class="actus">
-    <Header />
+    <transition name="fromtop" appear>
+      <Header />
+    </transition>
+
     <div class="maxContenu">
       <div v-for="post in posts" :key="post._id">
-        <Post :post="post" />
+        <transition name="fade" appear>
+          <Post :post="post" />
+        </transition>
       </div>
     </div>
-    <Footer />
+    <transition name="frombottom" appear>
+      <Footer />
+    </transition>
   </div>
 </template>
 
@@ -48,5 +55,44 @@ export default {
 /* Attention - utilisé aussi pour page Perso.vue */
 .maxContenu {
   margin-bottom: 70px;
+}
+/* Animation Posts*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+/* Animation Header */
+.fromtop-enter-active {
+  animation: fromtop-in 0.3s;
+}
+.fromtop-leave-active {
+  animation: fromtop-in 0.3s reverse;
+}
+@keyframes fromtop-in {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+/* Animation Footer */
+.frombottom-enter-active {
+  animation: frombottom-in 0.3s;
+}
+.frombottom-leave-active {
+  animation: frombottom-in 0.3s reverse;
+}
+@keyframes frombottom-in {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 </style>

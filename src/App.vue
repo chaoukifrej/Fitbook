@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div id="nav"></div>
-    <router-view />
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -167,6 +169,18 @@ body {
   bottom: 0;
   z-index: 1000;
 }
+/* Transition Animation */
+/* Animation */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Media Queries pour Non Mobile  */
 @media screen and (min-width: 500px) {
   #app {
     display: none;

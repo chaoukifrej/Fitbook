@@ -211,6 +211,7 @@ export default {
     color: rgb(230, 230, 230);
   }
 }
+/* Media Queries */
 @media screen and (min-width: 374px) {
   .card {
     min-height: 400px;

@@ -48,7 +48,9 @@
         </div>
       </div>
       <div v-for="post in posts" :key="post._id">
-        <Post :post="post" />
+        <transition name="fade" appear>
+          <Post :post="post" />
+        </transition>
       </div>
     </div>
     <Footer />
@@ -176,5 +178,14 @@ export default {
       text-align: start;
     }
   }
+}
+/* Animation Posts*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
