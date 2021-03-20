@@ -2,14 +2,7 @@
   <div class="post">
     <div class="card">
       <p class="hautCard">
-        <span
-          @click="
-            $router.push({
-              name: 'User',
-              params: { id: post.userId },
-            })
-          "
-        >
+        <span @click="goToUserVue">
           <b>{{ post.firstname }} {{ post.lastname }}</b>
           <p class="endroitPost">{{ endroit }}</p>
         </span>
@@ -129,6 +122,16 @@ export default {
         this.isActive = true;
       }
     },
+    goToUserVue() {
+      if (this.post.userId == this.userIdLoggedIn.id) {
+        this.$router.push("Perso");
+      } else {
+        this.$router.push({
+          name: "User",
+          params: { id: this.post.userId },
+        });
+      }
+    },
   },
 };
 </script>
@@ -206,6 +209,22 @@ export default {
     margin: 10px;
     padding-bottom: 10px;
     color: rgb(230, 230, 230);
+  }
+}
+@media screen and (min-width: 374px) {
+  .card {
+    min-height: 400px;
+    .img {
+      min-height: 350px;
+    }
+  }
+}
+@media screen and (min-width: 424px) {
+  .card {
+    min-height: 450px;
+    .img {
+      min-height: 400px;
+    }
   }
 }
 </style>

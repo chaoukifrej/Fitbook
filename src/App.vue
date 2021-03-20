@@ -97,11 +97,15 @@ export default {
 </script>
 
 <style lang="scss">
+/* Site version non mobile */
+.notMobile {
+  display: none;
+}
 /* Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
 /* Variables */
 $bgColor: #232323;
-$bgColorView: #363636;
+$bgColorView: #383838;
 $redColor: #ff1616;
 * {
   margin: 0;
@@ -162,5 +166,25 @@ body {
   background-color: $bgColor;
   bottom: 0;
   z-index: 1000;
+}
+@media screen and (min-width: 500px) {
+  #app {
+    display: none;
+  }
+  .notMobile {
+    background-color: $bgColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20%;
+    letter-spacing: 2px;
+    line-height: 50px;
+    text-align: justify;
+    span {
+      color: #ff1616;
+    }
+  }
 }
 </style>
