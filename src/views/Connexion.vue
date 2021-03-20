@@ -88,11 +88,10 @@ export default {
 .containerConnexion {
   background-color: #232323;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
-  border: 1px solid #000000;
   border-radius: 3px;
   width: 90%;
   margin: 20px 5%;
-  padding: 0 10px;
+  padding: 10px;
   h2 {
     font-size: 1.3rem;
     margin: 10px 0 0;
