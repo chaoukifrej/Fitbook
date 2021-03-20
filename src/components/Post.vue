@@ -145,7 +145,7 @@ export default {
     color: rgb(138, 138, 138);
   }
   margin: 10px 1%;
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   border-radius: 3px;
   background-color: #232323;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
@@ -204,6 +204,7 @@ export default {
   .description {
     text-align: start;
     margin: 10px;
+    padding-bottom: 10px;
   }
 }
 </style>
