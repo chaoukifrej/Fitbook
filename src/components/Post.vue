@@ -11,10 +11,16 @@
           "
         >
           <b>{{ post.firstname }} {{ post.lastname }}</b>
+          <p class="endroitPost">{{ endroit }}</p>
         </span>
         <span class="date">
-          {{ new Date(post.date).toLocaleDateString() }} -
-          {{ new Date(post.date).toLocaleTimeString() }}
+          <span>{{ new Date(post.date).toLocaleDateString() }}</span>
+          <span>{{
+            new Date(post.date).toLocaleTimeString(locale, {
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          }}</span>
         </span>
       </p>
       <div
@@ -64,7 +70,6 @@
         </div>
       </div>
       <div class="description">
-        <p class="endroitPost">{{ endroit }}</p>
         <p>{{ post.content }}</p>
       </div>
     </div>
@@ -134,6 +139,11 @@ export default {
   .active {
     color: #ff1616;
   }
+  .endroitPost {
+    text-align: left;
+    font-size: 0.9rem;
+    color: rgb(138, 138, 138);
+  }
   margin: 10px 1%;
   border: 1px solid #000000;
   border-radius: 3px;
@@ -153,6 +163,10 @@ export default {
     padding: 5px 10px;
     background: transparent;
     .date {
+      color: rgb(138, 138, 138);
+      display: flex;
+      flex-direction: column;
+      text-align: end;
       font-size: 0.8rem;
     }
   }
@@ -190,10 +204,6 @@ export default {
   .description {
     text-align: start;
     margin: 10px;
-    .endroitPost {
-      text-align: right;
-      font-size: 0.9rem;
-    }
   }
 }
 </style>
