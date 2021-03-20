@@ -16,7 +16,7 @@
         <span class="date">
           <span>{{ new Date(post.date).toLocaleDateString() }}</span>
           <span>{{
-            new Date(post.date).toLocaleTimeString(locale, {
+            new Date(post.date).toLocaleTimeString("fr-FR", {
               hour: "2-digit",
               minute: "2-digit",
             })
