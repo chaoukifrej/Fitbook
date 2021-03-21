@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import autofocus from "vue-autofocus-directive";
+import VueFloatLabel from "vue-float-label";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
@@ -22,6 +23,7 @@ library.add(faPaperPlane);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.directive("autofocus", autofocus);
+Vue.use(VueFloatLabel);
 
 Vue.config.productionTip = false;
 

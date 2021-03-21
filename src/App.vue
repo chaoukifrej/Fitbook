@@ -169,6 +169,7 @@ body {
   bottom: 0;
   z-index: 1000;
 }
+
 /* Transition Animation */
 /* Animation */
 .fade-enter-active,

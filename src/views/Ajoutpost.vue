@@ -24,20 +24,26 @@
         </div>
 
         <div class="description">
-          <label for="description"> Description </label>
-          <textarea
-            required
-            v-model="description"
-            placeholder="Entrer votre description"
-            name="description"
-            id="description"
-            cols="30"
-            rows="5"
-          ></textarea>
+          <float-label>
+            <textarea
+              required
+              v-model="description"
+              placeholder="Description"
+              name="description"
+              id="description"
+              cols="30"
+              rows="5"
+            ></textarea>
+          </float-label>
         </div>
-        <div class="lieu">
-          <label for="lieu">Indiquer le Lieu (optionnel)</label>
-          <input v-model="lieu" type="text" placeholder="lieu" />
+        <div class="endroitDuPost">
+          <float-label>
+            <input
+              v-model="lieu"
+              type="text"
+              placeholder="Indiquer le Lieu (optionnel)"
+            />
+          </float-label>
         </div>
 
         <div class="containerBtn">
@@ -147,12 +153,8 @@ export default {
   .description {
     display: flex;
     flex-direction: column;
-    label {
-      margin: 15px 0 5px 5px;
-      font-size: 0.9rem;
-      text-align: start;
-    }
     textarea {
+      margin: 15px 0;
       width: 90vw;
       padding: 5px;
       border: 2px solid whitesmoke;
@@ -174,15 +176,11 @@ export default {
 
   /* indication du lieu */
 
-  .lieu {
+  .endroitDuPost {
     display: flex;
     flex-direction: column;
-    label {
-      margin: 15px 0 5px 5px;
-      font-size: 0.9rem;
-      text-align: start;
-    }
     input {
+      margin: 15px 0;
       width: 90vw;
       padding: 5px;
       border: 2px solid whitesmoke;
@@ -199,15 +197,12 @@ export default {
         border: 2px solid #ff1616;
       }
     }
-    &:active {
-      border: 2px solid #ff1616;
-    }
   }
 
   /* boutton VALIDER */
 
   input[type="submit"] {
-    margin: 20px;
+    margin: 10px 0 20px;
     font-size: 1rem;
     padding: 5px 15px;
     border: 2px solid whitesmoke;
@@ -226,6 +221,21 @@ export default {
       border: 2px solid #ff1616;
       color: #ff1616;
     }
+  }
+  .vfl-label {
+    text-align: start;
+    margin: 15px 0 5px 5px;
+    font-size: 0.9rem;
+    color: whitesmoke;
+    font-family: "Ubuntu", Arial, sans-serif;
+  }
+
+  .vfl-label-on-input {
+    top: -1.3rem;
+  }
+
+  .vfl-label-on-focus {
+    color: #ff1616;
   }
 }
 </style>
