@@ -265,6 +265,7 @@ export default {
         text-align: start;
         margin: 20px 0 5px 5px;
         font-size: 0.9rem;
+        color: rgb(153, 153, 153);
       }
       .imgUtilisateur {
         background-size: cover;
