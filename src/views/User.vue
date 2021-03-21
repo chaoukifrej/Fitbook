@@ -1,45 +1,47 @@
 <template>
   <div class="divPerso">
     <Header />
-    <div class="maxContenu">
-      <div class="containerPerso">
-        <div class="cardPerso">
-          <div class="contenu">
-            <div class="haut">
-              <div
-                class="image"
-                :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
-              ></div>
-              <div class="droite">
-                <p id="nom">
-                  <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
-                </p>
-                <p v-show="city" class="optionelContent">
-                  <span>Ville</span> {{ city }}
-                </p>
-                <p v-show="age" class="optionelContent">
-                  <span>Age</span> {{ age }} ans
-                </p>
+    <transition name="fade" appear>
+      <div class="maxContenu">
+        <div class="containerPerso">
+          <div class="cardPerso">
+            <div class="contenu">
+              <div class="haut">
+                <div
+                  class="image"
+                  :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
+                ></div>
+                <div class="droite">
+                  <p id="nom">
+                    <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
+                  </p>
+                  <p v-show="city" class="optionelContent">
+                    <span>Ville</span> {{ city }}
+                  </p>
+                  <p v-show="age" class="optionelContent">
+                    <span>Age</span> {{ age }} ans
+                  </p>
 
-                <p v-show="sports[0]" class="optionelContent">
-                  <span>Mon sport</span> {{ sports[0] }}
-                </p>
-                <p v-show="sportsHall" class="optionelContent">
-                  <span>Ma salle </span> {{ sportsHall }}
-                </p>
-                <p v-show="status"><span> Status</span>{{ status }}</p>
+                  <p v-show="sports[0]" class="optionelContent">
+                    <span>Mon sport</span> {{ sports[0] }}
+                  </p>
+                  <p v-show="sportsHall" class="optionelContent">
+                    <span>Ma salle </span> {{ sportsHall }}
+                  </p>
+                  <p v-show="status"><span> Status</span>{{ status }}</p>
+                </div>
               </div>
-            </div>
-            <div v-show="description" class="description">
-              <p>{{ description }}</p>
+              <div v-show="description" class="description">
+                <p>{{ description }}</p>
+              </div>
             </div>
           </div>
         </div>
+        <div v-for="post in posts" :key="post._id">
+          <Post :post="post" />
+        </div>
       </div>
-      <div v-for="post in posts" :key="post._id">
-        <Post :post="post" />
-      </div>
-    </div>
+    </transition>
     <Footer />
   </div>
 </template>
@@ -150,5 +152,14 @@ export default {
       text-align: start;
     }
   }
+}
+/* Animation Posts*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

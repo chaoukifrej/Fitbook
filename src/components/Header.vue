@@ -5,6 +5,9 @@
     </router-link>
     <h4 v-show="$route.name == 'Actus' && isConnected.is">Fil d'actus</h4>
     <h4 v-show="$route.name == 'Perso' && isConnected.is">
+      Ma page perso
+    </h4>
+    <h4 v-show="$route.name == 'User' && isConnected.is">
       Page perso
     </h4>
     <h4 v-show="$route.name == 'Contact' && isConnected.is">

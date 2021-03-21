@@ -1,35 +1,39 @@
 <template>
   <div class="comment">
     <Header />
-    <h2>Ajouter un commentaire</h2>
 
+    <h2>Ajouter un commentaire</h2>
     <div class="commentaires">
-      <div class="commentaireCard" v-for="com in comments" :key="com._id">
-        <p class="nomEtPrenom">{{ com.firstname }} {{ com.lastname }}</p>
-        <p class="commentaireContent">{{ com.content }}</p>
-        <span class="commentaireLike">
-          <font-awesome-icon
-            class="icons"
-            :class="{ active: isActive }"
-            :icon="['far', 'thumbs-up']"
-          />
-          <p>{{ com.likes.length }} j'aime</p>
-        </span>
-      </div>
+      <transition-group name="fade" appear>
+        <div class="commentaireCard" v-for="com in comments" :key="com._id">
+          <p class="nomEtPrenom">{{ com.firstname }} {{ com.lastname }}</p>
+          <p class="commentaireContent">{{ com.content }}</p>
+          <span class="commentaireLike">
+            <font-awesome-icon
+              class="icons"
+              :class="{ active: isActive }"
+              :icon="['far', 'thumbs-up']"
+            />
+            <p>{{ com.likes.length }} j'aime</p>
+          </span>
+        </div>
+      </transition-group>
     </div>
-    <form @submit.prevent>
-      <textarea
-        v-autofocus
-        v-model="commentaire"
-        name="message"
-        cols="auto"
-        rows="auto"
-        placeholder="Ecrivez votre commentaire"
-      ></textarea>
-      <button class="btnSend" @click="sendComment">
-        <font-awesome-icon class="iconSend" :icon="['far', 'paper-plane']" />
-      </button>
-    </form>
+    <transition name="frombottom" appear>
+      <form @submit.prevent>
+        <textarea
+          v-autofocus
+          v-model="commentaire"
+          name="message"
+          cols="auto"
+          rows="auto"
+          placeholder="Ecrivez votre commentaire"
+        ></textarea>
+        <button class="btnSend" @click="sendComment">
+          <font-awesome-icon class="iconSend" :icon="['far', 'paper-plane']" />
+        </button>
+      </form>
+    </transition>
   </div>
 </template>
 
@@ -171,6 +175,30 @@ export default {
         color: #ff1616;
       }
     }
+  }
+  /* Animation Entrée */
+  .frombottom-enter-active {
+    animation: frombottom-in 0.5s;
+  }
+  .frombottom-leave-active {
+    animation: frombottom-in 0.5s reverse;
+  }
+  @keyframes frombottom-in {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+  /* Animation Commentaires*/
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
   }
 }
 </style>

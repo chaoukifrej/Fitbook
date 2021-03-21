@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <div id="nav"></div>
-    <transition name="fade" mode="out-in">
-      <router-view />
-    </transition>
+    <router-view />
   </div>
 </template>
 
@@ -174,7 +172,7 @@ body {
 /* Animation */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 .fade-enter,
 .fade-leave-to {

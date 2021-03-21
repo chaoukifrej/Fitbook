@@ -1,56 +1,58 @@
 <template>
   <div class="ajoutpost">
     <Header />
-    <form @submit.prevent>
-      <div class="PublicationContainer">
-        <h2>Publier un post</h2>
-        <div class="ajoutphoto">
-          <label for="files" style="  border-radius: 50%;"
-            ><div
-              class="imgUtilisateur"
-              :style="{ backgroundImage: 'url(' + image + ')' }"
-              ref="value"
-            ></div>
+    <transition name="frombottom" appear>
+      <form @submit.prevent>
+        <div class="PublicationContainer">
+          <h2>Publier un post</h2>
+          <div class="ajoutphoto">
+            <label for="files" style="  border-radius: 50%;"
+              ><div
+                class="imgUtilisateur"
+                :style="{ backgroundImage: 'url(' + image + ')' }"
+                ref="value"
+              ></div>
 
-            <input
-              required
-              accept=".jpeg,.png, .jpg"
-              ref="img"
-              @change="addPhoto"
-              id="files"
-              style="visibility:hidden;"
-              type="file"
-          /></label>
-        </div>
+              <input
+                required
+                accept=".jpeg,.png, .jpg"
+                ref="img"
+                @change="addPhoto"
+                id="files"
+                style="visibility:hidden;"
+                type="file"
+            /></label>
+          </div>
 
-        <div class="description">
-          <float-label>
-            <textarea
-              required
-              v-model="description"
-              placeholder="Description"
-              name="description"
-              id="description"
-              cols="30"
-              rows="5"
-            ></textarea>
-          </float-label>
-        </div>
-        <div class="endroitDuPost">
-          <float-label>
-            <input
-              v-model="lieu"
-              type="text"
-              placeholder="Indiquer le Lieu (optionnel)"
-            />
-          </float-label>
-        </div>
+          <div class="description">
+            <float-label>
+              <textarea
+                required
+                v-model="description"
+                placeholder="Description"
+                name="description"
+                id="description"
+                cols="30"
+                rows="5"
+              ></textarea>
+            </float-label>
+          </div>
+          <div class="endroitDuPost">
+            <float-label>
+              <input
+                v-model="lieu"
+                type="text"
+                placeholder="Indiquer le Lieu (optionnel)"
+              />
+            </float-label>
+          </div>
 
-        <div class="containerBtn">
-          <input @click="sendPost" type="submit" value="Publier" />
+          <div class="containerBtn">
+            <input @click="sendPost" type="submit" value="Publier" />
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </transition>
   </div>
 </template>
 
@@ -236,6 +238,21 @@ export default {
 
   .vfl-label-on-focus {
     color: #ff1616;
+  }
+  /* Animation Entrée */
+  .frombottom-enter-active {
+    animation: frombottom-in 0.5s;
+  }
+  .frombottom-leave-active {
+    animation: frombottom-in 0.5s reverse;
+  }
+  @keyframes frombottom-in {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
   }
 }
 </style>

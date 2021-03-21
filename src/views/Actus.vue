@@ -67,10 +67,10 @@ export default {
 }
 /* Animation Header */
 .fromtop-enter-active {
-  animation: fromtop-in 0.3s;
+  animation: fromtop-in 0.4s;
 }
 .fromtop-leave-active {
-  animation: fromtop-in 0.3s reverse;
+  animation: fromtop-in 0.4s reverse;
 }
 @keyframes fromtop-in {
   0% {
