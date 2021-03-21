@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* Attention - utilisé aussi pour page Perso.vue */
+/* Attention - utilisé aussi pour page Perso.vue et User.vue*/
 .maxContenu {
   margin-bottom: 70px;
 }

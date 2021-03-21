@@ -37,7 +37,10 @@
               :icon="['far', 'thumbs-up']"
             />
           </span>
-          <p>{{ likesNumber }} j'aime</p>
+          <p class="LikeNb">
+            <v-number class="VLikeNb" v-model="likesNumber"></v-number>
+            j'aime
+          </p>
         </div>
         <div class="comment">
           <span
@@ -70,9 +73,13 @@
 </template>
 
 <script>
+import { VNumber } from "@maxflex/v-number";
 export default {
   inject: ["isConnected", "token", "userIdLoggedIn"],
   props: ["post"],
+  components: {
+    VNumber,
+  },
   data() {
     return {
       likes: this.post.likes,
@@ -178,6 +185,7 @@ export default {
     background: transparent;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .like {
       background: transparent;
       display: flex;
@@ -186,6 +194,15 @@ export default {
       p {
         margin: 3px 10px 0;
         color: rgb(143, 143, 143);
+      }
+      .LikeNb {
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+        .VLikeNb {
+          padding-right: 5px;
+          font-size: 1rem;
+        }
       }
     }
     .comment {
@@ -199,6 +216,7 @@ export default {
       p {
         margin: 3px 10px 0;
         color: rgb(143, 143, 143);
+        font-size: 0.9rem;
       }
     }
     .icons {
