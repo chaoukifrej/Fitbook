@@ -78,7 +78,14 @@ import Post from "@/components/Post.vue";
 import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "Perso",
-  inject: ["isConnected", "token", "disconnect", "userIdLoggedIn"],
+  inject: [
+    "isConnected",
+    "token",
+    "disconnect",
+    "userIdLoggedIn",
+    "userFistnameLoggedIn",
+    "userLastnameLoggedin",
+  ],
   components: {
     Header,
     Footer,
@@ -124,6 +131,8 @@ export default {
           this.sportsHall = data.sportsHall;
           this.sports = data.sports;
           this.userIdLoggedIn.id = data._id;
+          this.userFistnameLoggedIn.firstname = data.firstname;
+          this.userLastnameLoggedin.lastname = data.lastname;
           if (data.posts.length) {
             this.page++;
             this.posts.push(...data.posts);

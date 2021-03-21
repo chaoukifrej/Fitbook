@@ -12,6 +12,8 @@ export default {
     isConnected: false,
     token: "",
     userIdLoggedIn: "",
+    userFistnameLoggedIn: "",
+    userLastnameLoggedin: "",
   }),
   methods: {
     connect: function() {
@@ -22,6 +24,8 @@ export default {
       this.isConnected = false;
       this.token = "";
       this.userIdLoggedIn = "";
+      this.userFistnameLoggedIn = "";
+      this.userLastnameLoggedin = "";
       this.$router.go(-1);
     },
   },
@@ -30,12 +34,26 @@ export default {
 
   beforeMount() {
     let oldToken = "";
-    localStorage.getItem("token")
+    localStorage.getItem("token") //Local Storage TOKEN
       ? (oldToken = JSON.parse(localStorage.getItem("token")))
       : (this.token = "");
-    localStorage.getItem("userId")
-      ? (this.userIdLoggedIn = JSON.parse(localStorage.getItem("userId")))
+    localStorage.getItem("userIdLoggedIn") //Local Storage UserId
+      ? (this.userIdLoggedIn = JSON.parse(
+          localStorage.getItem("userIdLoggedIn")
+        ))
       : (this.userIdLoggedIn = "");
+    localStorage.getItem("userFistnameLoggedIn") //Local Storage UserFirstname
+      ? (this.userFistnameLoggedIn = JSON.parse(
+          localStorage.getItem("userFistnameLoggedIn")
+        ))
+      : (this.userFistnameLoggedIn = ""); //Local Storage UserLastname
+    localStorage.getItem("userLastnameLoggedin")
+      ? (this.userLastnameLoggedin = JSON.parse(
+          localStorage.getItem("userLastnameLoggedin")
+        ))
+      : (this.userLastnameLoggedin = "");
+
+    /* Verification validité Token */
     const options = {
       method: "GET",
       headers: {
@@ -62,8 +80,23 @@ export default {
       }
       localStorage.setItem("token", JSON.stringify(this.token));
     },
-    user: function() {
-      localStorage.setItem("userId", JSON.stringify(this.user));
+    userIdLoggedIn: function() {
+      localStorage.setItem(
+        "userIdLoggedIn",
+        JSON.stringify(this.userIdLoggedIn)
+      );
+    },
+    userFistnameLoggedIn: function() {
+      localStorage.setItem(
+        "userFistnameLoggedIn",
+        JSON.stringify(this.userFistnameLoggedIn)
+      );
+    },
+    userLastnameLoggedin: function() {
+      localStorage.setItem(
+        "userLastnameLoggedin",
+        JSON.stringify(this.userLastnameLoggedin)
+      );
     },
   },
   provide() {
@@ -85,8 +118,22 @@ export default {
       get: () => this.userIdLoggedIn,
       set: (s) => (this.userIdLoggedIn = s),
     });
+    const userFistnameLoggedIn = {};
+    Object.defineProperty(userFistnameLoggedIn, "firstname", {
+      enumerable: true,
+      get: () => this.userFistnameLoggedIn,
+      set: (s) => (this.userFistnameLoggedIn = s),
+    });
+    const userLastnameLoggedin = {};
+    Object.defineProperty(userLastnameLoggedin, "lastname", {
+      enumerable: true,
+      get: () => this.userLastnameLoggedin,
+      set: (s) => (this.userLastnameLoggedin = s),
+    });
     return {
       userIdLoggedIn,
+      userFistnameLoggedIn,
+      userLastnameLoggedin,
       isConnected,
       token,
       connect: this.connect,
