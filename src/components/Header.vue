@@ -3,8 +3,8 @@
     <router-link to="/FilActus">
       <img
         v-animate-css="{
-          classes: 'rubberBand',
-          delay: 1000,
+          classes: 'bounceIn',
+          delay: 500,
           duration: 1000,
         }"
         id="imgLogo"

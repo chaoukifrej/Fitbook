@@ -6,9 +6,13 @@
 
     <div class="maxContenu">
       <div v-for="post in posts" :key="post._id">
-        <transition name="fade" appear>
-          <Post :post="post" />
-        </transition>
+        <Post
+          v-animate-css="{
+            classes: 'fadeInUp',
+            duration: 1000,
+          }"
+          :post="post"
+        />
       </div>
       <infinite-loading @infinite="infiniteHandler">
         <div class="NoMore" slot="no-more">Plus de posts</div>
@@ -53,7 +57,6 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           if (data.totalPages) {
             this.page++;
             this.posts.push(...data.posts);
@@ -72,15 +75,7 @@ export default {
 .maxContenu {
   margin-bottom: 70px;
 }
-/* Animation Posts*/
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
+
 /* Animation Header */
 .fromtop-enter-active {
   animation: fromtop-in 0.4s;

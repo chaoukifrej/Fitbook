@@ -54,15 +54,18 @@
           </div>
         </div>
       </div>
-      <div v-for="post in posts" :key="post._id">
+      <div v-for="(post, index) in posts" :key="index">
         <Post
           v-animate-css="{
-            classes: 'fadeIn',
+            classes: 'fadeInUp',
             duration: 1000,
           }"
           :post="post"
         />
       </div>
+      <infinite-loading @infinite="infiniteHandler">
+        <div class="NoMore" slot="no-more">Plus de posts</div>
+      </infinite-loading>
     </div>
     <Footer />
   </div>
@@ -72,6 +75,7 @@
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 import Post from "@/components/Post.vue";
+import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "Perso",
   inject: ["isConnected", "token", "disconnect", "userIdLoggedIn"],
@@ -79,6 +83,7 @@ export default {
     Header,
     Footer,
     Post,
+    InfiniteLoading,
   },
   data: () => ({
     firstname: "",
@@ -90,35 +95,44 @@ export default {
     status: "",
     sportsHall: "",
     sports: [],
+    page: 0,
     posts: [],
   }),
-  mounted: async function() {
-    const options = {
-      method: "GET",
-      headers: {
-        Authorization: "bearer " + this.token.value,
-      },
-    };
-    try {
-      const response = await fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/user?limit=8000",
+  methods: {
+    infiniteHandler($state) {
+      const options = {
+        method: "GET",
+        headers: {
+          Authorization: "bearer " + this.token.value,
+        },
+      };
+      fetch(
+        "https://fitbook-api.osc-fr1.scalingo.io/user?limit=5&page=" +
+          this.page,
         options
-      );
-      const data = await response.json();
-      this.firstname = data.firstname;
-      this.lastname = data.lastname;
-      this.age = data.age;
-      this.profilePicture = data.profilePicture;
-      this.city = data.city;
-      this.description = data.description;
-      this.status = data.status;
-      this.sportsHall = data.sportsHall;
-      this.sports = data.sports;
-      this.posts = data.posts;
-      this.userIdLoggedIn.id = data._id;
-    } catch (error) {
-      console.log(error);
-    }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.posts);
+          this.firstname = data.firstname;
+          this.lastname = data.lastname;
+          this.age = data.age;
+          this.profilePicture = data.profilePicture;
+          this.city = data.city;
+          this.description = data.description;
+          this.status = data.status;
+          this.sportsHall = data.sportsHall;
+          this.sports = data.sports;
+          this.userIdLoggedIn.id = data._id;
+          if (data.posts.length) {
+            this.page++;
+            this.posts.push(...data.posts);
+            $state.loaded();
+          } else {
+            $state.complete();
+          }
+        });
+    },
   },
 };
 </script>

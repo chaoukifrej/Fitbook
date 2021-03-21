@@ -6,6 +6,7 @@
     <div
       v-animate-css="{
         classes: 'fadeInUp',
+        delay: 800,
         duration: 600,
       }"
       class="commentaires"
