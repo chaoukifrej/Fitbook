@@ -1,7 +1,16 @@
 <template>
   <div class="header">
     <router-link to="/FilActus">
-      <img id="imgLogo" alt="logo FitBook" src="../assets/fitbookCoupe.png" />
+      <img
+        v-animate-css="{
+          classes: 'rubberBand',
+          delay: 1000,
+          duration: 1000,
+        }"
+        id="imgLogo"
+        alt="logo FitBook"
+        src="../assets/fitbookCoupe.png"
+      />
     </router-link>
     <h4 v-show="$route.name == 'Actus' && isConnected.is">Fil d'actus</h4>
     <h4 v-show="$route.name == 'Perso' && isConnected.is">

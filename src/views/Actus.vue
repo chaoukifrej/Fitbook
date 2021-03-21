@@ -10,6 +10,9 @@
           <Post :post="post" />
         </transition>
       </div>
+      <infinite-loading @infinite="infiniteHandler">
+        <div class="NoMore" slot="no-more">Plus de posts</div>
+      </infinite-loading>
     </div>
     <transition name="frombottom" appear>
       <Footer />
@@ -22,31 +25,44 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import Post from "@/components/Post.vue";
-
+import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "Actus",
   components: {
     Header,
     Footer,
     Post,
+    InfiniteLoading,
   },
 
-  data: () => ({ posts: [] }),
+  data: () => ({
+    page: 0,
+    posts: [],
+  }),
 
-  mounted: async function() {
-    const options = {
-      method: "GET",
-    };
-    try {
-      const response = await fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/posts",
+  methods: {
+    infiniteHandler($state) {
+      const options = {
+        method: "GET",
+      };
+
+      fetch(
+        "https://fitbook-api.osc-fr1.scalingo.io/posts?limit=5&page=" +
+          this.page,
         options
-      );
-      const data = await response.json();
-      this.posts = data.posts;
-    } catch (error) {
-      console.log(error);
-    }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data.totalPages) {
+            this.page++;
+            this.posts.push(...data.posts);
+            $state.loaded();
+          } else {
+            $state.complete();
+          }
+        });
+    },
   },
 };
 </script>
@@ -94,5 +110,11 @@ export default {
   100% {
     transform: translateY(0%);
   }
+}
+
+/* Plus de post */
+.NoMore {
+  font-size: 0.9rem;
+  color: #ff1616;
 }
 </style>
