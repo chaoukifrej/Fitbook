@@ -11,7 +11,7 @@
       }"
       class="commentaires"
     >
-      <div class="commentaireCard" v-for="com in comments" :key="com._id">
+      <div class="commentaireCard" v-for="com in commentsTab" :key="com._id">
         <p class="nomEtPrenom">{{ com.firstname }} {{ com.lastname }}</p>
         <p class="commentaireContent">{{ com.content }}</p>
         <span class="commentaireLike">
@@ -55,14 +55,17 @@ import Header from "@/components/Header.vue";
 export default {
   name: "comment",
   props: ["postId", "comments"],
-  inject: ["token"],
+  inject: ["token", "userFistnameLoggedIn", "userLastnameLoggedin"],
   components: {
     Header,
   },
-  data: () => ({
-    commentaire: "",
-    isActive: false,
-  }),
+  data() {
+    return {
+      commentaire: "",
+      isActive: false,
+      commentsTab: this.comments,
+    };
+  },
 
   methods: {
     sendComment: async function() {
@@ -84,7 +87,14 @@ export default {
           options
         );
         console.log("Commentaire status : " + response.status);
-        this.$router.go(-1);
+        let commentaire = {
+          content: this.commentaire,
+          firstname: this.userFistnameLoggedIn.firstname,
+          lastname: this.userLastnameLoggedin.lastname,
+          likes: [],
+        };
+        this.commentsTab.push(commentaire);
+        this.commentaire = "";
       } catch (error) {
         console.log(error);
       }
