@@ -1,7 +1,13 @@
 <template>
   <div class="connexion">
     <Header />
-    <div class="containerInscription">
+    <div
+      v-animate-css="{
+        classes: 'fadeInLeft',
+        duration: 600,
+      }"
+      class="containerInscription"
+    >
       <h2>Inscription</h2>
       <form @submit.prevent="inscription">
         <div class="prenom">

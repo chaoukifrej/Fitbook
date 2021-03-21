@@ -3,21 +3,25 @@
     <Header />
 
     <h2>Ajouter un commentaire</h2>
-    <div class="commentaires">
-      <transition-group name="fade" appear>
-        <div class="commentaireCard" v-for="com in comments" :key="com._id">
-          <p class="nomEtPrenom">{{ com.firstname }} {{ com.lastname }}</p>
-          <p class="commentaireContent">{{ com.content }}</p>
-          <span class="commentaireLike">
-            <font-awesome-icon
-              class="icons"
-              :class="{ active: isActive }"
-              :icon="['far', 'thumbs-up']"
-            />
-            <p>{{ com.likes.length }} j'aime</p>
-          </span>
-        </div>
-      </transition-group>
+    <div
+      v-animate-css="{
+        classes: 'fadeInUp',
+        duration: 600,
+      }"
+      class="commentaires"
+    >
+      <div class="commentaireCard" v-for="com in comments" :key="com._id">
+        <p class="nomEtPrenom">{{ com.firstname }} {{ com.lastname }}</p>
+        <p class="commentaireContent">{{ com.content }}</p>
+        <span class="commentaireLike">
+          <font-awesome-icon
+            class="icons"
+            :class="{ active: isActive }"
+            :icon="['far', 'thumbs-up']"
+          />
+          <p>{{ com.likes.length }} j'aime</p>
+        </span>
+      </div>
     </div>
     <transition name="frombottom" appear>
       <form @submit.prevent>
@@ -29,7 +33,15 @@
           rows="auto"
           placeholder="Ecrivez votre commentaire"
         ></textarea>
-        <button class="btnSend" @click="sendComment">
+        <button
+          v-animate-css="{
+            classes: 'headShake',
+            delay: 600,
+            duration: 1000,
+          }"
+          class="btnSend"
+          @click="sendComment"
+        >
           <font-awesome-icon class="iconSend" :icon="['far', 'paper-plane']" />
         </button>
       </form>
@@ -190,15 +202,6 @@ export default {
     100% {
       transform: translateY(0%);
     }
-  }
-  /* Animation Commentaires*/
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.5s;
-  }
-  .fade-enter,
-  .fade-leave-to {
-    opacity: 0;
   }
 }
 </style>

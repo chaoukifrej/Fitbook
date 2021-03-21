@@ -16,6 +16,7 @@
     "@maxflex/v-number": "^1.0.9",
     "chokidar": "^3.5.1",
     "core-js": "^3.6.5",
+    "v-animate-css": "^0.0.3",
     "vue": "^2.6.11",
     "vue-autofocus-directive": "^1.0.4",
     "vue-float-label": "^1.6.1",

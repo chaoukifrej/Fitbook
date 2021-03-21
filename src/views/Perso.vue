@@ -1,62 +1,69 @@
 <template>
   <div class="divPerso">
     <Header />
-    <transition name="fade" appear>
-      <div class="maxContenu">
-        <button
-          v-show="isConnected.is"
-          class="btnModification"
-          @click.prevent="$router.push('Modifprofil')"
-        >
-          Modifier profil
-        </button>
+    <div
+      v-animate-css="{
+        classes: 'fadeIn',
+        delay: 500,
+        duration: 1000,
+      }"
+      class="maxContenu"
+    >
+      <button
+        v-show="isConnected.is"
+        class="btnModification"
+        @click.prevent="$router.push('Modifprofil')"
+      >
+        Modifier profil
+      </button>
 
-        <button
-          v-show="isConnected.is"
-          class="btnDisconnect"
-          @click="disconnect"
-        >
-          Se deconnecter
-        </button>
-        <div class="containerPerso">
-          <div class="cardPerso">
-            <div class="contenu">
-              <div class="haut">
-                <div
-                  class="image"
-                  :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
-                ></div>
-                <div class="droite">
-                  <p id="nom">
-                    <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
-                  </p>
-                  <p v-show="city" class="optionelContent">
-                    <span>Ville</span> {{ city }}
-                  </p>
-                  <p v-show="age" class="optionelContent">
-                    <span>Age</span> {{ age }} ans
-                  </p>
+      <button v-show="isConnected.is" class="btnDisconnect" @click="disconnect">
+        Se deconnecter
+      </button>
+      <div class="containerPerso">
+        <div class="cardPerso">
+          <div class="contenu">
+            <div class="haut">
+              <div
+                class="image"
+                :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
+              ></div>
+              <div class="droite">
+                <p id="nom">
+                  <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
+                </p>
+                <p v-show="city" class="optionelContent">
+                  <span>Ville</span> {{ city }}
+                </p>
+                <p v-show="age" class="optionelContent">
+                  <span>Age</span> {{ age }} ans
+                </p>
 
-                  <p v-show="sports[0]" class="optionelContent">
-                    <span>Mon sport</span> {{ sports[0] }}
-                  </p>
-                  <p v-show="sportsHall" class="optionelContent">
-                    <span>Ma salle </span> {{ sportsHall }}
-                  </p>
-                  <p v-show="status"><span> Status</span>{{ status }}</p>
-                </div>
+                <p v-show="sports[0]" class="optionelContent">
+                  <span>Mon sport</span> {{ sports[0] }}
+                </p>
+                <p v-show="sportsHall" class="optionelContent">
+                  <span>Ma salle </span> {{ sportsHall }}
+                </p>
+                <p v-show="status"><span> Status</span>{{ status }}</p>
               </div>
-              <div v-show="description" class="description">
-                <p>{{ description }}</p>
-              </div>
+            </div>
+            <div v-show="description" class="description">
+              <p>{{ description }}</p>
             </div>
           </div>
         </div>
-        <div v-for="post in posts" :key="post._id">
-          <Post :post="post" />
-        </div>
       </div>
-    </transition>
+      <div v-for="post in posts" :key="post._id">
+        <Post
+          v-animate-css="{
+            classes: 'fadeIn',
+            duration: 1000,
+          }"
+          :post="post"
+        />
+      </div>
+    </div>
     <Footer />
   </div>
 </template>
@@ -182,14 +189,5 @@ export default {
       text-align: start;
     }
   }
-}
-/* Animation Posts*/
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.4s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

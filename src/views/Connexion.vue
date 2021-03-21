@@ -1,7 +1,13 @@
 <template>
   <div class="connexion">
     <Header />
-    <div class="containerConnexion">
+    <div
+      v-animate-css="{
+        classes: 'pulse',
+        duration: 600,
+      }"
+      class="containerConnexion"
+    >
       <h2>Connexion</h2>
       <form @submit.prevent="connexion">
         <div class="email">

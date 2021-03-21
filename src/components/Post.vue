@@ -22,7 +22,7 @@
       ></div>
       <div class="btnCard">
         <div class="like">
-          <span v-if="isConnected.is">
+          <span v-animate-css.click="'tada'" v-if="isConnected.is">
             <font-awesome-icon
               @click="addLike"
               class="icons"
