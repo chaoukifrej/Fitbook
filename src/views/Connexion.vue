@@ -7,6 +7,7 @@
         <div class="email">
           <label for="email">Email</label>
           <input
+            v-autofocus
             v-model="email"
             type="email"
             placeholder="Entrer votre email"

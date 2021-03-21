@@ -19,6 +19,7 @@
     </div>
     <form @submit.prevent>
       <textarea
+        v-autofocus
         v-model="commentaire"
         name="message"
         cols="auto"

@@ -26,7 +26,7 @@
 
         <div class="prenom">
           <label for="prenom">Modifiez votre Prénom </label>
-          <input v-model="firstname" type="text" required />
+          <input v-autofocus v-model="firstname" type="text" required />
         </div>
 
         <div class="nomModifier">

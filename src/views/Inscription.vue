@@ -6,7 +6,13 @@
       <form @submit.prevent="inscription">
         <div class="prenom">
           <label for="prenom">Prénom</label>
-          <input v-model="firstname" type="text" placeholder="Jean" required />
+          <input
+            v-autofocus
+            v-model="firstname"
+            type="text"
+            placeholder="Jean"
+            required
+          />
         </div>
         <div class="nom">
           <label for="nom">Nom</label>
