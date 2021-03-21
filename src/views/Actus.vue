@@ -1,11 +1,26 @@
 <template>
   <div class="actus">
-    <Header />
+    <transition name="fromtop" appear>
+      <Header />
+    </transition>
 
-    <div v-for="post in posts" :key="post._id">
-      <Post :post="post" />
+    <div class="maxContenu">
+      <div v-for="post in posts" :key="post._id">
+        <Post
+          v-animate-css="{
+            classes: 'fadeInUp',
+            duration: 1000,
+          }"
+          :post="post"
+        />
+      </div>
+      <infinite-loading @infinite="infiniteHandler">
+        <div class="NoMore" slot="no-more">Plus de posts</div>
+      </infinite-loading>
     </div>
-    <Footer />
+    <transition name="frombottom" appear>
+      <Footer />
+    </transition>
   </div>
 </template>
 
@@ -14,35 +29,87 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import Post from "@/components/Post.vue";
-
+import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "Actus",
   components: {
     Header,
     Footer,
     Post,
+    InfiniteLoading,
   },
 
-  data: () => ({ posts: [] }),
+  data: () => ({
+    page: 0,
+    posts: [],
+  }),
 
-  mounted: async function() {
-    const options = {
-      method: "GET",
-    };
-    try {
-      const response = await fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/posts",
+  methods: {
+    infiniteHandler($state) {
+      const options = {
+        method: "GET",
+      };
+
+      fetch(
+        "https://fitbook-api.osc-fr1.scalingo.io/posts?limit=5&page=" +
+          this.page,
         options
-      );
-      const data = await response.json();
-      this.posts = data.posts;
-
-      console.log(this.posts);
-    } catch (error) {
-      console.log(error);
-    }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.totalPages) {
+            this.page++;
+            this.posts.push(...data.posts);
+            $state.loaded();
+          } else {
+            $state.complete();
+          }
+        });
+    },
   },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+/* Attention - utilisé aussi pour page Perso.vue et User.vue*/
+.maxContenu {
+  margin-bottom: 70px;
+}
+
+/* Animation Header */
+.fromtop-enter-active {
+  animation: fromtop-in 0.4s;
+}
+.fromtop-leave-active {
+  animation: fromtop-in 0.4s reverse;
+}
+@keyframes fromtop-in {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+/* Animation Footer */
+.frombottom-enter-active {
+  animation: frombottom-in 0.3s;
+}
+.frombottom-leave-active {
+  animation: frombottom-in 0.3s reverse;
+}
+@keyframes frombottom-in {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* Plus de post */
+.NoMore {
+  font-size: 0.9rem;
+  color: #ff1616;
+}
+</style>

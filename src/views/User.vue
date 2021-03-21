@@ -1,72 +1,63 @@
 <template>
   <div class="divPerso">
     <Header />
-    <div
-      v-animate-css="{
-        classes: 'fadeIn',
-        delay: 500,
-        duration: 1000,
-      }"
-      class="maxContenu"
-    >
-      <button
-        v-show="isConnected.is"
-        class="btnModification"
-        @click.prevent="$router.push('Modifprofil')"
+    <transition name="fade" appear>
+      <div
+        v-animate-css="{
+          classes: 'fadeIn',
+          delay: 500,
+          duration: 1000,
+        }"
+        class="maxContenu"
       >
-        Modifier profil
-      </button>
+        <div class="containerPerso">
+          <div class="cardPerso">
+            <div class="contenu">
+              <div class="haut">
+                <div
+                  class="image"
+                  :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
+                ></div>
+                <div class="droite">
+                  <p id="nom">
+                    <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
+                  </p>
+                  <p v-show="city" class="optionelContent">
+                    <span>Ville</span> {{ city }}
+                  </p>
+                  <p v-show="age" class="optionelContent">
+                    <span>Age</span> {{ age }} ans
+                  </p>
 
-      <button v-show="isConnected.is" class="btnDisconnect" @click="disconnect">
-        Se deconnecter
-      </button>
-      <div class="containerPerso">
-        <div class="cardPerso">
-          <div class="contenu">
-            <div class="haut">
-              <div
-                class="image"
-                :style="{ backgroundImage: 'url(' + profilePicture + ')' }"
-              ></div>
-              <div class="droite">
-                <p id="nom">
-                  <b class="prenom">{{ firstname }}</b> <b>{{ lastname }}</b>
-                </p>
-                <p v-show="city" class="optionelContent">
-                  <span>Ville</span> {{ city }}
-                </p>
-                <p v-show="age" class="optionelContent">
-                  <span>Age</span> {{ age }} ans
-                </p>
-
-                <p v-show="sports[0]" class="optionelContent">
-                  <span>Mon sport</span> {{ sports[0] }}
-                </p>
-                <p v-show="sportsHall" class="optionelContent">
-                  <span>Ma salle </span> {{ sportsHall }}
-                </p>
-                <p v-show="status"><span> Status</span>{{ status }}</p>
+                  <p v-show="sports[0]" class="optionelContent">
+                    <span>Mon sport</span> {{ sports[0] }}
+                  </p>
+                  <p v-show="sportsHall" class="optionelContent">
+                    <span>Ma salle </span> {{ sportsHall }}
+                  </p>
+                  <p v-show="status"><span> Status</span>{{ status }}</p>
+                </div>
               </div>
-            </div>
-            <div v-show="description" class="description">
-              <p>{{ description }}</p>
+              <div v-show="description" class="description">
+                <p>{{ description }}</p>
+              </div>
             </div>
           </div>
         </div>
+        <div v-for="post in posts" :key="post._id">
+          <Post
+            v-animate-css="{
+              classes: 'fadeInUp',
+              duration: 1000,
+            }"
+            :post="post"
+          />
+        </div>
+        <infinite-loading @infinite="infiniteHandler">
+          <div class="NoMore" slot="no-more">Plus de posts</div>
+        </infinite-loading>
       </div>
-      <div v-for="(post, index) in posts" :key="index">
-        <Post
-          v-animate-css="{
-            classes: 'fadeInUp',
-            duration: 1000,
-          }"
-          :post="post"
-        />
-      </div>
-      <infinite-loading @infinite="infiniteHandler">
-        <div class="NoMore" slot="no-more">Plus de posts</div>
-      </infinite-loading>
-    </div>
+    </transition>
     <Footer />
   </div>
 </template>
@@ -78,6 +69,7 @@ import Post from "@/components/Post.vue";
 import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "Perso",
+  props: ["id"],
   inject: ["isConnected", "token", "disconnect", "userIdLoggedIn"],
   components: {
     Header,
@@ -98,6 +90,7 @@ export default {
     page: 0,
     posts: [],
   }),
+
   methods: {
     infiniteHandler($state) {
       const options = {
@@ -107,7 +100,9 @@ export default {
         },
       };
       fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/user?limit=5&page=" +
+        "https://fitbook-api.osc-fr1.scalingo.io/user/" +
+          this.id +
+          "?limit=5&page=" +
           this.page,
         options
       )
@@ -137,27 +132,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.btnDisconnect,
-.btnModification {
-  font-size: 0.9rem;
-  padding: 3px 10px;
-  margin: 0 15px;
-  border: 2px solid whitesmoke;
-  background-color: transparent;
-  border-radius: 5px;
-  color: whitesmoke;
-  outline: none;
-  transition: 0.4s;
-  &:active {
-    transform: scale(0.98);
-  }
-}
+<style lang="scss" scoped>
 .containerPerso {
   .cardPerso {
     width: 100%;
-    margin: 10px 0;
-    padding: 20px 10px;
+    margin: 0;
+    padding: 10px;
   }
   .contenu {
     width: 100%;
@@ -203,5 +183,14 @@ export default {
       text-align: start;
     }
   }
+}
+/* Animation Posts*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

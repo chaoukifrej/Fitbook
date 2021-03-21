@@ -1,6 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import autofocus from "vue-autofocus-directive";
+import VueFloatLabel from "vue-float-label";
+import VAnimateCss from "v-animate-css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
@@ -9,19 +12,20 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 
 library.add(faHome);
 library.add(faThumbsUp);
 library.add(faComment);
 library.add(faInfo);
-
-Vue.component("font-awesome-icon", FontAwesomeIcon);
-
 library.add(faPlusSquare);
-Vue.component("font-awesome-icon", FontAwesomeIcon);
-
 library.add(faUserCircle);
+library.add(faPaperPlane);
+
 Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.directive("autofocus", autofocus);
+Vue.use(VueFloatLabel);
+Vue.use(VAnimateCss);
 
 Vue.config.productionTip = false;
 

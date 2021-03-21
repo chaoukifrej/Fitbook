@@ -11,6 +11,7 @@ export default {
     name: "AppVue",
     isConnected: false,
     token: "",
+    userIdLoggedIn: "",
   }),
   methods: {
     connect: function() {
@@ -20,29 +21,37 @@ export default {
     disconnect: function() {
       this.isConnected = false;
       this.token = "";
+      this.userIdLoggedIn = "";
       this.$router.go(-1);
     },
   },
 
   //Mise en place du Local Storage
+
   beforeMount() {
+    let oldToken = "";
     localStorage.getItem("token")
-      ? (this.token = JSON.parse(localStorage.getItem("token")))
+      ? (oldToken = JSON.parse(localStorage.getItem("token")))
       : (this.token = "");
-    /* const options = {
+    localStorage.getItem("userId")
+      ? (this.userIdLoggedIn = JSON.parse(localStorage.getItem("userId")))
+      : (this.userIdLoggedIn = "");
+    const options = {
       method: "GET",
       headers: {
-        Authorization: "bearer " + this.token.value,
+        Authorization: "bearer " + oldToken,
       },
     };
     fetch("https://fitbook-api.osc-fr1.scalingo.io/user", options).then(
       (response) => {
-        if (response.status != 200) {
-          console.log(response.message);
+        if (response.status == 200) {
+          console.log("Token get status " + response.status);
+          this.token = oldToken;
+        } else {
           this.token = "";
         }
       }
-    ); */
+    );
   },
   watch: {
     token: function() {
@@ -52,6 +61,9 @@ export default {
         this.isConnected = false;
       }
       localStorage.setItem("token", JSON.stringify(this.token));
+    },
+    user: function() {
+      localStorage.setItem("userId", JSON.stringify(this.user));
     },
   },
   provide() {
@@ -67,7 +79,14 @@ export default {
       get: () => this.token,
       set: (n) => (this.token = n),
     });
+    const userIdLoggedIn = {};
+    Object.defineProperty(userIdLoggedIn, "id", {
+      enumerable: true,
+      get: () => this.userIdLoggedIn,
+      set: (s) => (this.userIdLoggedIn = s),
+    });
     return {
+      userIdLoggedIn,
       isConnected,
       token,
       connect: this.connect,
@@ -78,11 +97,15 @@ export default {
 </script>
 
 <style lang="scss">
+/* Site version non mobile */
+.notMobile {
+  display: none;
+}
 /* Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
 /* Variables */
 $bgColor: #232323;
-$bgColorView: #363636;
+$bgColorView: #383838;
 $redColor: #ff1616;
 * {
   margin: 0;
@@ -126,7 +149,8 @@ body {
   position: fixed;
   width: 100%;
   height: 50px;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
   background-color: $bgColor;
   top: 0;
   z-index: 1000;
@@ -137,9 +161,43 @@ body {
   position: fixed;
   width: 100%;
   height: 50px;
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
   background-color: $bgColor;
   bottom: 0;
   z-index: 1000;
+}
+
+/* Transition Animation */
+/* Animation */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Media Queries pour Non Mobile  */
+@media screen and (min-width: 500px) {
+  #app {
+    display: none;
+  }
+  .notMobile {
+    background-color: $bgColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20%;
+    letter-spacing: 2px;
+    line-height: 50px;
+    text-align: justify;
+    span {
+      color: #ff1616;
+    }
+  }
 }
 </style>

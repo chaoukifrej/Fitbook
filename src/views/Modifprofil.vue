@@ -26,7 +26,7 @@
 
         <div class="prenom">
           <label for="prenom">Modifiez votre Prénom </label>
-          <input v-model="firstname" type="text" required />
+          <input v-autofocus v-model="firstname" type="text" required />
         </div>
 
         <div class="nomModifier">
@@ -243,11 +243,10 @@ export default {
 .containerAmodifier {
   background-color: #232323;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
-  border: 1px solid #000000;
   border-radius: 3px;
   width: 90%;
   margin: 20px 5%;
-  padding: 0 10px;
+  padding: 10px;
 
   h2 {
     font-size: 1.3rem;
@@ -264,16 +263,16 @@ export default {
       flex-direction: column;
       label {
         text-align: start;
-        margin: 15px 0 5px 5px;
+        margin: 20px 0 5px 5px;
         font-size: 0.9rem;
       }
-
       .imgUtilisateur {
         background-size: cover;
-        height: 15rem;
-        border-radius: 50%;
-        border: 1px solid #000000;
+        height: 10rem;
+        width: 10rem;
+        border-radius: 5px;
         opacity: 0.6;
+        margin: auto;
       }
 
       input,

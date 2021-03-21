@@ -1,52 +1,59 @@
 <template>
   <div class="connexion">
     <Header />
-    <div class="containerInscription">
+    <div
+      v-animate-css="{
+        classes: 'fadeInLeft',
+        duration: 600,
+      }"
+      class="containerInscription"
+    >
       <h2>Inscription</h2>
       <form @submit.prevent="inscription">
         <div class="prenom">
-          <label for="prenom">Prénom</label>
-          <input v-model="firstname" type="text" placeholder="Jean" required />
+          <float-label>
+            <input
+              v-autofocus
+              v-model="firstname"
+              type="text"
+              placeholder="Prénom"
+              required
+            />
+          </float-label>
         </div>
         <div class="nom">
-          <label for="nom">Nom</label>
-          <input
-            v-model="lastname"
-            type="text"
-            placeholder="Delatour"
-            required
-          />
+          <float-label>
+            <input v-model="lastname" type="text" placeholder="Nom" required />
+          </float-label>
         </div>
         <div class="email">
-          <label for="email">Email</label>
-          <input
-            v-model="email"
-            type="email"
-            placeholder="jd@email.fr"
-            required
-          />
+          <float-label>
+            <input v-model="email" type="email" placeholder="Email" required />
+          </float-label>
         </div>
         <div class="mdp">
-          <label for="mdp">Mot de passe</label>
-          <input
-            v-model="password"
-            type="password"
-            name="mdp"
-            id="mdpFirst"
-            placeholder="Entrer un mot de passe"
-            required
-          />
+          <float-label>
+            <input
+              v-model="password"
+              type="password"
+              name="mdp"
+              id="mdpFirst"
+              placeholder="Mot de passe"
+              required
+            />
+          </float-label>
         </div>
         <div class="mdp">
-          <label for="mdp">Verification Mot de passe</label>
-          <input
-            v-model="repassword"
-            type="password"
-            name="mdp"
-            id="mdpSecond"
-            placeholder="Retaper votre mot de passe"
-            required
-          />
+          <float-label>
+            <input
+              v-model="repassword"
+              type="password"
+              name="mdp"
+              id="mdpSecond"
+              placeholder="Verification Mot de passe"
+              required
+            />
+          </float-label>
         </div>
 
         <input type="submit" @click="inscription" value="S'incrire" />
@@ -111,10 +118,12 @@ export default {
             "https://fitbook-api.osc-fr1.scalingo.io/register",
             options
           );
-          console.log(response);
           const data = await response.json();
           console.log(data);
-          this.sendOK = true;
+          console.log("Status Connexion : " + response.status);
+          if (response.status == 200) {
+            this.sendOK = true;
+          }
         } catch (error) {
           console.log(error);
         }
@@ -135,14 +144,13 @@ export default {
 .containerInscription {
   background-color: #232323;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
-  border: 1px solid #000000;
   border-radius: 3px;
   width: 90%;
   margin: 20px 5%;
-  padding: 0 10px;
+  padding: 10px;
   h2 {
     font-size: 1.3rem;
-    margin: 10px 0 0;
+    margin: 10px 0 15px;
   }
   form {
     display: flex;
@@ -151,11 +159,6 @@ export default {
     div {
       display: flex;
       flex-direction: column;
-      label {
-        text-align: start;
-        margin: 15px 0 5px 5px;
-        font-size: 0.9rem;
-      }
       input,
       select {
         width: 75vw;
@@ -167,6 +170,7 @@ export default {
         outline: none;
         font-size: 1rem;
         transition: 0.4s;
+        margin: 15px 0;
         &::placeholder {
           color: rgb(107, 107, 107);
         }
@@ -176,7 +180,7 @@ export default {
       }
     }
     input[type="submit"] {
-      margin: 20px;
+      margin: 10px 0 20px;
       font-size: 1rem;
       padding: 5px 15px;
       border: 2px solid whitesmoke;
@@ -196,6 +200,21 @@ export default {
         color: #ff1616;
       }
     }
+  }
+  .vfl-label {
+    text-align: start;
+    margin: 15px 0 5px 5px;
+    font-size: 0.9rem;
+    color: whitesmoke;
+    font-family: "Ubuntu", Arial, sans-serif;
+  }
+
+  .vfl-label-on-input {
+    top: -1.2rem;
+  }
+
+  .vfl-label-on-focus {
+    color: #ff1616;
   }
 }
 </style>
