@@ -1,4 +1,4 @@
-[Voir le site (Version mobile -> ctrl+shift+m)](https://fitbook.netlify.app/) 
+[Voir le site (Version mobile -> ctrl+shift+m)](https://fitbook.netlify.app) 
 
 # Fitbook
 3eme projet formation Le Bocal Academy, VueJS
