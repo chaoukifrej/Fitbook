@@ -46,7 +46,7 @@
 import Header from "@/components/Header.vue";
 export default {
   name: "Connexion",
-  inject: ["isConnected", "token", "connect"],
+  inject: ["isConnected", "token", "connect", "webApiLink"],
   components: {
     Header,
   },
@@ -72,7 +72,7 @@ export default {
       };
       try {
         const response = await fetch(
-          "https://fitbook-api.osc-fr1.scalingo.io/login",
+          this.webApiLink + "login",
           options
         );
         const data = await response.json();

@@ -75,7 +75,7 @@
 <script>
 import { VNumber } from "@maxflex/v-number";
 export default {
-  inject: ["isConnected", "token", "userIdLoggedIn"],
+  inject: ["isConnected", "token", "userIdLoggedIn", "webApiLink"],
   props: ["post"],
   components: {
     VNumber,
@@ -120,7 +120,7 @@ export default {
         body: JSON.stringify(body),
       };
       const response = await fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/post/like",
+        this.webApiLink + "post/like",
         options
       );
       console.log("Like status : " + response.status);

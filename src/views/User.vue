@@ -70,7 +70,7 @@ import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "Perso",
   props: ["id"],
-  inject: ["isConnected", "token", "disconnect", "userIdLoggedIn"],
+  inject: ["isConnected", "token", "disconnect", "userIdLoggedIn", "webApiLink"],
   components: {
     Header,
     Footer,
@@ -100,7 +100,7 @@ export default {
         },
       };
       fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/user/" +
+        this.webApiLink + "user/" +
           this.id +
           "?limit=5&page=" +
           this.page,

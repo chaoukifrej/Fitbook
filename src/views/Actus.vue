@@ -32,6 +32,7 @@ import Post from "@/components/Post.vue";
 import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "Actus",
+  inject: ["webApiLink"],
   components: {
     Header,
     Footer,
@@ -51,7 +52,7 @@ export default {
       };
 
       fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/posts?limit=5&page=" +
+        this.webApiLink + "posts?limit=5&page=" +
           this.page,
         options
       )

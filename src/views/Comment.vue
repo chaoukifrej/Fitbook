@@ -55,7 +55,7 @@ import Header from "@/components/Header.vue";
 export default {
   name: "comment",
   props: ["postId", "comments"],
-  inject: ["token", "userFistnameLoggedIn", "userLastnameLoggedin"],
+  inject: ["token", "userFistnameLoggedIn", "userLastnameLoggedin", "webApiLink"],
   components: {
     Header,
   },
@@ -83,7 +83,7 @@ export default {
       };
       try {
         const response = await fetch(
-          "https://fitbook-api.osc-fr1.scalingo.io/post/comment",
+          this.webApiLink + "post/comment",
           options
         );
         console.log("Commentaire status : " + response.status);

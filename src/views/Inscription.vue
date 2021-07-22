@@ -66,6 +66,7 @@
 import Header from "@/components/Header.vue";
 export default {
   name: "Inscription",
+  inject:["webApiLink"],
   components: {
     Header,
   },
@@ -115,7 +116,7 @@ export default {
 
         try {
           const response = await fetch(
-            "https://fitbook-api.osc-fr1.scalingo.io/register",
+            this.webApiLink + "register",
             options
           );
           const data = await response.json();

@@ -126,7 +126,7 @@
 import Header from "@/components/Header.vue";
 export default {
   name: "modifProfile",
-  inject: ["token"],
+  inject: ["token", "webApiLink"],
   components: {
     Header,
   },
@@ -138,7 +138,7 @@ export default {
     city: "",
     sports: [],
     status: "",
-    sportHall: "",
+    sportsHall: "",
     description: "",
     password: "",
     repassword: "",
@@ -155,7 +155,7 @@ export default {
     };
     try {
       const response = await fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/user",
+        this.webApiLink + "user",
         options
       );
 
@@ -222,7 +222,7 @@ export default {
 
         try {
           const response = await fetch(
-            "https://fitbook-api.osc-fr1.scalingo.io/user",
+            this.webApiLink + "user",
             options
           );
 

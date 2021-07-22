@@ -1,0 +1,87 @@
+Fitbook API
+
+Adresse
+https://fitbook-api.osc-fr1.scalingo.io
+
+Posts
+
+Modifications
+
+Ajouter un lien d'image
+Supprimer le titre
+Ajouter un lieu
+
+
+Structure
+{
+    content: String,
+    image: String,
+    date: Date
+    likes: [{
+        firstname: String,
+        lastname: String,
+        userId: String,
+    }],
+    comments: [{
+        firstname: String,
+        lastname: String,
+        userId: String,
+        content: String,
+        likes: [{
+            firstname: String,
+            lastname: String,
+            userId: String,
+        }],
+    }],
+    location: {
+        long: Number,
+        lat: Number,
+        name: String,
+    },
+    firstname: String,
+    lastname: String,
+    userId: String,
+}
+
+Utilisateur
+
+Modifications
+
+Ajouter un lien d'image
+Ajouter ville
+Ajouter sport
+Ajouter status
+Ajouter salle de sport
+Ajouter description
+Supprimer le métier
+
+
+Structure
+{
+    firstname: String,
+    lastname: String,
+    email: String,
+    password: String,
+    age: Number,
+    profilePicture: String,
+    city: String,
+    description: String,
+    status: String,
+    sportsHall: String,
+    sports: [String]
+}
+
+Routes
+
+Modifications
+
+Modifier la route /post pour uploader une image
+Modifier la route /user pour uploader une image
+Modifier les routes /user pour récupérer les posts
+
+
+Routes à jour
+
+
+GET /user et GET /user/:id Renvoient désormais les posts de l'utilisateur, les paramètres de requête page et limit sont utilisables pour les posts
+Par exemple: /user?limit=10 pour obtenir les 10 derniers posts de l'utilisateur

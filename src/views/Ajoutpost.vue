@@ -65,7 +65,7 @@ import Header from "@/components/Header.vue";
 
 export default {
   name: "Ajoutpost",
-  inject: ["token"],
+  inject: ["token", "webApiLink"],
   components: {
     Header,
   },
@@ -111,7 +111,7 @@ export default {
         };
         try {
           const response = await fetch(
-            "https://fitbook-api.osc-fr1.scalingo.io/post",
+            this.webApiLink + "post",
             options
           );
 

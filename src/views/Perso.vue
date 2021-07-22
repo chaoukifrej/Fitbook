@@ -85,6 +85,7 @@ export default {
     "userIdLoggedIn",
     "userFistnameLoggedIn",
     "userLastnameLoggedin",
+    "webApiLink"
   ],
   components: {
     Header,
@@ -114,7 +115,7 @@ export default {
         },
       };
       fetch(
-        "https://fitbook-api.osc-fr1.scalingo.io/user?limit=5&page=" +
+        this.webApiLink + "user?limit=5&page=" +
           this.page,
         options
       )

@@ -14,6 +14,7 @@ export default {
     userIdLoggedIn: "",
     userFistnameLoggedIn: "",
     userLastnameLoggedin: "",
+    webApiLink: "https://fitbook-api.osc-fr1.scalingo.io/",
   }),
   methods: {
     connect: function() {
@@ -60,7 +61,7 @@ export default {
         Authorization: "bearer " + oldToken,
       },
     };
-    fetch("https://fitbook-api.osc-fr1.scalingo.io/user", options).then(
+    fetch(this.webApiLink + "user", options).then(
       (response) => {
         if (response.status == 200) {
           console.log("Token get status " + response.status);
@@ -138,6 +139,7 @@ export default {
       token,
       connect: this.connect,
       disconnect: this.disconnect,
+      webApiLink: this.webApiLink,
     };
   },
 };
